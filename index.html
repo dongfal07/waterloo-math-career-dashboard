@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0B0F19">
+  <title>Waterloo Math Career Dashboard</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            uwGold: '#FDD017',
+            uwGoldHover: '#E5A823',
+            uwDarkSlate: '#151D2A',
+            uwCard: '#1C2636',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0B0F19;
+      color: #F3F4F6;
+    }
+  </style>
+
+  <script>
+    // 스마트폰 vs PC 자동 감지 및 스마트 리다이렉트
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceView = urlParams.get('view');
+
+      if (forceView === 'mobile') {
+        window.location.replace('web/mobile_dashboard.html');
+        return;
+      } else if (forceView === 'desktop') {
+        window.location.replace('web/desktop_dashboard.html');
+        return;
+      }
+
+      // 기기 화면 폭 및 User-Agent 감지
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                             || (window.innerWidth <= 800);
+
+      if (isMobileDevice) {
+        window.location.replace('web/mobile_dashboard.html');
+      } else {
+        window.location.replace('web/desktop_dashboard.html');
+      }
+    })();
+  </script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-md w-full bg-uwCard p-6 rounded-3xl border border-gray-800 text-center shadow-2xl space-y-5">
+    <div class="w-16 h-16 bg-uwGold rounded-2xl flex items-center justify-center font-black text-black text-2xl mx-auto shadow-lg">
+      UW
+    </div>
+    
+    <div>
+      <h1 class="text-lg font-bold text-white">Waterloo Math Career Intelligence</h1>
+      <p class="text-xs text-gray-400 mt-1">기기에 맞는 최적 화면으로 자동 연결 중입니다...</p>
+    </div>
+
+    <div class="flex justify-center py-2">
+      <i class="fa-solid fa-circle-notch fa-spin text-uwGold text-2xl"></i>
+    </div>
+
+    <div class="pt-3 border-t border-gray-800/80 space-y-2 text-xs">
+      <p class="text-gray-400 text-[11px]">자동 이동되지 않을 경우 직접 선택해 주세요:</p>
+      <div class="grid grid-cols-2 gap-2">
+        <a href="web/mobile_dashboard.html" class="p-3 bg-uwDarkSlate hover:bg-gray-800 rounded-xl border border-gray-700 text-white font-bold flex flex-col items-center space-y-1 transition active:scale-95">
+          <i class="fa-solid fa-mobile-screen text-uwGold text-base"></i>
+          <span>스마트폰 모바일 뷰</span>
+        </a>
+        <a href="web/desktop_dashboard.html" class="p-3 bg-uwDarkSlate hover:bg-gray-800 rounded-xl border border-gray-700 text-white font-bold flex flex-col items-center space-y-1 transition active:scale-95">
+          <i class="fa-solid fa-laptop text-sky-400 text-base"></i>
+          <span>PC 와이드 뷰</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

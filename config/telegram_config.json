@@ -1,7 +1,7 @@
 {
   "telegram": {
-    "bot_token": "8795091700:AAEbGlAeFovH4SbxlCX08B1TSG2sQii6a3c",
-    "chat_id": "1172576367",
+    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN_OR_USE_GITHUB_SECRETS",
+    "chat_id": "YOUR_TELEGRAM_CHAT_ID_OR_USE_GITHUB_SECRETS",
     "enabled": true,
     "instructions": {
       "step_1": "텔레그램 앱에서 @BotFather 검색 후 /newbot 명령어로 봇 생성 및 API 토큰 획득",

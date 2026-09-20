@@ -400,31 +400,30 @@
               <img id="qr-code-img" src="" alt="QR Code" class="w-full h-full object-contain">
             </div>
             <div class="space-y-2 text-xs flex-1">
-              <div class="text-[11px] text-gray-300 leading-snug space-y-1 bg-gray-900/80 p-2 rounded-lg border border-gray-800">
-                <div class="flex items-start space-x-1.5">
-                  <span class="text-uwGold font-bold shrink-0">1. Wi-Fi 확인:</span>
-                  <span>스마트폰과 PC가 <span class="text-white font-semibold underline">같은 Wi-Fi 공유기</span>에 연결되어야 합니다. (LTE 끄고 Wi-Fi 켜기)</span>
+              <div class="space-y-1 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold text-emerald-400 flex items-center">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse mr-1"></span>
+                    24시간 365일 클라우드 주소
+                  </span>
+                  <span class="text-[9.5px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded font-semibold">PC 종료 무관</span>
                 </div>
-                <div class="flex items-start space-x-1.5">
-                  <span class="text-sky-400 font-bold shrink-0">2. 방화벽 허용:</span>
-                  <span>접속이 안 될 경우 폴더의 <span class="text-amber-300 font-mono font-bold">방화벽_스마트폰접속허용.bat</span> 을 1회 실행해 주세요.</span>
+                <div class="p-2 bg-gray-950 rounded-lg border border-gray-700 font-mono text-[10px] text-sky-300 break-all select-all font-semibold" id="mobile-url-display">
+                  https://dongfal07.github.io/waterloo-math-career-dashboard/
                 </div>
-              </div>
-              
-              <div>
-                <div class="text-[10px] text-gray-400 mb-0.5">스마트폰 접속 전용 URL:</div>
-                <div class="p-2 bg-gray-950 rounded-lg border border-gray-700 font-mono text-[10.5px] text-emerald-400 break-all select-all font-semibold" id="mobile-url-display">
-                  http://192.168.45.201:8080/web/mobile_dashboard.html
+                <div class="text-[10px] text-gray-400 leading-snug pt-0.5">
+                  ✓ LTE/5G 어디서든 스캔 시 스마트폰 화면으로 자동 분기<br>
+                  ✓ 컴퓨터가 꺼져 있어도 스마트폰으로 바로 열립니다.
                 </div>
               </div>
 
-              <div class="flex items-center space-x-3 pt-0.5">
+              <div class="flex items-center space-x-3 pt-0.5 text-xs">
                 <button onclick="copyMobileUrl()" class="text-[11px] text-uwGold hover:underline font-bold flex items-center">
                   <i class="fa-regular fa-copy mr-1"></i> 주소 복사
                 </button>
                 <span class="text-gray-600">|</span>
-                <button onclick="promptChangeIp()" class="text-[11px] text-sky-400 hover:underline flex items-center">
-                  <i class="fa-solid fa-wrench mr-1"></i> IP 직접 변경
+                <button onclick="toggleUrlMode()" id="toggle-url-btn" class="text-[11px] text-gray-400 hover:text-white flex items-center">
+                  <i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 모드로 전환
                 </button>
               </div>
             </div>
@@ -450,7 +449,9 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // 스마트폰 접속용 실제 로컬 IP 기본값
+    // 스마트폰 접속용 24시간 클라우드 및 로컬 IP 설정
+    const cloudUrl = "https://dongfal07.github.io/waterloo-math-career-dashboard/";
+    let isCloudMode = true;
     let serverLocalIp = "192.168.45.201";
     let serverPort = "8080";
 
@@ -479,8 +480,10 @@
     }
 
     function updateMobileQrCode() {
-      // 스마트폰이 인식할 수 있는 실제 네트워크 URL (localhost 가 아닌 실제 IP 주소 사용)
-      const mobileUrl = `http://${serverLocalIp}:${serverPort}/web/mobile_dashboard.html`;
+      const mobileUrl = isCloudMode 
+        ? cloudUrl 
+        : `http://${serverLocalIp}:${serverPort}/web/mobile_dashboard.html`;
+
       document.getElementById('mobile-url-display').textContent = mobileUrl;
       
       // QR 코드 이미지 갱신
@@ -488,13 +491,17 @@
       document.getElementById('qr-code-img').src = qrApi;
     }
 
-    function promptChangeIp() {
-      const newIp = prompt("스마트폰과 연결할 컴퓨터의 IP 주소를 입력하세요:", serverLocalIp);
-      if (newIp && newIp.trim()) {
-        serverLocalIp = newIp.trim();
-        updateMobileQrCode();
-        showToast('IP 주소 변경 완료', `새 주소: http://${serverLocalIp}:${serverPort}/web/mobile_dashboard.html`);
+    function toggleUrlMode() {
+      isCloudMode = !isCloudMode;
+      const btn = document.getElementById('toggle-url-btn');
+      if (isCloudMode) {
+        btn.innerHTML = '<i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 모드로 전환';
+        showToast('클라우드 모드', '24시간 무중단 클라우드 주소로 QR 코드가 전환되었습니다.');
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-cloud mr-1"></i> 24h 클라우드 모드로 전환';
+        showToast('로컬 Wi-Fi 모드', `로컬 사설망 주소(http://${serverLocalIp}:${serverPort})로 전환되었습니다.`);
       }
+      updateMobileQrCode();
     }
 
     function closeMobilePreviewModal() {
@@ -523,15 +530,22 @@
 
     async function loadInitialData() {
       try {
-        const [postingsRes, profileRes] = await Promise.all([
+        let [postingsRes, profileRes] = await Promise.all([
           fetch('/api/postings').catch(() => null),
           fetch('/api/profile').catch(() => null)
         ]);
 
+        // 클라우드 정적 호스팅(GitHub Pages) 대응: 로컬 API가 없으면 상대 경로 JSON 파일 시도
+        if (!postingsRes || !postingsRes.ok) {
+          postingsRes = await fetch('../data/internship_postings.json').catch(() => null);
+        }
+        if (!profileRes || !profileRes.ok) {
+          profileRes = await fetch('../data/waterloo_math_profile.json').catch(() => null);
+        }
+
         if (postingsRes && postingsRes.ok) {
           postingsData = await postingsRes.json();
         } else {
-          // Fallback Local Data (파일 직접 실행 지원)
           postingsData = getFallbackPostings();
         }
 

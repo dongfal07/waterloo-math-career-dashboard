@@ -7,3 +7,4 @@ __pycache__/
 Thumbs.db
 
 .github/
+config/telegram_config.local.json

@@ -319,58 +319,77 @@
     <!-- ==================================================== -->
     <section id="tab-alerts" class="tab-content space-y-4">
       
-      <!-- Telegram Status Banner -->
-      <div class="bg-gradient-to-br from-sky-950/60 to-gray-900 p-4 rounded-2xl border border-sky-800/50 space-y-3">
+      <!-- Telegram 24/7 Cloud Status Banner -->
+      <div class="bg-gradient-to-br from-sky-950/70 via-gray-900 to-gray-900 p-4 rounded-2xl border border-sky-700/60 space-y-3 shadow-lg">
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <i class="fa-brands fa-telegram text-2xl text-sky-400"></i>
+          <div class="flex items-center space-x-2.5">
+            <div class="w-9 h-9 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 text-xl border border-sky-500/30">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
             <div>
-              <h3 class="text-sm font-bold text-white">텔레그램 실시간 알림봇</h3>
-              <p class="text-[10px] text-sky-300">내 휴대폰으로 맞춤 공고 푸시 수신</p>
+              <h3 class="text-sm font-bold text-white">텔레그램 24시간 클라우드 알림봇</h3>
+              <p class="text-[10.5px] text-sky-300 flex items-center mt-0.5">
+                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse mr-1.5"></span>
+                GitHub Actions 24/7 무중단 가동중
+              </p>
             </div>
           </div>
-          <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/30">
-            연동 준비완료
+          <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/30 shrink-0">
+            24h Active
           </span>
         </div>
 
-        <p class="text-xs text-gray-300 leading-relaxed">
-          워털루 코옵 마감일(D-Day)과 수학과 1학년 지원 가능 최신 인턴십 공고를 텔레그램으로 바로 받아보실 수 있습니다.
-        </p>
+        <div class="p-3 bg-gray-950/70 rounded-xl border border-gray-800 space-y-1 text-xs">
+          <div class="text-[11px] font-semibold text-uwGold flex items-center">
+            <i class="fa-solid fa-clock mr-1.5"></i> 자동 발송 정기 스케줄
+          </div>
+          <div class="text-[11px] text-gray-300">
+            • <b>매일 오전 09:00</b> : 워털루 코옵 & 비자 D-Day 모닝 브리핑<br>
+            • <b>매주 월요일 오전 10:00</b> : 수학과 1학년 추천 인턴십 TOP 3 공고
+          </div>
+          <p class="text-[10px] text-emerald-400 pt-0.5">
+            ✓ 컴퓨터 전원이 꺼져 있어도 스마트폰 텔레그램으로 자동 수신됩니다.
+          </p>
+        </div>
 
-        <!-- 알림 테스트 버튼 -->
+        <!-- 알림 봇 바로가기 및 수동 발송 버튼 -->
         <div class="space-y-2 pt-1">
-          <button onclick="sendMobileTelegramTest('test')" class="w-full py-2.5 bg-sky-600 hover:bg-sky-500 active:scale-95 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>알림 연동 테스트 즉시 실행</span>
-          </button>
+          <a href="https://t.me/Waterloo_career_alert_bot" target="_blank" 
+            class="w-full py-2.5 bg-sky-500 hover:bg-sky-400 active:scale-95 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-telegram text-sm"></i>
+            <span>내 스마트폰 텔레그램 봇 대화창 열기</span>
+          </a>
           
           <button onclick="sendMobileTelegramTest('dday')" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-uwGold text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-2">
             <i class="fa-solid fa-fire text-red-500"></i>
-            <span>D-Day 마감 리마인더 전송</span>
+            <span>D-Day 마감 리마인더 즉시 테스트 전송</span>
           </button>
 
           <button onclick="sendMobileTelegramTest('jobs')" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-sky-300 text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-2">
             <i class="fa-solid fa-briefcase"></i>
-            <span>인턴십 추천 TOP 3 공고 전송</span>
+            <span>인턴십 추천 TOP 3 공고 즉시 테스트 전송</span>
           </button>
         </div>
       </div>
 
-      <!-- 텔레그램 연동 3단계 가이드 -->
+      <!-- PWA 스마트폰 홈 화면 추가 가이드 -->
       <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2 text-xs">
         <h4 class="font-bold text-white flex items-center">
-          <i class="fa-solid fa-circle-info text-uwGold mr-1.5"></i>
-          실제 텔레그램 계정 연동 방법
+          <i class="fa-solid fa-mobile-screen-button text-uwGold mr-1.5"></i>
+          스마트폰 홈 화면에 '진짜 앱'으로 추가하기
         </h4>
-        <ol class="list-decimal list-inside text-gray-300 space-y-1.5 text-[11px] leading-relaxed">
-          <li>텔레그램 검색창에 <code class="text-sky-300">@BotFather</code> 검색 후 <code class="text-white">/newbot</code> 입력하여 봇 생성</li>
-          <li>생성된 <span class="text-uwGold font-semibold">API Bot Token</span> 복사</li>
-          <li><code class="text-sky-300">@userinfobot</code>과 대화 시작하여 본인의 <span class="text-uwGold font-semibold">Chat ID</span> 확인</li>
-          <li><code class="text-gray-400">config/telegram_config.json</code> 파일에 입력 후 저장</li>
-        </ol>
-        <div class="text-[10px] text-gray-500 pt-1">
-          * 토큰이 비어있어도 시스템 콘솔에서 모의 발송(Dry-run) 결과를 완벽하게 확인하실 수 있습니다.
+        <div class="text-gray-300 space-y-2 text-[11px] leading-relaxed">
+          <div class="p-2.5 bg-gray-900/80 rounded-xl border border-gray-800/80">
+            <span class="font-bold text-sky-300">🍎 아이폰 (Safari):</span><br>
+            화면 하단 중앙의 <b class="text-white">[공유 버튼(네모+화살표)]</b> 누른 후 ➡️ <b class="text-uwGold">[홈 화면에 추가]</b> 터치
+          </div>
+          <div class="p-2.5 bg-gray-900/80 rounded-xl border border-gray-800/80">
+            <span class="font-bold text-emerald-300">🤖 안드로이드 (Chrome):</span><br>
+            우측 상단 <b class="text-white">[더보기(점 3개)]</b> 누른 후 ➡️ <b class="text-uwGold">[홈 화면에 추가]</b> 또는 <b class="text-uwGold">[앱 설치]</b> 터치
+          </div>
+        </div>
+        <div class="text-[10px] text-gray-400 pt-0.5">
+          * 홈 화면에 아이콘을 생성하시면 브라우저 주소창 없이 네이티브 앱처럼 전체 화면으로 작동합니다.
         </div>
       </div>
 
@@ -435,12 +454,19 @@
 
     async function loadMobileData() {
       try {
-        const res = await fetch('/api/postings');
-        if (res.ok) {
-          mobileJobsData = await res.json();
-        } else {
-          mobileJobsData = getMobileFallbackJobs();
+        // 1. 로컬 개발 서버 API 시도
+        let res = await fetch('/api/postings').catch(() => null);
+        
+        // 2. 클라우드 정적 호스팅(GitHub Pages) 경로 시도
+        if (!res || !res.ok) {
+          res = await fetch('../data/internship_postings.json').catch(() => null);
         }
+
+        if (res && res.ok) {
+          mobileJobsData = await res.json();
+          return;
+        }
+        mobileJobsData = getMobileFallbackJobs();
       } catch (e) {
         mobileJobsData = getMobileFallbackJobs();
       }

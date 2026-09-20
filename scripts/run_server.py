@@ -89,7 +89,9 @@ class DashboardRequestHandler(SimpleHTTPRequestHandler):
 
         # API: 텔레그램 설정 상태
         if path == "/api/telegram-status":
-            cfg = telegram_notifier.load_json(os.path.join(CONFIG_DIR, "telegram_config.json"))
+            local_cfg = os.path.join(CONFIG_DIR, "telegram_config.local.json")
+            cfg_path = local_cfg if os.path.exists(local_cfg) else os.path.join(CONFIG_DIR, "telegram_config.json")
+            cfg = telegram_notifier.load_json(cfg_path)
             tg = cfg.get("telegram", {})
             status = {
                 "enabled": tg.get("enabled", False),

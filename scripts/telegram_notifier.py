@@ -21,6 +21,7 @@ if hasattr(sys.stderr, 'reconfigure'):
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 CONFIG_PATH = os.path.join(PROJECT_ROOT, "config", "telegram_config.json")
+LOCAL_CONFIG_PATH = os.path.join(PROJECT_ROOT, "config", "telegram_config.local.json")
 PROFILE_PATH = os.path.join(PROJECT_ROOT, "data", "waterloo_math_profile.json")
 POSTINGS_PATH = os.path.join(PROJECT_ROOT, "data", "internship_postings.json")
 
@@ -35,7 +36,8 @@ def send_telegram_message(message_text, parse_mode="HTML"):
     텔레그램 봇 API를 호출하여 메시지를 전송합니다.
     토큰이 설정되지 않았거나 유효하지 않은 경우 안전하게 Dry-run(시뮬레이션)으로 처리합니다.
     """
-    config = load_json(CONFIG_PATH)
+    cfg_file = LOCAL_CONFIG_PATH if os.path.exists(LOCAL_CONFIG_PATH) else CONFIG_PATH
+    config = load_json(cfg_file)
     tg_config = config.get("telegram", {})
     # 환경 변수(GitHub Actions Secrets) 우선, 없으면 config 파일 사용
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN") or tg_config.get("bot_token", "")
