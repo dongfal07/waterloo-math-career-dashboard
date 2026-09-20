@@ -1,0 +1,26 @@
+name: Waterloo Math Career 24/7 Daily Telegram Alert
+
+on:
+  schedule:
+    # 매일 한국 시간 오전 09:00 (UTC 00:00) 에 자동 실행 (컴퓨터 꺼져 있어도 동작)
+    - cron: '0 0 * * *'
+    # 매주 월요일 한국 시간 오전 10:00 (UTC 01:00) 에 인턴십 공고 발송
+    - cron: '0 1 * * 1'
+  workflow_dispatch: # 웹에서 즉시 수동 실행 지원
+
+jobs:
+  send-telegram-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Send Telegram Notification
+        run: |
+          python scripts/telegram_notifier.py --dday
+          python scripts/telegram_notifier.py --jobs
