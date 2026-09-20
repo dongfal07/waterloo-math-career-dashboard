@@ -79,7 +79,7 @@
         <!-- 텔레그램 연동 상태 뱃지 (줄바꿈 방지 및 자동 스케일링) -->
         <div class="hidden md:flex items-center space-x-1.5 px-2.5 xl:px-3 py-1.5 bg-sky-950/70 border border-sky-800/60 rounded-lg text-[clamp(10px,0.75vw,11px)] text-sky-300 whitespace-nowrap shrink-0">
           <i class="fa-brands fa-telegram text-sky-400 text-sm shrink-0"></i>
-          <span class="font-semibold whitespace-nowrap">워털루 알림이 연동됨</span>
+          <span class="font-semibold whitespace-nowrap">24h 클라우드 알림 가동중</span>
           <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse ml-0.5 shrink-0"></span>
         </div>
 
@@ -155,24 +155,25 @@
         </div>
       </div>
 
-      <!-- Card 4: 텔레그램 연동 상태 -->
+      <!-- Card 4: 텔레그램 연동 상태 (GitHub Actions 24시간 클라우드 가동 반영) -->
       <div class="bg-uwDarkSlate/80 p-[clamp(12px,1.1vw,18px)] rounded-xl border border-gray-800 shadow relative overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-gray-700 min-w-0">
         <div class="flex items-center justify-between gap-1.5 min-w-0">
-          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="모바일 텔레그램 알림">모바일 텔레그램 알림</span>
-          <span id="tg-status-indicator" class="text-emerald-400 bg-emerald-500/10 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded font-bold whitespace-nowrap shrink-0">
-            <i class="fa-solid fa-circle text-[7px] animate-pulse mr-1"></i> 대기중
+          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="모바일 텔레그램 24시간 알림">모바일 텔레그램 24h 알림</span>
+          <span id="tg-status-indicator" class="text-emerald-400 bg-emerald-500/15 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0 border border-emerald-500/30 flex items-center shadow-sm">
+            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse mr-1.5 shrink-0"></span>
+            <span>24h 가동중</span>
           </span>
         </div>
         <div class="mt-[clamp(6px,0.6vw,10px)] flex items-baseline space-x-1.5 min-w-0">
-          <span class="text-[clamp(16px,1.3vw,22px)] font-bold text-white leading-tight whitespace-nowrap">실시간 수신 모드</span>
+          <span class="text-[clamp(17px,1.4vw,23px)] font-black text-white leading-tight tracking-tight whitespace-nowrap">GitHub 무중단 발송</span>
         </div>
-        <div class="flex items-center space-x-2 mt-[clamp(4px,0.4vw,8px)] text-[clamp(9.5px,0.72vw,11.5px)] min-w-0">
-          <button onclick="triggerTelegramAlert('dday')" class="text-uwGold hover:underline whitespace-nowrap shrink-0 transition-colors">
-            [D-Day 전송]
-          </button>
-          <span class="text-gray-600 shrink-0">•</span>
-          <button onclick="triggerTelegramAlert('jobs')" class="text-sky-400 hover:underline whitespace-nowrap shrink-0 transition-colors">
-            [TOP3 공고 전송]
+        <div class="flex items-center justify-between mt-[clamp(4px,0.4vw,8px)] text-[clamp(9.5px,0.72vw,11.5px)] min-w-0">
+          <p class="text-sky-300 truncate flex items-center min-w-0 mr-1" title="매일 09:00 D-Day • 월 10:00 공고 자동 발송 (PC 종료 무관)">
+            <i class="fa-solid fa-cloud mr-1 text-[10px] text-sky-400 shrink-0"></i>
+            <span class="truncate">매일 09:00 발송 (PC꺼짐 무관)</span>
+          </p>
+          <button onclick="triggerTelegramAlert('dday')" class="text-uwGold hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-semibold" title="지금 즉시 스마트폰으로 테스트 전송">
+            [즉시 전송]
           </button>
         </div>
         <div class="absolute -right-2 -bottom-2 opacity-10 text-sky-400 text-[clamp(36px,3.2vw,54px)] pointer-events-none select-none">
