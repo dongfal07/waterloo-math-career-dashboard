@@ -76,7 +76,7 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="min-h-screen sm:min-h-screen h-[100dvh] flex items-center justify-center sm:py-6 sm:px-4 overflow-hidden">
+<body class="min-h-full h-full bg-[#0B0F19] text-[#F3F4F6] sm:min-h-screen sm:flex sm:items-center sm:justify-center sm:py-6 sm:px-4 sm:overflow-hidden">
 
   <!-- PC 화면 안내 배너 (PC에서만 상단에 표시) -->
   <div class="hidden sm:flex fixed top-3 items-center space-x-3 bg-gray-900/95 border border-gray-700 px-4 py-2 rounded-full shadow-lg z-50 text-xs text-gray-300">
@@ -91,7 +91,7 @@
   </div>
 
   <!-- SMARTPHONE DEVICE MOCKUP CONTAINER (PC에서는 스마트폰 하드웨어 프레임, 모바일에서는 100% 풀스크린) -->
-  <div class="w-full sm:max-w-[400px] h-screen sm:h-[840px] sm:rounded-[44px] sm:border-[10px] sm:border-gray-800 sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] sm:ring-1 sm:ring-white/10 flex flex-col justify-between overflow-hidden relative bg-[#0B0F19]">
+  <div class="w-full h-full sm:max-w-[400px] sm:h-[840px] sm:rounded-[44px] sm:border-[10px] sm:border-gray-800 sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] sm:ring-1 sm:ring-white/10 flex flex-col justify-between overflow-hidden relative bg-[#0B0F19]">
 
     <!-- PC 프레임 상단 Dynamic Island 노치 -->
     <div class="hidden sm:flex justify-center pt-2 pb-1 bg-uwDarkSlate shrink-0">

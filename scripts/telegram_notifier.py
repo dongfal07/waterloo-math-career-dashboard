@@ -106,6 +106,7 @@ def notify_d_day_alerts():
     
     lines.append("──────────────────────────────")
     lines.append("💡 <i>WaterlooWorks 및 이력서 검토 일정을 미리 준수하세요!</i>")
+    lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>워털루 커리어 대시보드 열기</a>")
     msg = "\n".join(lines)
     return send_telegram_message(msg)
 
@@ -125,12 +126,30 @@ def notify_job_postings(limit=3):
         lines.append(f"   📍 위치: {job.get('location')}")
         lines.append(f"   💰 급여: <code>{job.get('hourly_rate')}</code>")
         lines.append(f"   🛡️ 비자: {job.get('visa_sponsorship')}")
-        lines.append(f"   🔗 <a href='{job.get('url')}'>지원 링크 바로가기</a>")
+        lines.append(f"   🔗 <a href='{job.get('url')}'>공식 지원 링크 바로가기</a>")
         lines.append("")
         
     lines.append("──────────────────────────────")
-    lines.append("📱 <i>자세한 전체 공고는 모바일/PC 대시보드에서 확인 가능합니다.</i>")
+    lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>전체 공고 모바일 대시보드에서 보기</a>")
     msg = "\n".join(lines)
+    return send_telegram_message(msg)
+
+def notify_dashboard_link():
+    """스마트폰 원터치 접속을 위한 대시보드 전용 링크 발송"""
+    time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    msg = (
+        "📱 <b>[Waterloo Math] 24/7 모바일 대시보드 바로가기</b>\n"
+        "──────────────────────────────\n"
+        "스마트폰에서 아래 파란색 링크를 터치하시면 24시간 언제든 대시보드가 열립니다:\n\n"
+        "👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'><b>워털루 모바일 대시보드 열기 (터치)</b></a>\n\n"
+        "──────────────────────────────\n"
+        "💡 <b>[스마트폰 홈 화면에 앱으로 설치하기]</b>\n"
+        "1. 위 링크를 터치하여 연 후\n"
+        "2. 크롬 우측 상단 <b>[ ⋮ ] (점 3개)</b> 터치\n"
+        "3. <b>[홈 화면에 추가]</b> 또는 <b>[앱 설치]</b> 선택\n"
+        "바탕화면에 전용 앱 아이콘이 생성되어 24시간 원터치로 접속됩니다!\n"
+        f"⏰ 발송: <code>{time_str}</code>"
+    )
     return send_telegram_message(msg)
 
 def notify_test_ping():
@@ -142,7 +161,8 @@ def notify_test_ping():
         f"⏰ 수신 시간: <code>{time_str}</code>\n"
         "✅ 텔레그램 알림 시스템이 정상 연동되었습니다!\n"
         "• 워털루 대학교 수학과 1학년 맞춤형 공고 알림 수신 준비 완료\n"
-        "• D-Day 리마인더 및 주요 코옵 라운드 마감 실시간 통보 지원"
+        "• D-Day 리마인더 및 주요 코옵 라운드 마감 실시간 통보 지원\n\n"
+        "📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>모바일 대시보드 열기</a>"
     )
     return send_telegram_message(msg)
 
@@ -155,8 +175,11 @@ if __name__ == "__main__":
             notify_job_postings()
         elif cmd == "--test":
             notify_test_ping()
+        elif cmd in ("--link", "--mobile", "--mobile-link"):
+            notify_dashboard_link()
         else:
-            print(f"Unknown command: {cmd}. Use --dday, --jobs, or --test.")
+            print(f"Unknown command: {cmd}. Use --dday, --jobs, --test, or --link.")
     else:
+        notify_test_ping()
         # 기본 실행: 테스트 핑 실행
         notify_test_ping()
