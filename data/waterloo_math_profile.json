@@ -1,0 +1,159 @@
+{
+  "student": {
+    "university": "University of Waterloo",
+    "faculty": "Faculty of Mathematics",
+    "program": "Honours Mathematics (Co-op)",
+    "year": "1st Year (1A/1B)",
+    "target_terms": ["Winter 2027", "Spring 2027"],
+    "career_tracks": [
+      {
+        "id": "quant",
+        "name": "Quantitative Finance & Trading",
+        "description": "수학적 모델링, 통계적 차익거래, 알고리즘 트레이딩 및 리스크 관리",
+        "target_majors": ["Mathematical Finance", "Combinatorics & Optimization", "Statistics", "FARM"],
+        "recommended_skills": ["Python (NumPy, Pandas)", "C++", "Stochastic Calculus", "Linear Algebra", "Data Analysis"],
+        "top_employers": ["Citadel", "Jane Street", "Two Sigma", "Balyasny", "CPP Investments", "RBC Capital Markets"]
+      },
+      {
+        "id": "data_ai",
+        "name": "Data Science & Machine Learning",
+        "description": "데이터 모델링, 예측 분석, 대규모 데이터셋 분석 및 머신러닝 엔지니어링",
+        "target_majors": ["Data Science", "Computational Math", "Statistics"],
+        "recommended_skills": ["Python", "SQL", "Scikit-Learn", "PyTorch", "Tableau/PowerBI", "Probability & Statistics"],
+        "top_employers": ["Shopify", "Amazon", "Meta", "Wealthsimple", "OpenText", "BMO AI Labs"]
+      },
+      {
+        "id": "software",
+        "name": "Software Engineering & Algorithmic Dev",
+        "description": "백엔드 시스템, 알고리즘 구현, 금융 소프트웨어 및 인프라 엔지니어링",
+        "target_majors": ["Computer Science & Math Double", "Applied Math", "Pure Math"],
+        "recommended_skills": ["Python", "C++", "Java", "Data Structures & Algorithms", "Git", "Linux"],
+        "top_employers": ["Google", "Bloomberg", "Uber", "Wish", "Palantir", "1Password"]
+      },
+      {
+        "id": "actuary",
+        "name": "Actuarial Science & Risk Management",
+        "description": "생명/손해보험 계리, 연금 수리, 보험 리스크 모델링 및 파생상품 평가",
+        "target_majors": ["Actuarial Science", "FARM (Financial Analysis & Risk Management)"],
+        "recommended_skills": ["SOA Exam P/FM 준비", "Excel (VBA)", "R", "SAS", "Financial Mathematics"],
+        "top_employers": ["Manulife", "Sun Life Financial", "Munich Re", "Intact Financial", "Mercer", "Oliver Wyman"]
+      }
+    ]
+  },
+  "coop_statistics": {
+    "faculty_name": "Mathematics Co-op",
+    "employment_rate": "96.4%",
+    "average_hourly_earnings_cad": {
+      "Work Term 1 (1st Year)": 23.40,
+      "Work Term 2": 26.85,
+      "Work Term 3": 30.20,
+      "Work Term 4": 34.50,
+      "Work Term 5": 38.80,
+      "Work Term 6": 43.10
+    },
+    "regional_distribution": {
+      "Ontario (Toronto / Waterloo / Ottawa)": "62%",
+      "United States (New York / Bay Area / Seattle)": "24%",
+      "Other Canada (Vancouver / Montreal / Calgary)": "11%",
+      "International (UK / Europe / Asia)": "3%"
+    },
+    "faculty_breakdown_percentages": {
+      "Tech & Software": 42,
+      "Finance & Banking & Hedge Funds": 28,
+      "Insurance & Actuarial": 14,
+      "Consulting & Research": 11,
+      "Government & Non-Profit": 5
+    }
+  },
+  "waterloo_coop_timeline": [
+    {
+      "step": 1,
+      "phase": "1A Term (Fall)",
+      "title": "Co-op 준비 기초 과정 & 워크샵",
+      "description": "PD1(Career Fundamentals) 강좌 수강 완료 및 전문적인 테크/금융 이력서 초안 완성",
+      "action_items": [
+        "PD1 필수 모듈 제출 완료하기",
+        "워털루 CCO(Center for Career Action) 1:1 이력서 크리틱 2회 예약",
+        "수학/코딩 사이드 프로젝트 1개 GitHub에 공개하기"
+      ],
+      "status": "In Progress"
+    },
+    {
+      "step": 2,
+      "phase": "1B Term (Winter)",
+      "title": "WaterlooWorks 시스템 오픈 & 첫 코옵 지원",
+      "description": "WaterlooWorks 계정 활성화, Round 1 메인 공고 탐색 및 최대 50개 공고 지원",
+      "action_items": [
+        "WaterlooWorks Main Round 지원서 최대 한도(50개) 맞춤 타깃팅",
+        "수학적 모델링/코딩 인터뷰 LeetCode Easy-Medium 대비",
+        "캐나다 Co-op Work Permit(코옵 워크퍼밋) 비자 발급 여부 확인"
+      ],
+      "status": "Upcoming"
+    },
+    {
+      "step": 3,
+      "phase": "Interviews & Ranking",
+      "title": "인터뷰 진행 및 매칭 랭킹",
+      "description": "TC(Tatham Centre) 대면/온라인 인터뷰 참가 후 고용주와 학생 상호 랭킹 입력",
+      "action_items": [
+        "행동 면접(STAR 기법) 및 수학/기술 면접 준비",
+        "랭킹 데이(Ranking Day) 전략 수립 (1순위 매칭 알고리즘 숙지)"
+      ],
+      "status": "Upcoming"
+    },
+    {
+      "step": 4,
+      "phase": "Work Term 1 (Spring)",
+      "title": "첫 4개월 인턴십 근무 및 학점 인정",
+      "description": "첫 코옵 직무 수행 및 PD11 평가, 첫 번째 워크 텀 리포트 작성",
+      "action_items": [
+        "고용주 중간/최종 평가(Evaluation) Excellent 등급 목표",
+        "사내 멘토 네트워크 구축 및 미국/캐나다 풀타임/다음 코옵 리턴 오퍼 타진"
+      ],
+      "status": "Upcoming"
+    }
+  ],
+  "d_day_alerts": [
+    {
+      "id": "ww_resume_check",
+      "title": "WaterlooWorks 1학년 이력서 최종 점검 마감",
+      "due_date": "2026-10-15",
+      "days_left": 25,
+      "urgency": "high",
+      "badge": "D-25"
+    },
+    {
+      "id": "external_quant_intern",
+      "title": "2027 북미 퀀트/빅테크 서머 인턴 조기 마감",
+      "due_date": "2026-10-31",
+      "days_left": 41,
+      "urgency": "medium",
+      "badge": "D-41"
+    },
+    {
+      "id": "coop_work_permit",
+      "title": "캐나다 Co-op Work Permit 비자 신청 마감",
+      "due_date": "2026-11-20",
+      "days_left": 61,
+      "urgency": "medium",
+      "badge": "D-61"
+    }
+  ],
+  "visa_guide": {
+    "canada_coop": {
+      "title": "캐나다 Co-op Work Permit",
+      "summary": "워털루 코옵 학생은 합법적으로 풀타임(주 40시간) 인턴십을 수행할 수 있는 비자로, 학교 발급 Co-op Letter를 받아 IRCC에 무료 신청.",
+      "key_point": "1학년 1학기 중에 반드시 신청 완료해야 다음 해 코옵 시작 전 수령 가능."
+    },
+    "us_internship_j1": {
+      "title": "미국 인턴십 J-1 비자 (Exchange Visitor)",
+      "summary": "미국 빅테크(Google, Meta 등) 또는 퀀트 펀드(Citadel, Jane Street) 합격 시 고용주와 Cultural Vistas 등 스폰서 기관이 DS-2019 및 J-1 비자 전액 지원.",
+      "key_point": "캐나다 시민권자/영주권자는 비자 인터뷰 면제 혜택(캐나다 여권 소지자 DS-2019로 입국 심사), 한국 국적 유학생은 토론토 미국 영사관에서 인터뷰 진행."
+    },
+    "fulltime_pgwp_h1b": {
+      "title": "졸업 후 취업: PGWP vs 미국 H-1B",
+      "summary": "캐나다는 졸업 후 최대 3년 오픈 워크퍼밋(PGWP)이 100% 보장되며, 미국은 4월 추첨제 H-1B(STEM 전공 3년 OPT)가 필요함.",
+      "key_point": "수학 전공(STEM)은 미국 취업 시 최대 36개월간 비자 추첨 없이 OPT 근무 가능."
+    }
+  }
+}

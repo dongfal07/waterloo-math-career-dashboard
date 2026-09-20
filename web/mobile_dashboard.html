@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0B0F19">
+  <title>UW Math Career (Mobile App)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            uwGold: '#FDD017',
+            uwGoldHover: '#E5A823',
+            uwDarkSlate: '#151D2A',
+            uwCard: '#1C2636',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root {
+      --app-height: 100dvh;
+    }
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #030712;
+      color: #F3F4F6;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    /* iOS & Android Safe Area Support */
+    .pb-safe { padding-bottom: max(env(safe-area-inset-bottom, 0.75rem), 0.75rem); }
+    .pt-safe { padding-top: max(env(safe-area-inset-top, 0.5rem), 0.5rem); }
+    
+    /* Smooth tab fade */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen sm:min-h-screen h-[100dvh] flex items-center justify-center sm:py-6 sm:px-4 overflow-hidden">
+
+  <!-- PC 화면 안내 배너 (PC에서만 상단에 표시) -->
+  <div class="hidden sm:flex fixed top-3 items-center space-x-3 bg-gray-900/95 border border-gray-700 px-4 py-2 rounded-full shadow-lg z-50 text-xs text-gray-300">
+    <span class="flex items-center text-uwGold font-bold">
+      <i class="fa-solid fa-mobile-screen mr-1.5"></i> 스마트폰 모바일 뷰 시뮬레이터
+    </span>
+    <span class="text-gray-600">|</span>
+    <span>실제 스마트폰 화면 비율(390×844)로 렌더링 중입니다.</span>
+    <a href="desktop_dashboard.html" class="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 text-white rounded-md font-semibold text-[11px] border border-gray-600">
+      PC 와이드 뷰로 전환
+    </a>
+  </div>
+
+  <!-- SMARTPHONE DEVICE MOCKUP CONTAINER (PC에서는 스마트폰 하드웨어 프레임, 모바일에서는 100% 풀스크린) -->
+  <div class="w-full sm:max-w-[400px] h-screen sm:h-[840px] sm:rounded-[44px] sm:border-[10px] sm:border-gray-800 sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] sm:ring-1 sm:ring-white/10 flex flex-col justify-between overflow-hidden relative bg-[#0B0F19]">
+
+    <!-- PC 프레임 상단 Dynamic Island 노치 -->
+    <div class="hidden sm:flex justify-center pt-2 pb-1 bg-uwDarkSlate shrink-0">
+      <div class="w-24 h-4 bg-black rounded-full flex items-center justify-end pr-2 space-x-1">
+        <div class="w-2 h-2 rounded-full bg-blue-950 border border-blue-800"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- TOP MOBILE APP BAR -->
+    <header class="bg-uwDarkSlate border-b border-gray-800/80 px-4 pt-safe pb-3 flex items-center justify-between shrink-0 shadow">
+    <div class="flex items-center space-x-2.5">
+      <div class="w-8 h-8 bg-uwGold rounded-lg flex items-center justify-center font-black text-black text-sm shadow">
+        UW
+      </div>
+      <div>
+        <h1 class="text-sm font-bold text-white flex items-center">
+          Waterloo Math Career
+          <span class="ml-1.5 px-1.5 py-0.2 bg-uwGold/20 text-uwGold text-[10px] rounded font-bold">App</span>
+        </h1>
+        <p class="text-[10px] text-gray-400">수학과 1학년 인턴십 & 코옵</p>
+      </div>
+    </div>
+
+    <!-- Quick Switch to Desktop & Telegram status icon -->
+    <div class="flex items-center space-x-2">
+      <button onclick="triggerQuickAlert()" class="w-8 h-8 rounded-full bg-sky-600/30 border border-sky-500/50 flex items-center justify-center text-sky-400 active:scale-90 transition">
+        <i class="fa-brands fa-telegram text-sm"></i>
+      </button>
+      <a href="desktop_dashboard.html" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 text-xs active:scale-90 transition border border-gray-700" title="PC 버전으로 보기">
+        <i class="fa-solid fa-laptop"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLLABLE BODY CONTAINER (MOBILE VIEWPORT) -->
+  <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4 max-w-md mx-auto w-full">
+
+    <!-- ==================================================== -->
+    <!-- TAB 1: 🏠 HOME (피드 & D-Day & 추천 요약) -->
+    <!-- ==================================================== -->
+    <section id="tab-home" class="tab-content active space-y-4">
+      
+      <!-- Student Badge Card -->
+      <div class="bg-gradient-to-r from-uwDarkSlate to-gray-900 p-4 rounded-2xl border border-gray-800 shadow relative">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-semibold text-uwGold tracking-wider uppercase">Student Status</span>
+          <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/20">
+            Co-op 1A Active
+          </span>
+        </div>
+        <div class="mt-2">
+          <h2 class="text-base font-bold text-white">Honours Math 1학년</h2>
+          <p class="text-xs text-gray-400 mt-0.5">목표: 2027 첫 코옵 인턴십 (Quant / AI / SWE / Actuary)</p>
+        </div>
+        <div class="mt-3 pt-3 border-t border-gray-800 flex items-center justify-between text-xs">
+          <div>
+            <span class="text-[10px] text-gray-400 block">1학년 평균 시급</span>
+            <span class="font-bold text-white text-sm">$23.40 <span class="text-[10px] text-gray-400">CAD</span></span>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] text-gray-400 block">코옵 취업률</span>
+            <span class="font-bold text-emerald-400 text-sm">96.4%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- D-Day Urgent Carousel / Stack -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between px-1">
+          <span class="text-xs font-bold text-white flex items-center">
+            <i class="fa-solid fa-fire text-red-500 mr-1.5"></i> 마감 임박 D-Day
+          </span>
+          <span class="text-[10px] text-gray-400">실시간 연동</span>
+        </div>
+
+        <div class="p-3 bg-red-950/40 border border-red-800/60 rounded-xl flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-red-200">WaterlooWorks 1학년 이력서 점검</div>
+            <div class="text-[11px] text-red-300/80 mt-0.5">마감일: 2026-10-15</div>
+          </div>
+          <div class="px-3 py-1 bg-red-600 text-white font-black text-xs rounded-lg shadow">
+            D-25
+          </div>
+        </div>
+
+        <div class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-xl flex items-center justify-between">
+          <div>
+            <div class="text-xs font-bold text-amber-200">북미 퀀트/빅테크 서머 인턴십 조기 마감</div>
+            <div class="text-[11px] text-amber-300/80 mt-0.5">마감일: 2026-10-31</div>
+          </div>
+          <div class="px-3 py-1 bg-amber-500 text-black font-black text-xs rounded-lg shadow">
+            D-41
+          </div>
+        </div>
+      </div>
+
+      <!-- 1학년 필수 To-Do 체크리스트 (터치 인터랙티브) -->
+      <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-white flex items-center">
+            <i class="fa-solid fa-list-check text-emerald-400 mr-1.5"></i>
+            1학년 1학기 필수 코옵 체크리스트
+          </h3>
+          <span class="text-[10px] text-gray-400">진행률 <span id="todo-progress-text">2/4</span></span>
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-gray-900/60 active:bg-gray-800">
+            <input type="checkbox" checked onchange="updateProgress()" class="w-4 h-4 rounded text-uwGold bg-gray-800 border-gray-700 focus:ring-0">
+            <span class="text-gray-300 line-through">PD1 (Career Fundamentals) 수강 신청</span>
+          </label>
+          <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-gray-900/60 active:bg-gray-800">
+            <input type="checkbox" checked onchange="updateProgress()" class="w-4 h-4 rounded text-uwGold bg-gray-800 border-gray-700 focus:ring-0">
+            <span class="text-gray-300 line-through">캐나다 Co-op Work Permit 비자 서류 준비</span>
+          </label>
+          <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-gray-900/60 active:bg-gray-800">
+            <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-uwGold bg-gray-800 border-gray-700 focus:ring-0">
+            <span class="text-white font-medium">수학/코딩 사이드 프로젝트 GitHub 커밋</span>
+          </label>
+          <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-gray-900/60 active:bg-gray-800">
+            <input type="checkbox" onchange="updateProgress()" class="w-4 h-4 rounded text-uwGold bg-gray-800 border-gray-700 focus:ring-0">
+            <span class="text-white font-medium">CCO 1:1 이력서 첨삭 예약하기</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 오늘의 추천 인턴십 미니 피드 -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between px-1">
+          <span class="text-xs font-bold text-white">🔥 오늘의 추천 TOP 2</span>
+          <button onclick="switchTab('jobs')" class="text-[11px] text-uwGold font-semibold">전체보기 →</button>
+        </div>
+        <div id="home-featured-jobs" class="space-y-2.5">
+          <!-- JS로 동적 삽입 -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================== -->
+    <!-- TAB 2: 💼 JOBS (모바일 최적화 공고 탐색) -->
+    <!-- ==================================================== -->
+    <section id="tab-jobs" class="tab-content space-y-3">
+      
+      <!-- 상단 모바일 가로 스크롤 필터 칩 -->
+      <div class="flex space-x-1.5 overflow-x-auto pb-1 no-scrollbar text-xs">
+        <button onclick="filterMobileJobs('ALL')" id="m-filter-all" class="shrink-0 px-3 py-1.5 rounded-full font-bold bg-uwGold text-black shadow">
+          전체 공고
+        </button>
+        <button onclick="filterMobileJobs('CA')" id="m-filter-ca" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          🇨🇦 캐나다
+        </button>
+        <button onclick="filterMobileJobs('US')" id="m-filter-us" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          🇺🇸 미국 (스폰)
+        </button>
+        <button onclick="filterMobileJobs('quant')" id="m-filter-quant" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          📊 퀀트
+        </button>
+        <button onclick="filterMobileJobs('data_ai')" id="m-filter-data_ai" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          🤖 데이터
+        </button>
+        <button onclick="filterMobileJobs('software')" id="m-filter-software" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          💻 SW
+        </button>
+        <button onclick="filterMobileJobs('actuary')" id="m-filter-actuary" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
+          📑 계리
+        </button>
+      </div>
+
+      <!-- 공고 카드 리스트 -->
+      <div id="mobile-jobs-container" class="space-y-3">
+        <!-- JS로 동적 렌더링 -->
+      </div>
+
+    </section>
+
+    <!-- ==================================================== -->
+    <!-- TAB 3: 📊 STATS (모바일 전용 통계 & 비자) -->
+    <!-- ==================================================== -->
+    <section id="tab-stats" class="tab-content space-y-4">
+      
+      <!-- 워털루 수학과 통계 요약 카드 -->
+      <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-3">
+        <h3 class="text-xs font-bold text-white flex items-center">
+          <i class="fa-solid fa-chart-simple text-uwGold mr-1.5"></i>
+          워털루 수학과 학기별 시급 상승 추이
+        </h3>
+        <div class="h-44 w-full">
+          <canvas id="mobileChart"></canvas>
+        </div>
+        <p class="text-[11px] text-gray-400">
+          1학년(Term 1) 평균 $23.40/hr로 시작하여 고학년(Term 6)에는 평균 $43.10/hr에 도달합니다.
+        </p>
+      </div>
+
+      <!-- 비자 및 스폰서 요약 카드 -->
+      <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2.5">
+        <h3 class="text-xs font-bold text-white flex items-center">
+          <i class="fa-solid fa-passport text-purple-400 mr-1.5"></i>
+          유학생 비자 퀵 체크
+        </h3>
+        
+        <div class="p-2.5 bg-gray-900/80 rounded-xl border border-gray-800 text-xs space-y-1">
+          <div class="font-bold text-uwGold">1. 캐나다 코옵 워크퍼밋 (CWP)</div>
+          <div class="text-gray-300 text-[11px]">학교 발급 Co-op Letter로 IRCC 무료 신청 필수. 주 40시간 합법 인턴 가능.</div>
+        </div>
+
+        <div class="p-2.5 bg-gray-900/80 rounded-xl border border-gray-800 text-xs space-y-1">
+          <div class="font-bold text-sky-400">2. 미국 인턴십 (J-1 비자)</div>
+          <div class="text-gray-300 text-[11px]">뉴욕 퀀트 펀드 및 실리콘밸리 기업 합격 시 전액 스폰서십 지원 (DS-2019 발급).</div>
+        </div>
+      </div>
+
+      <!-- 4대 공식 출처 바로가기 칩 -->
+      <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2">
+        <h3 class="text-xs font-bold text-white">🌐 01. DB 공식 사이트 모바일 링크</h3>
+        <div class="grid grid-cols-2 gap-2 text-xs pt-1">
+          <a href="https://waterlooworks.uwaterloo.ca/" target="_blank" class="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-center font-bold text-amber-300 block active:scale-95">
+            WaterlooWorks
+          </a>
+          <a href="https://collegescorecard.ed.gov/" target="_blank" class="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-center font-bold text-uwGold block active:scale-95">
+            College Scorecard
+          </a>
+          <a href="https://www.statcan.gc.ca/" target="_blank" class="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-center font-bold text-emerald-400 block active:scale-95">
+            StatCan 캐나다
+          </a>
+          <a href="https://www.myvisajobs.com/" target="_blank" class="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-center font-bold text-purple-400 block active:scale-95">
+            MyVisaJobs (H1B)
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================================================== -->
+    <!-- TAB 4: 🔔 ALERTS (텔레그램 설정 & 실시간 발송) -->
+    <!-- ==================================================== -->
+    <section id="tab-alerts" class="tab-content space-y-4">
+      
+      <!-- Telegram Status Banner -->
+      <div class="bg-gradient-to-br from-sky-950/60 to-gray-900 p-4 rounded-2xl border border-sky-800/50 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <i class="fa-brands fa-telegram text-2xl text-sky-400"></i>
+            <div>
+              <h3 class="text-sm font-bold text-white">텔레그램 실시간 알림봇</h3>
+              <p class="text-[10px] text-sky-300">내 휴대폰으로 맞춤 공고 푸시 수신</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-full border border-emerald-500/30">
+            연동 준비완료
+          </span>
+        </div>
+
+        <p class="text-xs text-gray-300 leading-relaxed">
+          워털루 코옵 마감일(D-Day)과 수학과 1학년 지원 가능 최신 인턴십 공고를 텔레그램으로 바로 받아보실 수 있습니다.
+        </p>
+
+        <!-- 알림 테스트 버튼 -->
+        <div class="space-y-2 pt-1">
+          <button onclick="sendMobileTelegramTest('test')" class="w-full py-2.5 bg-sky-600 hover:bg-sky-500 active:scale-95 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>알림 연동 테스트 즉시 실행</span>
+          </button>
+          
+          <button onclick="sendMobileTelegramTest('dday')" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-uwGold text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-fire text-red-500"></i>
+            <span>D-Day 마감 리마인더 전송</span>
+          </button>
+
+          <button onclick="sendMobileTelegramTest('jobs')" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-sky-300 text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>인턴십 추천 TOP 3 공고 전송</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 텔레그램 연동 3단계 가이드 -->
+      <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2 text-xs">
+        <h4 class="font-bold text-white flex items-center">
+          <i class="fa-solid fa-circle-info text-uwGold mr-1.5"></i>
+          실제 텔레그램 계정 연동 방법
+        </h4>
+        <ol class="list-decimal list-inside text-gray-300 space-y-1.5 text-[11px] leading-relaxed">
+          <li>텔레그램 검색창에 <code class="text-sky-300">@BotFather</code> 검색 후 <code class="text-white">/newbot</code> 입력하여 봇 생성</li>
+          <li>생성된 <span class="text-uwGold font-semibold">API Bot Token</span> 복사</li>
+          <li><code class="text-sky-300">@userinfobot</code>과 대화 시작하여 본인의 <span class="text-uwGold font-semibold">Chat ID</span> 확인</li>
+          <li><code class="text-gray-400">config/telegram_config.json</code> 파일에 입력 후 저장</li>
+        </ol>
+        <div class="text-[10px] text-gray-500 pt-1">
+          * 토큰이 비어있어도 시스템 콘솔에서 모의 발송(Dry-run) 결과를 완벽하게 확인하실 수 있습니다.
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- BOTTOM MOBILE NAVIGATION BAR (4 TABS) -->
+  <nav class="bg-uwDarkSlate border-t border-gray-800 px-4 py-2 pb-safe shrink-0 shadow-2xl">
+    <div class="max-w-md mx-auto flex items-center justify-around">
+      
+      <!-- Tab 1: Home -->
+      <button onclick="switchTab('home')" id="tab-btn-home" class="flex flex-col items-center space-y-1 py-1 text-uwGold active:scale-90 transition">
+        <i class="fa-solid fa-house text-lg"></i>
+        <span class="text-[10px] font-bold">홈</span>
+      </button>
+
+      <!-- Tab 2: Jobs -->
+      <button onclick="switchTab('jobs')" id="tab-btn-jobs" class="flex flex-col items-center space-y-1 py-1 text-gray-500 active:scale-90 transition">
+        <i class="fa-solid fa-briefcase text-lg"></i>
+        <span class="text-[10px] font-medium">채용 공고</span>
+      </button>
+
+      <!-- Tab 3: Stats -->
+      <button onclick="switchTab('stats')" id="tab-btn-stats" class="flex flex-col items-center space-y-1 py-1 text-gray-500 active:scale-90 transition">
+        <i class="fa-solid fa-chart-pie text-lg"></i>
+        <span class="text-[10px] font-medium">통계·비자</span>
+      </button>
+
+      <!-- Tab 4: Alerts -->
+      <button onclick="switchTab('alerts')" id="tab-btn-alerts" class="flex flex-col items-center space-y-1 py-1 text-gray-500 active:scale-90 transition relative">
+        <i class="fa-brands fa-telegram text-lg"></i>
+        <span class="text-[10px] font-medium">알림봇</span>
+        <span class="absolute top-0 right-2 w-2 h-2 bg-uwGold rounded-full animate-ping"></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- MOBILE TOAST ALERT -->
+  <div id="mobile-toast" class="fixed top-4 left-4 right-4 max-w-sm mx-auto bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-2xl shadow-2xl z-50 transform -translate-y-20 opacity-0 transition duration-300 flex items-center space-x-3 pointer-events-none">
+    <div id="m-toast-icon" class="text-uwGold text-lg shrink-0">
+      <i class="fa-solid fa-bell"></i>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div id="m-toast-title" class="text-xs font-bold truncate">알림</div>
+      <div id="m-toast-desc" class="text-[11px] text-gray-300 truncate">내용</div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let mobileJobsData = [];
+    let currentMobileFilter = 'ALL';
+    let mobileChartInstance = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadMobileData();
+      renderMobileJobs();
+      renderHomeFeatured();
+    });
+
+    async function loadMobileData() {
+      try {
+        const res = await fetch('/api/postings');
+        if (res.ok) {
+          mobileJobsData = await res.json();
+        } else {
+          mobileJobsData = getMobileFallbackJobs();
+        }
+      } catch (e) {
+        mobileJobsData = getMobileFallbackJobs();
+      }
+    }
+
+    // 탭 전환 로직
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+
+      ['home', 'jobs', 'stats', 'alerts'].forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabId) {
+          btn.className = "flex flex-col items-center space-y-1 py-1 text-uwGold active:scale-90 transition";
+          btn.querySelector('span').className = "text-[10px] font-bold";
+        } else {
+          btn.className = "flex flex-col items-center space-y-1 py-1 text-gray-500 active:scale-90 transition";
+          btn.querySelector('span').className = "text-[10px] font-medium";
+        }
+      });
+
+      if (tabId === 'stats' && !mobileChartInstance) {
+        setTimeout(initMobileChart, 100);
+      }
+    }
+
+    // 홈 피드 추천 2건 렌더링
+    function renderHomeFeatured() {
+      const container = document.getElementById('home-featured-jobs');
+      const top2 = mobileJobsData.slice(0, 2);
+      
+      container.innerHTML = top2.map(job => `
+        <div class="p-3.5 bg-uwCard rounded-xl border border-gray-800 space-y-2">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-xs font-bold text-white flex items-center space-x-1">
+                <span>${job.company}</span>
+                <span>${job.country === 'CA' ? '🇨🇦' : '🇺🇸'}</span>
+              </div>
+              <div class="text-[11px] font-semibold text-uwGold">${job.title}</div>
+            </div>
+            <span class="text-xs font-black text-emerald-400">${job.hourly_rate}</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] pt-1 border-t border-gray-800 text-gray-400">
+            <span><i class="fa-solid fa-location-dot mr-1"></i>${job.location}</span>
+            <a href="${job.url}" target="_blank" class="text-uwGold font-semibold">지원링크 →</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 채용공고 탭 렌더링
+    function renderMobileJobs() {
+      const container = document.getElementById('mobile-jobs-container');
+      const filtered = mobileJobsData.filter(job => {
+        if (currentMobileFilter === 'ALL') return true;
+        if (currentMobileFilter === 'CA' || currentMobileFilter === 'US') return job.country === currentMobileFilter;
+        return job.track === currentMobileFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-10 text-gray-500 text-xs">
+            해당 조건의 공고가 없습니다.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(job => {
+        const flag = job.country === 'CA' ? '🇨🇦' : '🇺🇸';
+        return `
+          <div class="p-3.5 bg-uwCard rounded-2xl border border-gray-800 space-y-2.5 shadow-sm active:border-gray-700 transition">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="text-xs font-bold text-white flex items-center space-x-1.5">
+                  <span>${job.company}</span>
+                  <span>${flag}</span>
+                </div>
+                <h4 class="text-xs font-bold text-uwGold mt-0.5 leading-snug">${job.title}</h4>
+              </div>
+              <span class="text-xs font-black text-emerald-400 shrink-0 ml-2">${job.hourly_rate}</span>
+            </div>
+
+            <p class="text-[11px] text-gray-300 leading-relaxed">${job.summary}</p>
+
+            <div class="flex flex-wrap gap-1">
+              ${job.tags.slice(0, 3).map(t => `<span class="px-1.5 py-0.5 bg-gray-900 text-gray-300 text-[9px] rounded border border-gray-800">${t}</span>`).join('')}
+              <span class="px-1.5 py-0.5 bg-gray-900 text-gray-400 text-[9px] rounded">${job.visa_sponsorship}</span>
+            </div>
+
+            <div class="pt-2 border-t border-gray-800 flex items-center justify-between text-[11px]">
+              <span class="text-gray-400"><i class="fa-solid fa-clock mr-1 text-gray-500"></i>마감: ${job.deadline}</span>
+              <a href="${job.url}" target="_blank" 
+                class="px-3 py-1.5 bg-uwGold text-black font-bold rounded-lg shadow active:scale-95 transition flex items-center space-x-1">
+                <span>공식 지원</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 모바일 필터 선택
+    function filterMobileJobs(filter) {
+      currentMobileFilter = filter;
+      ['all', 'ca', 'us', 'quant', 'data_ai', 'software', 'actuary'].forEach(f => {
+        const btn = document.getElementById(`m-filter-${f}`);
+        if (!btn) return;
+        if (f.toUpperCase() === filter || f === filter) {
+          btn.className = "shrink-0 px-3 py-1.5 rounded-full font-bold bg-uwGold text-black shadow";
+        } else {
+          btn.className = "shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800";
+        }
+      });
+      renderMobileJobs();
+    }
+
+    // 통계 차트 렌더링
+    function initMobileChart() {
+      const ctx = document.getElementById('mobileChart').getContext('2d');
+      mobileChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['T1 (1st)', 'T2', 'T3', 'T4', 'T5', 'T6'],
+          datasets: [{
+            label: '시급 (CAD)',
+            data: [23.40, 26.85, 30.20, 34.50, 38.80, 43.10],
+            backgroundColor: '#FDD017',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#94A3B8', font: { size: 10 } } },
+            y: { grid: { color: '#1E293B' }, ticks: { color: '#94A3B8', font: { size: 9 }, callback: v => `$${v}` } }
+          }
+        }
+      });
+    }
+
+    // To-Do 프로그레스 계산
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('#tab-home input[type="checkbox"]');
+      const checked = Array.from(checkboxes).filter(c => c.checked).length;
+      document.getElementById('todo-progress-text').textContent = `${checked}/${checkboxes.length}`;
+    }
+
+    // 텔레그램 발송 트리거
+    async function sendMobileTelegramTest(type) {
+      showMobileToast('전송 요청 중...', '텔레그램 메시지를 발송하고 있습니다.');
+      try {
+        const res = await fetch(`/api/notify?type=${type}`);
+        const data = await res.json();
+        if (data.success) {
+          showMobileToast(
+            '알림 발송 완료!',
+            data.mode === 'dry-run' ? '콘솔(모의 발송 모드)로 정상 출력되었습니다.' : '텔레그램 봇으로 알림이 전송되었습니다.'
+          );
+        } else {
+          showMobileToast('발송 실패', data.error || '에러가 발생했습니다.');
+        }
+      } catch (e) {
+        showMobileToast('로컬 서버 안내', 'python scripts/run_server.py 가 구동 중이어야 합니다.');
+      }
+    }
+
+    function triggerQuickAlert() {
+      switchTab('alerts');
+      showMobileToast('텔레그램 알림 탭', '원하시는 알림 버튼을 터치하세요.');
+    }
+
+    function showMobileToast(title, desc) {
+      const toast = document.getElementById('mobile-toast');
+      document.getElementById('m-toast-title').textContent = title;
+      document.getElementById('m-toast-desc').textContent = desc;
+      toast.classList.remove('-translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('-translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    function getMobileFallbackJobs() {
+      return [
+        { id: "post-01", title: "Quantitative Trading Summer Intern (Undergrad)", company: "Citadel / Citadel Securities", location: "New York, NY", country: "US", track: "quant", target_level: "1st/2nd Year Undergrads", hourly_rate: "$90.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "RippleMatch", url: "https://www.citadel.com/careers/students/", deadline: "2026-10-15", tags: ["Python", "C++", "Probability"], summary: "수학/통계 역량을 활용한 알고리즘 트레이딩 전략 수립 및 백테스팅." },
+        { id: "post-02", title: "Quantitative Research Analyst Co-op", company: "CPP Investments (연금투자)", location: "Toronto, ON", country: "CA", track: "quant", target_level: "1st/2nd/3rd Year", hourly_rate: "$32.50 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://www.cppinvestments.com/careers", deadline: "2026-10-20", tags: ["Python", "SQL", "FARM"], summary: "글로벌 공공 연기금 주식/대체투자 퀀트 리서치. 온타리오주 최고의 금융 코옵." },
+        { id: "post-03", title: "Software Engineering Intern - Core Infrastructure", company: "Shopify", location: "Toronto, ON / Remote", country: "CA", track: "software", target_level: "1st/2nd Year", hourly_rate: "$35.00 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://www.shopify.com/careers/internships", deadline: "2026-10-12", tags: ["Ruby", "Go", "Algorithms"], summary: "캐나다 최대 테크 기업의 대규모 트래픽 처리 인프라 개발." },
+        { id: "post-04", title: "Junior Data Science Intern (Early Talent)", company: "RBC Capital Markets", location: "Toronto, ON", country: "CA", track: "data_ai", target_level: "1st/2nd Year", hourly_rate: "$28.00 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://jobs.rbc.com/ca/en/student-early-talent", deadline: "2026-10-18", tags: ["Python", "Pandas", "SQL"], summary: "캐나다 최대 금융 그룹의 투자은행 부서 데이터 파이프라인 및 머신러닝 예측 모델 구축." },
+        { id: "post-05", title: "Actuarial Science Student Co-op", company: "Manulife Financial", location: "Waterloo, ON", country: "CA", track: "actuary", target_level: "1st/2nd Year", hourly_rate: "$26.50 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://www.manulife.com/en/careers/students.html", deadline: "2026-10-25", tags: ["SOA Exam P/FM", "Excel VBA"], summary: "워털루 현지 본사 근무 가능. 생명보험 요율 산정 및 책임준비금 리스크 모델링." },
+        { id: "post-06", title: "Software Engineering Intern - Systems", company: "Jane Street", location: "New York, NY", country: "US", track: "software", target_level: "All Undergrads", hourly_rate: "$100.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "Handshake", url: "https://www.janestreet.com/join-jane-street/programs-and-internships/", deadline: "2026-10-08", tags: ["OCaml", "C++", "Algorithms"], summary: "독보적인 프롭 트레이딩 하우스. 함수형 프로그래밍 기반 초저지연 금융 시스템 개발." },
+        { id: "post-07", title: "Machine Learning & NLP Intern", company: "Wealthsimple", location: "Toronto, ON", country: "CA", track: "data_ai", target_level: "1st/2nd Year", hourly_rate: "$33.00 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "RippleMatch", url: "https://www.wealthsimple.com/en-ca/careers", deadline: "2026-10-30", tags: ["Python", "PyTorch", "LLM"], summary: "캐나다 최대 핀테크 기업의 로보어드바이저 및 AI 금융 어시스턴트 알고리즘 개발." },
+        { id: "post-08", title: "Risk Modeling & Financial Engineering Co-op", company: "Scotiabank", location: "Toronto, ON", country: "CA", track: "quant", target_level: "1st/2nd Year", hourly_rate: "$27.50 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://www.scotiabank.com/careers", deadline: "2026-10-22", tags: ["Python", "Monte Carlo", "FARM"], summary: "시장 리스크 및 신용 리스크 수리 모델 시뮬레이션. 1학년 첫 금융 코옵으로 이상적." },
+        { id: "post-09", title: "Actuarial Associate Co-op", company: "Sun Life Financial", location: "Waterloo, ON", country: "CA", track: "actuary", target_level: "1st/2nd Year", hourly_rate: "$26.00 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "WaterlooWorks", url: "https://www.sunlife.com/en/careers/students-and-graduates/", deadline: "2026-10-24", tags: ["Actuarial", "Excel", "SAS"], summary: "단체 보험 및 연금 플랜 수리 분석. 워털루 동문 네트워크 탄탄." },
+        { id: "post-10", title: "Undergraduate Discovery Intern (SWE)", company: "Google", location: "Waterloo, ON / NY", country: "CA", track: "software", target_level: "1st/2nd Year", hourly_rate: "$48.00 / hr CAD", visa_sponsorship: "Co-op Permit & J-1", source: "WayUp", url: "https://careers.google.com/students/", deadline: "2026-10-15", tags: ["C++", "Java", "Python"], summary: "워털루 키치너 오피스 및 미국 지사 연계 1~2학년 전용 STEP/SWE 인턴십." },
+        { id: "post-11", title: "Data Analyst Intern - Public Policy", company: "Statistics Canada", location: "Ottawa, ON / Remote", country: "CA", track: "data_ai", target_level: "1st Year Undergrads", hourly_rate: "$24.50 / hr CAD", visa_sponsorship: "Co-op Work Permit", source: "Magnet", url: "https://www.statcan.gc.ca/en/employment", deadline: "2026-11-05", tags: ["R", "SAS", "Statistics"], summary: "연방 정부 공식 마이크로데이터 가공 및 경제/인구 통계 지표 추출." },
+        { id: "post-12", title: "Quantitative Research Intern", company: "Balyasny Asset Management", location: "New York, NY", country: "US", track: "quant", target_level: "Undergrad", hourly_rate: "$75.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "Handshake", url: "https://www.bamfunds.com/careers", deadline: "2026-10-31", tags: ["Python", "Linear Algebra"], summary: "글로벌 멀티 스트래티지 헤지펀드 채권/파생상품 퀀트 모델링." }
+      ];
+    }
+  </script>
+  </div> <!-- Smartphone Mockup Wrapper End -->
+</body>
+</html>

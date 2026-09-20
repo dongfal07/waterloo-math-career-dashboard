@@ -1,0 +1,123 @@
+{
+  "categories": [
+    {
+      "id": "official_stats",
+      "name": "1. 정부 및 공공 공식 통계 사이트",
+      "description": "학교 자체 홍보가 아닌 연방 정부/통계청의 객관적 소득 및 부채 데이터",
+      "resources": [
+        {
+          "name": "College Scorecard",
+          "issuer": "미국 교육부 (U.S. Dept of Education)",
+          "url": "https://collegescorecard.ed.gov/",
+          "purpose": "미국 대학 및 수학/통계 전공별 졸업생 1~4년 차 실제 중위 소득(Median Earnings) 비교",
+          "math_action": "미국 아이비리그 및 주요 주립대 수학/통계/CS 졸업생의 실제 초봉 및 부채 규모 확인"
+        },
+        {
+          "name": "Statistics Canada (Postsecondary Graduates)",
+          "issuer": "캐나다 통계청 (StatCan)",
+          "url": "https://www.statcan.gc.ca/",
+          "purpose": "캐나다 공립 대학 전공별 취업률, 연간 중간 소득(Employment Income), 산업군별 분포",
+          "math_action": "온타리오주 수학/컴퓨터 과학 졸업생의 캐나다 내 2년/5년 차 소득 궤적 파악"
+        },
+        {
+          "name": "College Navigator",
+          "issuer": "미국 국립교육통계센터 (NCES)",
+          "url": "https://nces.ed.gov/collegenavigator/",
+          "purpose": "북미 대학별 기본 지표, 학위별 졸업률, 진학 연계 공식 통계",
+          "math_action": "미국 대학원(Math PhD, Financial Engineering MS) 진학 시 타깃 학교 기본 통계 검증"
+        }
+      ]
+    },
+    {
+      "id": "university_outcomes",
+      "name": "2. 대학별 공식 Career Outcomes & Co-op 보고서",
+      "description": "워털루 대학 및 북미 명문대 경력개발센터의 공식 취업 전수 조사",
+      "resources": [
+        {
+          "name": "Waterloo Faculty of Math Co-op Earnings",
+          "issuer": "University of Waterloo CCAO",
+          "url": "https://uwaterloo.ca/co-operative-education/why-co-op/co-op-earnings",
+          "purpose": "워털루 수학과 학기별(Work Term 1~6) 공식 평균 및 상위 시급 발표 자료",
+          "math_action": "1학년 첫 코옵 지원 시 시급 협상 기준 및 기대 소득(평균 $23.40/hr) 점검"
+        },
+        {
+          "name": "WaterlooWorks",
+          "issuer": "University of Waterloo",
+          "url": "https://waterlooworks.uwaterloo.ca/",
+          "purpose": "워털루 재학생 전용 코옵 공고 검색, 이력서 등록, 면접 예약 및 매칭 랭킹 시스템",
+          "math_action": "매 학기 Main Round 및 Continuous Round 공고 상시 모니터링"
+        },
+        {
+          "name": "First Destination Reports (Top Universities)",
+          "issuer": "MIT, CMU, Stanford Career Centers",
+          "url": "https://capd.mit.edu/",
+          "purpose": "수학/CS 학부 졸업생의 주요 취업 기업(Top Employers), 초봉, 지역 분포",
+          "math_action": "북미 퀀트/빅테크 기업들의 선호 전공 및 초봉 벤치마크"
+        }
+      ]
+    },
+    {
+      "id": "recruiting_platforms",
+      "name": "3. 북미 대학생·신입 전용 채용 플랫폼",
+      "description": "경력직 사이트와 차별화된 대학생 인턴십/엔트리 레벨 특화 플랫폼",
+      "resources": [
+        {
+          "name": "Handshake",
+          "issuer": "Handshake Inc.",
+          "url": "https://joinhandshake.com/",
+          "purpose": "북미 1,400개 대학 공식 연동, 캠퍼스 리크루팅 및 대학생 타깃 인턴 공고",
+          "math_action": "워털루 계정으로 프로필 생성 후 빅테크/금융사 리크루터의 캠퍼스 이벤트 및 공고 접수"
+        },
+        {
+          "name": "RippleMatch",
+          "issuer": "RippleMatch",
+          "url": "https://ripplematch.com/",
+          "purpose": "이력서 및 선호 직무(Quant, Data, Tech) 등록 시 AI 기반 신입/인턴 1:1 매칭",
+          "math_action": "워털루 수학과 코옵과 병행하여 미국 원격/여름 인턴십 자동 매칭 수신"
+        },
+        {
+          "name": "WayUp",
+          "issuer": "WayUp",
+          "url": "https://www.wayup.com/",
+          "purpose": "학부 1~2학년 대상 조기 인턴십(Underclassmen Discovery Programs) 및 서머 잡",
+          "math_action": "골드만삭스, JP모건 등 글로벌 금융사의 1학년 대학생 조기 인재 발굴 프로그램 지원"
+        },
+        {
+          "name": "Magnet (캐나다 특화)",
+          "issuer": "Toronto Metropolitan Univ & 캐나다 정부",
+          "url": "https://magnet.today/",
+          "purpose": "캐나다 청년/학생 고용 매칭 네트워크 및 연방/주정부 인턴십 지원금 연계",
+          "math_action": "캐나다 국내 혁신 스타트업 및 정부 연구소 인턴십 탐색"
+        }
+      ]
+    },
+    {
+      "id": "visa_h1b",
+      "name": "4. 유학생 취업 및 비자 스폰서십 사이트",
+      "description": "외국인 신분 인턴/신입 채용 비자 지원 이력 및 급여 검증",
+      "resources": [
+        {
+          "name": "MyVisaJobs",
+          "issuer": "MyVisaJobs Portal",
+          "url": "https://www.myvisajobs.com/",
+          "purpose": "미국 노동부(LCA) 기반 기업별 H-1B/영주권 스폰서십 승인 순위 및 직무별 급여",
+          "math_action": "지원 대상 금융사/테크기업의 최근 외국인 비자 스폰서십 승인율 확인"
+        },
+        {
+          "name": "H1BGrader / H1Bdata.info",
+          "issuer": "H1B Data Research",
+          "url": "https://h1bgrader.com/",
+          "purpose": "실제 H-1B 비자 승인 사례, 기본급(Base Salary), 직위별 데이터 검색",
+          "math_action": "엔트리 레벨 퀀트 분석가/소프트웨어 엔지니어의 실제 비자 승인 연봉 확인"
+        },
+        {
+          "name": "GoinGlobal",
+          "issuer": "GoinGlobal Portal",
+          "url": "https://www.goinglobal.com/",
+          "purpose": "국가별 취업 비자 규정 가이드, H-1B 후원 기업 상세 분석",
+          "math_action": "미국/영국/캐나다 간 크로스보더 취업 비자 법률 요건 검토"
+        }
+      ]
+    }
+  ]
+}

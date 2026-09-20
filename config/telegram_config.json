@@ -1,0 +1,26 @@
+{
+  "telegram": {
+    "bot_token": "8795091700:AAEbGlAeFovH4SbxlCX08B1TSG2sQii6a3c",
+    "chat_id": "1172576367",
+    "enabled": true,
+    "instructions": {
+      "step_1": "텔레그램 앱에서 @BotFather 검색 후 /newbot 명령어로 봇 생성 및 API 토큰 획득",
+      "step_2": "텔레그램 앱에서 @userinfobot 검색 후 대화 시작하여 본인의 Chat ID(숫자) 확인",
+      "step_3": "생성된 토큰과 Chat ID를 위 필드에 입력하고 enabled를 true로 변경",
+      "note": "토큰이 비어있거나 enabled가 false인 경우, 시스템은 콘솔 로그 및 모의 발송(Dry-run) 모드로 안전하게 작동합니다."
+    }
+  },
+  "notification_rules": {
+    "d_day_alert_thresholds": [30, 14, 7, 3, 1, 0],
+    "auto_notify_new_quant_jobs": true,
+    "target_tracks": ["quant", "data_ai", "software", "actuary"],
+    "target_countries": ["CA", "US"]
+  },
+  "scheduler": {
+    "enabled": true,
+    "daily_briefing_time": "09:00",
+    "weekly_jobs_day": "Monday",
+    "weekly_jobs_time": "10:00",
+    "check_interval_seconds": 60
+  }
+}
