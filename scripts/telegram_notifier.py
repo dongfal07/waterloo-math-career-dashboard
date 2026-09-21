@@ -106,7 +106,7 @@ def notify_d_day_alerts():
     
     lines.append("──────────────────────────────")
     lines.append("💡 <i>WaterlooWorks 및 이력서 검토 일정을 미리 준수하세요!</i>")
-    lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>워털루 커리어 대시보드 열기</a>")
+    lines.append("📱 👉 <a href='https://jihwan-Shin01.github.io/waterloo-math-career-dashboard/'>워털루 커리어 대시보드 열기</a>")
     msg = "\n".join(lines)
     return send_telegram_message(msg)
 
@@ -130,7 +130,7 @@ def notify_job_postings(limit=3):
         lines.append("")
         
     lines.append("──────────────────────────────")
-    lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>전체 공고 모바일 대시보드에서 보기</a>")
+    lines.append("📱 👉 <a href='https://jihwan-Shin01.github.io/waterloo-math-career-dashboard/'>전체 공고 모바일 대시보드에서 보기</a>")
     msg = "\n".join(lines)
     return send_telegram_message(msg)
 
@@ -141,7 +141,7 @@ def notify_dashboard_link():
         "📱 <b>[Waterloo Math] 24/7 모바일 대시보드 바로가기</b>\n"
         "──────────────────────────────\n"
         "스마트폰에서 아래 파란색 링크를 터치하시면 24시간 언제든 대시보드가 열립니다:\n\n"
-        "👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'><b>워털루 모바일 대시보드 열기 (터치)</b></a>\n\n"
+        "👉 <a href='https://jihwan-Shin01.github.io/waterloo-math-career-dashboard/'><b>워털루 모바일 대시보드 열기 (터치)</b></a>\n\n"
         "──────────────────────────────\n"
         "💡 <b>[스마트폰 홈 화면에 앱으로 설치하기]</b>\n"
         "1. 위 링크를 터치하여 연 후\n"
@@ -162,7 +162,7 @@ def notify_test_ping():
         "✅ 텔레그램 알림 시스템이 정상 연동되었습니다!\n"
         "• 워털루 대학교 수학과 1학년 맞춤형 공고 알림 수신 준비 완료\n"
         "• D-Day 리마인더 및 주요 코옵 라운드 마감 실시간 통보 지원\n\n"
-        "📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>모바일 대시보드 열기</a>"
+        "📱 👉 <a href='https://jihwan-Shin01.github.io/waterloo-math-career-dashboard/'>모바일 대시보드 열기</a>"
     )
     return send_telegram_message(msg)
 
