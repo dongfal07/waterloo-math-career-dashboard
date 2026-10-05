@@ -173,8 +173,8 @@
               <div class="text-xs font-bold text-red-200">WaterlooWorks 1학년 이력서 점검</div>
               <div class="text-[11px] text-red-300/80 mt-0.5">마감일: 2026-10-15</div>
             </div>
-            <div class="px-3 py-1 bg-red-600 text-white font-black text-xs rounded-lg shadow">
-              D-25
+            <div class="px-3 py-1 bg-red-600 text-white font-black text-xs rounded-lg shadow" data-due-date="2026-10-15">
+              D-?
             </div>
           </div>
 
@@ -183,8 +183,8 @@
               <div class="text-xs font-bold text-amber-200">북미 퀀트/빅테크 서머 인턴십 조기 마감</div>
               <div class="text-[11px] text-amber-300/80 mt-0.5">마감일: 2026-10-31</div>
             </div>
-            <div class="px-3 py-1 bg-amber-500 text-black font-black text-xs rounded-lg shadow">
-              D-41
+            <div class="px-3 py-1 bg-amber-500 text-black font-black text-xs rounded-lg shadow" data-due-date="2026-10-31">
+              D-?
             </div>
           </div>
         </div>
@@ -695,6 +695,39 @@
           { id: "post-12", title: "Quantitative Research Intern", company: "Balyasny Asset Management", location: "New York, NY", country: "US", track: "quant", target_level: "Undergrad", hourly_rate: "$75.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "Handshake", url: "https://www.bamfunds.com/careers", deadline: "2026-10-31", tags: ["Python", "Linear Algebra"], summary: "글로벌 멀티 스트래티지 헤지펀드 채권/파생상품 퀀트 모델링." }
         ];
       }
+    </script>
+
+    <!-- D-Day 자동 계산: data-due-date 속성을 가진 요소에 한국 시간(KST) 기준 남은 일수를 표시 -->
+    <script>
+      (function () {
+        function todayKST() {
+          const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+          const get = (t) => parts.find((p) => p.type === t).value;
+          return `${get('year')}-${get('month')}-${get('day')}`;
+        }
+        function toDayNumber(ymd) {
+          const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((ymd || '').trim());
+          return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : NaN;
+        }
+        function ddayLabel(dueYmd, baseYmd) {
+          const diff = toDayNumber(dueYmd) - toDayNumber(baseYmd);
+          if (isNaN(diff)) return 'D-?';
+          if (diff > 0) return 'D-' + diff;
+          if (diff === 0) return 'D-Day';
+          return '마감 D+' + (-diff);
+        }
+        function updateDDayBadges() {
+          const base = todayKST();
+          document.querySelectorAll('[data-due-date]').forEach((el) => {
+            const due = el.getAttribute('data-due-date');
+            el.textContent = ddayLabel(due, base);
+            el.title = `마감일 ${due} · 기준일 ${base} (KST)`;
+          });
+        }
+        window.updateDDayBadges = updateDDayBadges;
+        updateDDayBadges();
+        setInterval(updateDDayBadges, 60 * 1000); // 자정이 지나면 자동 갱신
+      })();
     </script>
   </div> <!-- Smartphone Mockup Wrapper End -->
 </body>

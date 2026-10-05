@@ -10,7 +10,10 @@ import sys
 import json
 import urllib.request
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
+
+# 한국 표준시 (KST, UTC+9) - D-Day 계산 기준 시간대
+KST = timezone(timedelta(hours=9), name="KST")
 
 # Windows 콘솔 유니코드 이모지 인코딩 에러 방지
 if hasattr(sys.stdout, 'reconfigure'):
@@ -88,20 +91,53 @@ def send_telegram_message(message_text, parse_mode="HTML"):
         print(f"❌ [TELEGRAM EXCEPTION] {e}")
         return {"success": False, "mode": "real", "error": str(e)}
 
+def today_kst():
+    """
+    한국 시간(KST, UTC+9) 기준 오늘 날짜를 반환합니다.
+    GitHub Actions 러너는 UTC로 동작하므로 시스템 로컬 시간 대신 KST를 명시적으로 사용합니다.
+    """
+    return datetime.now(KST).date()
+
+def compute_d_day(due_date_str, base_date=None):
+    """
+    마감일(YYYY-MM-DD)과 기준일(기본: 오늘 KST)의 차이로 D-Day 라벨을 계산합니다.
+    반환: (남은 일수 또는 None, 라벨 문자열)
+    """
+    base_date = base_date or today_kst()
+    try:
+        due = datetime.strptime(str(due_date_str), "%Y-%m-%d").date()
+    except (TypeError, ValueError):
+        return None, "D-?"
+    days_left = (due - base_date).days
+    if days_left > 0:
+        return days_left, f"D-{days_left}"
+    if days_left == 0:
+        return 0, "D-Day"
+    return days_left, f"마감 D+{-days_left}"
+
 def notify_d_day_alerts():
     """WaterlooWorks 및 주요 마감일 D-Day 알림 메시지 생성 및 발송"""
     profile = load_json(PROFILE_PATH)
     d_days = profile.get("d_day_alerts", [])
+    base_date = today_kst()
     
     lines = [
         "🎓 <b>[Waterloo Math] 코옵 & 취업 주요 마감일 알림</b>",
         "──────────────────────────────",
-        "워털루 수학과 1학년 학생을 위한 필수 일정 안내입니다:\n"
+        "워털루 수학과 1학년 학생을 위한 필수 일정 안내입니다:",
+        f"📅 기준일: <code>{base_date.isoformat()}</code> (KST)\n"
     ]
-    for alert in d_days:
-        urgency_icon = "🔴" if alert.get("urgency") == "high" else "🟡"
+    # 마감일 순으로 정렬하여 표시 (D-Day는 저장된 값이 아닌 발송 시점에 매번 재계산)
+    for alert in sorted(d_days, key=lambda a: str(a.get("due_date", ""))):
+        days_left, badge = compute_d_day(alert.get("due_date"), base_date)
+        if days_left is not None and days_left < 0:
+            urgency_icon = "⚫"
+        elif alert.get("urgency") == "high" or (days_left is not None and days_left <= 7):
+            urgency_icon = "🔴"
+        else:
+            urgency_icon = "🟡"
         lines.append(f"{urgency_icon} <b>{alert.get('title')}</b>")
-        lines.append(f"   • 마감일: <code>{alert.get('due_date')}</code> (<b>{alert.get('badge')}</b>)")
+        lines.append(f"   • 마감일: <code>{alert.get('due_date')}</code> (<b>{badge}</b>)")
         lines.append("")
     
     lines.append("──────────────────────────────")

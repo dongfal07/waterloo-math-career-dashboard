@@ -118,25 +118,19 @@
       "id": "ww_resume_check",
       "title": "WaterlooWorks 1학년 이력서 최종 점검 마감",
       "due_date": "2026-10-15",
-      "days_left": 25,
-      "urgency": "high",
-      "badge": "D-25"
+      "urgency": "high"
     },
     {
       "id": "external_quant_intern",
       "title": "2027 북미 퀀트/빅테크 서머 인턴 조기 마감",
       "due_date": "2026-10-31",
-      "days_left": 41,
-      "urgency": "medium",
-      "badge": "D-41"
+      "urgency": "medium"
     },
     {
       "id": "coop_work_permit",
       "title": "캐나다 Co-op Work Permit 비자 신청 마감",
       "due_date": "2026-11-20",
-      "days_left": 61,
-      "urgency": "medium",
-      "badge": "D-61"
+      "urgency": "medium"
     }
   ],
   "visa_guide": {

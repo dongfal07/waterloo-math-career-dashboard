@@ -64,13 +64,13 @@
         <div class="flex items-center space-x-1.5 text-red-400 font-medium whitespace-nowrap">
           <i class="fa-solid fa-fire text-red-500 text-[11px] shrink-0"></i>
           <span class="whitespace-nowrap">이력서 검토 마감:</span>
-          <span class="font-bold px-1.5 py-0.5 bg-red-950/80 text-red-300 rounded border border-red-800/70 whitespace-nowrap shrink-0 text-[10.5px]">D-25</span>
+          <span class="font-bold px-1.5 py-0.5 bg-red-950/80 text-red-300 rounded border border-red-800/70 whitespace-nowrap shrink-0 text-[10.5px]" data-due-date="2026-10-15">D-?</span>
         </div>
         <span class="text-gray-600 shrink-0">|</span>
         <div class="flex items-center space-x-1.5 text-amber-300 font-medium whitespace-nowrap">
           <i class="fa-solid fa-briefcase text-[11px] shrink-0"></i>
           <span class="whitespace-nowrap">서머 퀀트 인턴:</span>
-          <span class="font-bold px-1.5 py-0.5 bg-amber-950/80 text-amber-200 rounded border border-amber-800/70 whitespace-nowrap shrink-0 text-[10.5px]">D-41</span>
+          <span class="font-bold px-1.5 py-0.5 bg-amber-950/80 text-amber-200 rounded border border-amber-800/70 whitespace-nowrap shrink-0 text-[10.5px]" data-due-date="2026-10-31">D-?</span>
         </div>
       </div>
 
@@ -768,9 +768,9 @@
         student: { university: "University of Waterloo", faculty: "Faculty of Mathematics", year: "1st Year (1A/1B)" },
         coop_statistics: { employment_rate: "96.4%" },
         d_day_alerts: [
-          { id: "ww_resume", title: "WaterlooWorks 1학년 이력서 최종 점검 마감", due_date: "2026-10-15", badge: "D-25", urgency: "high" },
-          { id: "quant_intern", title: "2027 북미 퀀트/빅테크 서머 인턴 조기 마감", due_date: "2026-10-31", badge: "D-41", urgency: "medium" },
-          { id: "coop_permit", title: "캐나다 Co-op Work Permit 비자 신청 마감", due_date: "2026-11-20", badge: "D-61", urgency: "medium" }
+          { id: "ww_resume", title: "WaterlooWorks 1학년 이력서 최종 점검 마감", due_date: "2026-10-15", urgency: "high" },
+          { id: "quant_intern", title: "2027 북미 퀀트/빅테크 서머 인턴 조기 마감", due_date: "2026-10-31", urgency: "medium" },
+          { id: "coop_permit", title: "캐나다 Co-op Work Permit 비자 신청 마감", due_date: "2026-11-20", urgency: "medium" }
         ],
         waterloo_coop_timeline: [
           { phase: "1A Term (Fall)", title: "Co-op 준비 기초 과정 & 워크샵", description: "PD1(Career Fundamentals) 필수 모듈 제출 및 이력서 초안 완성", action_items: ["PD1 필수 모듈 제출", "CCO 1:1 이력서 첨삭 예약", "GitHub 프로젝트 등록"], status: "In Progress" },
@@ -797,6 +797,39 @@
         { id: "post-12", title: "Quantitative Research Intern", company: "Balyasny Asset Management", location: "New York, NY", country: "US", track: "quant", target_level: "Undergrad (Math, CS)", hourly_rate: "$75.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "Handshake", url: "https://www.bamfunds.com/careers", deadline: "2026-10-31", tags: ["Python", "Linear Algebra", "Yield Curve"], summary: "글로벌 멀티 스트래티지 헤지펀드 채권/파생상품 퀀트 모델링." }
       ];
     }
+  </script>
+
+  <!-- D-Day 자동 계산: data-due-date 속성을 가진 요소에 한국 시간(KST) 기준 남은 일수를 표시 -->
+  <script>
+    (function () {
+      function todayKST() {
+        const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+        const get = (t) => parts.find((p) => p.type === t).value;
+        return `${get('year')}-${get('month')}-${get('day')}`;
+      }
+      function toDayNumber(ymd) {
+        const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((ymd || '').trim());
+        return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : NaN;
+      }
+      function ddayLabel(dueYmd, baseYmd) {
+        const diff = toDayNumber(dueYmd) - toDayNumber(baseYmd);
+        if (isNaN(diff)) return 'D-?';
+        if (diff > 0) return 'D-' + diff;
+        if (diff === 0) return 'D-Day';
+        return '마감 D+' + (-diff);
+      }
+      function updateDDayBadges() {
+        const base = todayKST();
+        document.querySelectorAll('[data-due-date]').forEach((el) => {
+          const due = el.getAttribute('data-due-date');
+          el.textContent = ddayLabel(due, base);
+          el.title = `마감일 ${due} · 기준일 ${base} (KST)`;
+        });
+      }
+      window.updateDDayBadges = updateDDayBadges;
+      updateDDayBadges();
+      setInterval(updateDDayBadges, 60 * 1000); // 자정이 지나면 자동 갱신
+    })();
   </script>
 </body>
 </html>

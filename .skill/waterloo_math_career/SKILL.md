@@ -110,4 +110,4 @@ python scripts\telegram_notifier.py --jobs
 1. **신규 인턴십 공고 추가**:
    - `data/internship_postings.json`에 기업명, 직무, 시급, 비자 스폰서십, 링크를 JSON 형식으로 추가하면 데스크톱과 모바일 대시보드 및 텔레그램 알림에 즉시 반영됩니다.
 2. **워털루 코옵 마감일 갱신**:
-   - `data/waterloo_math_profile.json`의 `d_day_alerts` 항목에서 날짜와 D-Day 라벨을 수정합니다.
+   - `data/waterloo_math_profile.json`의 `d_day_alerts` 항목에서 `due_date`(YYYY-MM-DD)만 수정하면 됩니다. D-Day 라벨(예: D-10)은 텔레그램 발송 시점의 한국 시간(KST) 기준으로 자동 계산됩니다.
