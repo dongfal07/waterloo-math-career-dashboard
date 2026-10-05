@@ -22,8 +22,8 @@ def run_git_push():
     print("\n" + "=" * 70, flush=True)
     print("🚀 [GitHub 클라우드 업로더] 24시간 무중단 텔레그램 알림 시스템 연동", flush=True)
     print("=" * 70, flush=True)
-    print("• 대상 계정 : jihwan-Shin01 (jihwan010522@gmail.com)", flush=True)
-    print("• 저장소 주소 : https://github.com/jihwan-Shin01/waterloo-math-career-dashboard.git", flush=True)
+    print("• 대상 계정 : dongfal07 (dongfal07@gmail.com)", flush=True)
+    print("• 저장소 주소 : https://github.com/dongfal07/waterloo-math-career-dashboard.git", flush=True)
     print("─" * 70, flush=True)
 
     print("\n[1/2] GitHub 서버로 코드 업로드(Push)를 시도합니다...", flush=True)
@@ -46,7 +46,7 @@ def run_git_push():
         print("✅ 24시간 365일 무중단 GitHub Actions 클라우드 스케줄러가 활성화되었습니다.", flush=True)
         print("✅ 이제 컴퓨터/노트북 전원을 완전히 끄셔도 스마트폰으로 매일 알림이 옵니다.", flush=True)
         print("─" * 70, flush=True)
-        print("🔗 저장소 바로가기: https://github.com/jihwan-Shin01/waterloo-math-career-dashboard", flush=True)
+        print("🔗 저장소 바로가기: https://github.com/dongfal07/waterloo-math-career-dashboard", flush=True)
         print("=" * 70 + "\n", flush=True)
         input("계속하려면 아무 키나 누르세요 . . . ")
         return True
