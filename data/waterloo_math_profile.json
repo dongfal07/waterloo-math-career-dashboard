@@ -4,39 +4,112 @@
     "faculty": "Faculty of Mathematics",
     "program": "Honours Mathematics (Co-op)",
     "year": "1st Year (1A/1B)",
-    "target_terms": ["Winter 2027", "Spring 2027"],
+    "target_terms": [
+      "Winter 2027",
+      "Spring 2027"
+    ],
     "career_tracks": [
       {
         "id": "quant",
         "name": "Quantitative Finance & Trading",
         "description": "수학적 모델링, 통계적 차익거래, 알고리즘 트레이딩 및 리스크 관리",
-        "target_majors": ["Mathematical Finance", "Combinatorics & Optimization", "Statistics", "FARM"],
-        "recommended_skills": ["Python (NumPy, Pandas)", "C++", "Stochastic Calculus", "Linear Algebra", "Data Analysis"],
-        "top_employers": ["Citadel", "Jane Street", "Two Sigma", "Balyasny", "CPP Investments", "RBC Capital Markets"]
+        "target_majors": [
+          "Mathematical Finance",
+          "Combinatorics & Optimization",
+          "Statistics",
+          "FARM"
+        ],
+        "recommended_skills": [
+          "Python (NumPy, Pandas)",
+          "C++",
+          "Stochastic Calculus",
+          "Linear Algebra",
+          "Data Analysis"
+        ],
+        "top_employers": [
+          "Citadel",
+          "Jane Street",
+          "Two Sigma",
+          "Balyasny",
+          "CPP Investments",
+          "RBC Capital Markets"
+        ]
       },
       {
         "id": "data_ai",
         "name": "Data Science & Machine Learning",
         "description": "데이터 모델링, 예측 분석, 대규모 데이터셋 분석 및 머신러닝 엔지니어링",
-        "target_majors": ["Data Science", "Computational Math", "Statistics"],
-        "recommended_skills": ["Python", "SQL", "Scikit-Learn", "PyTorch", "Tableau/PowerBI", "Probability & Statistics"],
-        "top_employers": ["Shopify", "Amazon", "Meta", "Wealthsimple", "OpenText", "BMO AI Labs"]
+        "target_majors": [
+          "Data Science",
+          "Computational Math",
+          "Statistics"
+        ],
+        "recommended_skills": [
+          "Python",
+          "SQL",
+          "Scikit-Learn",
+          "PyTorch",
+          "Tableau/PowerBI",
+          "Probability & Statistics"
+        ],
+        "top_employers": [
+          "Shopify",
+          "Amazon",
+          "Meta",
+          "Wealthsimple",
+          "OpenText",
+          "BMO AI Labs"
+        ]
       },
       {
         "id": "software",
         "name": "Software Engineering & Algorithmic Dev",
         "description": "백엔드 시스템, 알고리즘 구현, 금융 소프트웨어 및 인프라 엔지니어링",
-        "target_majors": ["Computer Science & Math Double", "Applied Math", "Pure Math"],
-        "recommended_skills": ["Python", "C++", "Java", "Data Structures & Algorithms", "Git", "Linux"],
-        "top_employers": ["Google", "Bloomberg", "Uber", "Wish", "Palantir", "1Password"]
+        "target_majors": [
+          "Computer Science & Math Double",
+          "Applied Math",
+          "Pure Math"
+        ],
+        "recommended_skills": [
+          "Python",
+          "C++",
+          "Java",
+          "Data Structures & Algorithms",
+          "Git",
+          "Linux"
+        ],
+        "top_employers": [
+          "Google",
+          "Bloomberg",
+          "Uber",
+          "Wish",
+          "Palantir",
+          "1Password"
+        ]
       },
       {
         "id": "actuary",
         "name": "Actuarial Science & Risk Management",
         "description": "생명/손해보험 계리, 연금 수리, 보험 리스크 모델링 및 파생상품 평가",
-        "target_majors": ["Actuarial Science", "FARM (Financial Analysis & Risk Management)"],
-        "recommended_skills": ["SOA Exam P/FM 준비", "Excel (VBA)", "R", "SAS", "Financial Mathematics"],
-        "top_employers": ["Manulife", "Sun Life Financial", "Munich Re", "Intact Financial", "Mercer", "Oliver Wyman"]
+        "target_majors": [
+          "Actuarial Science",
+          "FARM (Financial Analysis & Risk Management)"
+        ],
+        "recommended_skills": [
+          "SOA Exam P/FM 준비",
+          "Excel (VBA)",
+          "R",
+          "SAS",
+          "Financial Mathematics"
+        ],
+        "top_employers": [
+          "Manulife",
+          "Sun Life Financial",
+          "Munich Re",
+          "Intact Financial",
+          "Mercer",
+          "Oliver Wyman"
+        ]
       }
     ]
   },
@@ -44,12 +117,12 @@
     "faculty_name": "Mathematics Co-op",
     "employment_rate": "96.4%",
     "average_hourly_earnings_cad": {
-      "Work Term 1 (1st Year)": 23.40,
+      "Work Term 1 (1st Year)": 23.4,
       "Work Term 2": 26.85,
-      "Work Term 3": 30.20,
-      "Work Term 4": 34.50,
-      "Work Term 5": 38.80,
-      "Work Term 6": 43.10
+      "Work Term 3": 30.2,
+      "Work Term 4": 34.5,
+      "Work Term 5": 38.8,
+      "Work Term 6": 43.1
     },
     "regional_distribution": {
       "Ontario (Toronto / Waterloo / Ottawa)": "62%",
@@ -115,28 +188,137 @@
   ],
   "d_day_alerts": [
     {
-      "id": "coop_work_permit",
-      "title": "캐나다 Co-op Work Permit 비자 신청 마감",
+      "id": "uw_f26_c2_emp_rank",
+      "title": "[WaterlooWorks] Fall Cycle 2 고용주 랭킹 발표 (2 p.m. ET)",
+      "due_date": "2026-11-11",
+      "urgency": "high",
+      "category": "WaterlooWorks"
+    },
+    {
+      "id": "uw_f26_c2_match",
+      "title": "[WaterlooWorks] Fall Cycle 2 학생 랭킹 마감 & 매칭 발표",
+      "due_date": "2026-11-13",
+      "urgency": "high",
+      "category": "WaterlooWorks"
+    },
+    {
+      "id": "uw_f26_c3_interview",
+      "title": "[WaterlooWorks] Fall Cycle 3 면접 주간 시작 (11/17~11/24)",
+      "due_date": "2026-11-17",
+      "urgency": "medium",
+      "category": "WaterlooWorks"
+    },
+    {
+      "id": "ircc_coop_work_permit",
+      "title": "[비자 필수] 캐나다 Co-op Work Permit 비자 신청 권장 마감",
       "due_date": "2026-11-20",
-      "urgency": "high"
+      "urgency": "high",
+      "category": "Visa"
     },
     {
-      "id": "pd1_final_resume",
-      "title": "PD1 (Career Fundamentals) 이력서 & 필수 모듈 최종 마감",
-      "due_date": "2026-12-04",
-      "urgency": "high"
+      "id": "uw_f26_c3_match",
+      "title": "[WaterlooWorks] Fall Cycle 3 학생 랭킹 마감 & 최종 매칭 발표",
+      "due_date": "2026-11-27",
+      "urgency": "medium",
+      "category": "WaterlooWorks"
     },
     {
-      "id": "ww_cycle1_open",
-      "title": "WaterlooWorks 1B 첫 코옵 Main Round (Cycle 1) 지원 마감",
+      "id": "uw_f26_direct_offer",
+      "title": "[WaterlooWorks] Direct Offer (상시 직접 오퍼) 채용 전환 시작",
+      "due_date": "2026-11-30",
+      "urgency": "medium",
+      "category": "WaterlooWorks"
+    },
+    {
+      "id": "uw_f26_classes_end_pd1",
+      "title": "[학사/PD1] 1A 가을학기 정규 수업 종강 & PD1 이력서 최종 마감",
+      "due_date": "2026-12-08",
+      "urgency": "high",
+      "category": "Academic"
+    },
+    {
+      "id": "uw_f26_exams_start",
+      "title": "[학사] 1A 가을학기 기말고사 시작 (12/10~12/22)",
+      "due_date": "2026-12-10",
+      "urgency": "medium",
+      "category": "Academic"
+    },
+    {
+      "id": "uw_w27_c1a_open",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 공고 오픈 (50개 한도)",
+      "due_date": "2027-01-09",
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_classes_start",
+      "title": "[학사] 2027 겨울학기(1B) 개강",
+      "due_date": "2027-01-11",
+      "urgency": "medium",
+      "category": "Academic"
+    },
+    {
+      "id": "uw_w27_c1a_close",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 1차 지원 마감 (9 a.m. ET)",
       "due_date": "2027-01-19",
-      "urgency": "medium"
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
     },
     {
-      "id": "external_regular_intern",
-      "title": "2027 북미 빅테크/금융 서머 인턴십 정시(Regular) 마감",
-      "due_date": "2027-01-31",
-      "urgency": "medium"
+      "id": "uw_w27_c1_interviews",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 본 면접 시작 (1/22~2/9)",
+      "due_date": "2027-01-22",
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c1b_close",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting B) 최종 지원 마감 (100개 한도)",
+      "due_date": "2027-01-26",
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c1_emp_rank",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 고용주 랭킹 발표 (2 p.m. ET)",
+      "due_date": "2027-02-10",
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c1_match",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 학생 랭킹 마감 & 1차 매칭 결과 발표",
+      "due_date": "2027-02-12",
+      "urgency": "high",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c2_open",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 상시 공고 오픈 (500개 한도)",
+      "due_date": "2027-02-13",
+      "urgency": "medium",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c2_close",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 (Reading Week 공고분) 마감",
+      "due_date": "2027-02-24",
+      "urgency": "medium",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c2_match",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 학생 랭킹 마감 & 2차 매칭 발표",
+      "due_date": "2027-03-19",
+      "urgency": "medium",
+      "category": "Spring 2027 Co-op"
+    },
+    {
+      "id": "uw_w27_c3_match",
+      "title": "[1B 첫 코옵] WaterlooWorks Cycle 3 최종 매칭 발표 & Direct Offer 시작",
+      "due_date": "2027-04-02",
+      "urgency": "medium",
+      "category": "Spring 2027 Co-op"
     }
   ],
   "visa_guide": {
@@ -154,6 +336,20 @@
       "title": "졸업 후 취업: PGWP vs 미국 H-1B",
       "summary": "캐나다는 졸업 후 최대 3년 오픈 워크퍼밋(PGWP)이 100% 보장되며, 미국은 4월 추첨제 H-1B(STEM 전공 3년 OPT)가 필요함.",
       "key_point": "수학 전공(STEM)은 미국 취업 시 최대 36개월간 비자 추첨 없이 OPT 근무 가능."
+    }
+  },
+  "live_sync_metadata": {
+    "last_synced_kst": "2026-11-02 17:46:40 KST",
+    "uw_official_dates_url": "https://uwaterloo.ca/co-operative-education/important-dates",
+    "uw_official_page_verified": true,
+    "live_jobs_source_url": "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/README.md",
+    "live_jobs_stats": {
+      "total_open_na_roles": 827,
+      "canada_open_roles": 49,
+      "quant_open_roles": 27,
+      "data_ai_open_roles": 411,
+      "software_open_roles": 385,
+      "actuary_open_roles": 4
     }
   }
 }

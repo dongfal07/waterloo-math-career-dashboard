@@ -573,6 +573,14 @@
       });
 
       document.getElementById('badge-job-count').textContent = `${filtered.length} Active`;
+      const totEl = document.getElementById('kpi-total-jobs');
+      const splitEl = document.getElementById('kpi-country-split');
+      if (totEl) totEl.textContent = `${postingsData.length}?`;
+      if (splitEl) {
+        const ca = postingsData.filter(j => j.country === 'CA').length;
+        const us = postingsData.filter(j => j.country === 'US').length;
+        splitEl.textContent = `???? ??? ${ca}? | ???? ??(????) ${us}?`;
+      }
 
       if (filtered.length === 0) {
         container.innerHTML = `
