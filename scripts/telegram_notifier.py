@@ -48,7 +48,13 @@ def send_telegram_message(message_text, parse_mode="HTML"):
     enabled = True if os.environ.get("TELEGRAM_BOT_TOKEN") else tg_config.get("enabled", False)
 
     # Dry-run 모드 체크
-    if not enabled or not bot_token or bot_token == "YOUR_TELEGRAM_BOT_TOKEN" or not chat_id or chat_id == "YOUR_TELEGRAM_CHAT_ID":
+    if (
+        not enabled
+        or not bot_token
+        or bot_token.startswith("YOUR_TELEGRAM_")
+        or not chat_id
+        or chat_id.startswith("YOUR_TELEGRAM_")
+    ):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print("\n" + "=" * 60)
         print(f"🔔 [TELEGRAM SIMULATION / DRY-RUN] - {timestamp}")
@@ -116,30 +122,38 @@ def compute_d_day(due_date_str, base_date=None):
     return days_left, f"마감 D+{-days_left}"
 
 def notify_d_day_alerts():
-    """WaterlooWorks 및 주요 마감일 D-Day 알림 메시지 생성 및 발송"""
+    """WaterlooWorks 및 주요 마감일 D-Day 알림 메시지 생성 및 발송 (마감 지난 항목 자동 제외)"""
     profile = load_json(PROFILE_PATH)
     d_days = profile.get("d_day_alerts", [])
     base_date = today_kst()
-    
+
+    # 이미 마감일이 지난 일정(days_left < 0)은 알림에서 자동 제외
+    active_alerts = []
+    for alert in sorted(d_days, key=lambda a: str(a.get("due_date", ""))):
+        days_left, badge = compute_d_day(alert.get("due_date"), base_date)
+        if days_left is not None and days_left < 0:
+            continue
+        active_alerts.append((alert, days_left, badge))
+
+    if not active_alerts:
+        print(f"ℹ️ [SKIP] 기준일({base_date.isoformat()}) 현재 진행 중인 마감 일정이 없어 발송을 건너뜁니다.")
+        return {"success": True, "mode": "skipped", "message": "진행 중인 마감 일정이 없습니다."}
+
     lines = [
         "🎓 <b>[Waterloo Math] 코옵 & 취업 주요 마감일 알림</b>",
         "──────────────────────────────",
         "워털루 수학과 1학년 학생을 위한 필수 일정 안내입니다:",
         f"📅 기준일: <code>{base_date.isoformat()}</code> (KST)\n"
     ]
-    # 마감일 순으로 정렬하여 표시 (D-Day는 저장된 값이 아닌 발송 시점에 매번 재계산)
-    for alert in sorted(d_days, key=lambda a: str(a.get("due_date", ""))):
-        days_left, badge = compute_d_day(alert.get("due_date"), base_date)
-        if days_left is not None and days_left < 0:
-            urgency_icon = "⚫"
-        elif alert.get("urgency") == "high" or (days_left is not None and days_left <= 7):
+    for alert, days_left, badge in active_alerts:
+        if alert.get("urgency") == "high" or (days_left is not None and days_left <= 14):
             urgency_icon = "🔴"
         else:
             urgency_icon = "🟡"
         lines.append(f"{urgency_icon} <b>{alert.get('title')}</b>")
         lines.append(f"   • 마감일: <code>{alert.get('due_date')}</code> (<b>{badge}</b>)")
         lines.append("")
-    
+
     lines.append("──────────────────────────────")
     lines.append("💡 <i>WaterlooWorks 및 이력서 검토 일정을 미리 준수하세요!</i>")
     lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>워털루 커리어 대시보드 열기</a>")
@@ -147,24 +161,44 @@ def notify_d_day_alerts():
     return send_telegram_message(msg)
 
 def notify_job_postings(limit=3):
-    """신규 및 추천 북미 인턴십 공고 요약 발송"""
+    """신규 및 추천 북미 인턴십 공고 요약 발송 (마감 지난 공고 제외 및 주차별 순환 추천)"""
     postings = load_json(POSTINGS_PATH)
+    base_date = today_kst()
+
+    active_postings = []
+    for job in postings:
+        days_left, badge = compute_d_day(job.get("deadline"), base_date)
+        if days_left is not None and days_left < 0:
+            continue
+        active_postings.append((job, days_left, badge))
+
+    if not active_postings:
+        print(f"ℹ️ [SKIP] 기준일({base_date.isoformat()}) 현재 지원 가능한 공고가 없어 발송을 건너뜁니다.")
+        return {"success": True, "mode": "skipped", "message": "지원 가능한 활성 공고가 없습니다."}
+
+    # 매주 다른 추천 공고가 노출되도록 ISO 주차 기준으로 순환 선택
+    week_num = base_date.isocalendar()[1]
+    start_idx = ((week_num - 1) * limit) % len(active_postings)
+    selected = [active_postings[(start_idx + i) % len(active_postings)] for i in range(min(limit, len(active_postings)))]
+
     lines = [
         "💼 <b>[Waterloo Math] 맞춤형 북미 인턴십 추천 TOP 3</b>",
         "──────────────────────────────",
-        "수학과 1학년 지원 가능 최신 인턴십/코옵 포지션:\n"
+        "수학과 1학년 지원 가능 최신 인턴십/코옵 포지션:",
+        f"📅 기준일: <code>{base_date.isoformat()}</code> (KST)\n"
     ]
-    
-    for idx, job in enumerate(postings[:limit], 1):
+
+    for idx, (job, _, badge) in enumerate(selected, 1):
         flag = "🇨🇦" if job.get("country") == "CA" else "🇺🇸"
         lines.append(f"<b>{idx}. {job.get('company')}</b> {flag}")
         lines.append(f"   📌 직무: <b>{job.get('title')}</b>")
         lines.append(f"   📍 위치: {job.get('location')}")
         lines.append(f"   💰 급여: <code>{job.get('hourly_rate')}</code>")
+        lines.append(f"   ⏰ 마감: <code>{job.get('deadline')}</code> (<b>{badge}</b>)")
         lines.append(f"   🛡️ 비자: {job.get('visa_sponsorship')}")
         lines.append(f"   🔗 <a href='{job.get('url')}'>공식 지원 링크 바로가기</a>")
         lines.append("")
-        
+
     lines.append("──────────────────────────────")
     lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>전체 공고 모바일 대시보드에서 보기</a>")
     msg = "\n".join(lines)
@@ -172,7 +206,7 @@ def notify_job_postings(limit=3):
 
 def notify_dashboard_link():
     """스마트폰 원터치 접속을 위한 대시보드 전용 링크 발송"""
-    time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S")
     msg = (
         "📱 <b>[Waterloo Math] 24/7 모바일 대시보드 바로가기</b>\n"
         "──────────────────────────────\n"
@@ -184,17 +218,17 @@ def notify_dashboard_link():
         "2. 크롬 우측 상단 <b>[ ⋮ ] (점 3개)</b> 터치\n"
         "3. <b>[홈 화면에 추가]</b> 또는 <b>[앱 설치]</b> 선택\n"
         "바탕화면에 전용 앱 아이콘이 생성되어 24시간 원터치로 접속됩니다!\n"
-        f"⏰ 발송: <code>{time_str}</code>"
+        f"⏰ 발송: <code>{time_str}</code> (KST)"
     )
     return send_telegram_message(msg)
 
 def notify_test_ping():
     """연동 테스트 핑 메시지 발송"""
-    time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    time_str = datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S")
     msg = (
         "🔔 <b>[Waterloo Math Career Dashboard] 알림 테스트</b>\n"
         "──────────────────────────────\n"
-        f"⏰ 수신 시간: <code>{time_str}</code>\n"
+        f"⏰ 수신 시간: <code>{time_str}</code> (KST)\n"
         "✅ 텔레그램 알림 시스템이 정상 연동되었습니다!\n"
         "• 워털루 대학교 수학과 1학년 맞춤형 공고 알림 수신 준비 완료\n"
         "• D-Day 리마인더 및 주요 코옵 라운드 마감 실시간 통보 지원\n\n"
@@ -216,6 +250,5 @@ if __name__ == "__main__":
         else:
             print(f"Unknown command: {cmd}. Use --dday, --jobs, --test, or --link.")
     else:
-        notify_test_ping()
-        # 기본 실행: 테스트 핑 실행
+        # 기본 실행: 테스트 핑 1회 실행
         notify_test_ping()

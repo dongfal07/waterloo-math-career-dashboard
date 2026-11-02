@@ -115,21 +115,27 @@
   ],
   "d_day_alerts": [
     {
-      "id": "ww_resume_check",
-      "title": "WaterlooWorks 1학년 이력서 최종 점검 마감",
-      "due_date": "2026-10-15",
-      "urgency": "high"
-    },
-    {
-      "id": "external_quant_intern",
-      "title": "2027 북미 퀀트/빅테크 서머 인턴 조기 마감",
-      "due_date": "2026-10-31",
-      "urgency": "medium"
-    },
-    {
       "id": "coop_work_permit",
       "title": "캐나다 Co-op Work Permit 비자 신청 마감",
       "due_date": "2026-11-20",
+      "urgency": "high"
+    },
+    {
+      "id": "pd1_final_resume",
+      "title": "PD1 (Career Fundamentals) 이력서 & 필수 모듈 최종 마감",
+      "due_date": "2026-12-04",
+      "urgency": "high"
+    },
+    {
+      "id": "ww_cycle1_open",
+      "title": "WaterlooWorks 1B 첫 코옵 Main Round (Cycle 1) 지원 마감",
+      "due_date": "2027-01-19",
+      "urgency": "medium"
+    },
+    {
+      "id": "external_regular_intern",
+      "title": "2027 북미 빅테크/금융 서머 인턴십 정시(Regular) 마감",
+      "due_date": "2027-01-31",
       "urgency": "medium"
     }
   ],
