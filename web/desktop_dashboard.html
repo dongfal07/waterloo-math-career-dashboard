@@ -613,7 +613,8 @@
     let currentTrack = 'ALL';
     let currentDesktopKakaoType = 'dday';
     let currentDesktopJobId = null;
-    let desktopKakaoJsKey = localStorage.getItem('UW_KAKAO_JS_KEY') || '';
+    const DEFAULT_KAKAO_JS_KEY = 'd8dd99b5dce9a95e6702730ea00159e9';
+    let desktopKakaoJsKey = localStorage.getItem('UW_KAKAO_JS_KEY') || DEFAULT_KAKAO_JS_KEY;
 
     // 초기화
     document.addEventListener('DOMContentLoaded', async () => {
@@ -693,6 +694,10 @@
         navigator.clipboard.writeText(fullText).catch(() => {});
       }
 
+      const safeShareUrl = (window.location.origin && window.location.origin.startsWith('http'))
+        ? window.location.href.split('?')[0]
+        : cloudUrl;
+
       try {
         if (type === 'single_job' && jobId) {
           const job = postingsData.find(j => j.id === jobId) || postingsData[0];
@@ -702,11 +707,10 @@
               title: `💼 [${job.company}] ${job.title}`,
               description: `${job.hourly_rate} · ${job.location} · 마감 ${job.deadline}\n${job.summary}`,
               imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-              link: { mobileWebUrl: job.url, webUrl: job.url }
+              link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
             },
             buttons: [
-              { title: '공식 지원하기', link: { mobileWebUrl: job.url, webUrl: job.url } },
-              { title: '전체 공고 대시보드', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } }
+              { title: '채용공고 및 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
             ]
           });
           return true;
@@ -719,10 +723,10 @@
               title: '💼 [Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑',
               description: `캐나다(Waterloo/Toronto) 및 미국 J-1 비자 스폰서 퀀트·AI·SW·계리 실시간 추천 공고 ${postingsData.length}건 요약`,
               imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-              link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl }
+              link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
             },
             buttons: [
-              { title: '전체 채용공고 대시보드 열기', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } }
+              { title: '전체 채용공고 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
             ]
           });
           return true;
@@ -734,17 +738,10 @@
             title: '🎓 [Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑',
             description: '워털루 수학과 1학년(1A/1B) 필수 비자(Co-op Work Permit), PD1 이력서, WaterlooWorks 라운드 실시간 마감 일정',
             imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
-            link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl }
+            link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
           },
           buttons: [
-            { title: '모바일 대시보드 열기', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } },
-            {
-              title: '워털루 공식 일정 원문',
-              link: {
-                mobileWebUrl: 'https://uwaterloo.ca/co-operative-education/important-dates',
-                webUrl: 'https://uwaterloo.ca/co-operative-education/important-dates'
-              }
-            }
+            { title: '실시간 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
           ]
         });
         return true;
