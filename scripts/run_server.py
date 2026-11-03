@@ -11,7 +11,7 @@ import socket
 import threading
 import webbrowser
 import time
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 # Windows 콘솔 인코딩 및 버퍼링 해제 (즉시 콘솔 출력)
@@ -148,10 +148,11 @@ def open_browser_delayed(url):
         print(f"브라우저 자동 실행 안내: {e}", flush=True)
 
 def find_available_server(start_port=8080, max_attempts=10):
-    """포트 충돌 방지: 사용 가능한 포트를 자동으로 탐색하여 서버 인스턴스를 생성합니다."""
+    """포트 충돌 방지: 사용 가능한 포트를 자동으로 탐색하여 멀티스레드 서버 인스턴스를 생성합니다."""
     for port in range(start_port, start_port + max_attempts):
         try:
-            server = HTTPServer(("", port), DashboardRequestHandler)
+            server = ThreadingHTTPServer(("", port), DashboardRequestHandler)
+            server.daemon_threads = True
             return server, port
         except OSError:
             continue
