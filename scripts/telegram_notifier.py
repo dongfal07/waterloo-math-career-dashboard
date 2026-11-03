@@ -194,6 +194,7 @@ def notify_d_day_alerts(sync_first=True):
     lines.append("──────────────────────────────")
     lines.append("🌐 <a href='https://uwaterloo.ca/co-operative-education/important-dates'>워털루 대학교 공식 Co-op 일정 원문 보기</a>")
     lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>워털루 커리어 대시보드 열기</a>")
+    lines.append("💬 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/?share=dday'><b>[카카오톡으로 이 D-Day 브리핑 공유하기]</b></a>")
     msg = "\n".join(lines)
     return send_telegram_message(msg)
 
@@ -267,6 +268,7 @@ def notify_job_postings(limit=15, sync_first=True):
     lines.append("──────────────────────────────")
     lines.append(f"💡 <i>위 {len(ca_list) + len(quant_act_list) + len(ai_swe_list)}건 외 전체 {len(active_postings)}건의 선별 공고는 대시보드에서 필터링하여 확인하세요!</i>")
     lines.append("📱 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/'>전체 공고 모바일 대시보드에서 보기</a>")
+    lines.append("💬 👉 <a href='https://dongfal07.github.io/waterloo-math-career-dashboard/?share=jobs'><b>[카카오톡으로 이 채용 브리핑 공유하기]</b></a>")
     msg = "\n".join(lines)
     return send_telegram_message(msg)
 

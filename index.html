@@ -116,9 +116,12 @@
         </div>
       </div>
 
-      <!-- Quick Switch to Desktop & Telegram status icon -->
-      <div class="flex items-center space-x-2">
-        <button onclick="triggerQuickAlert()" class="w-8 h-8 rounded-full bg-sky-600/30 border border-sky-500/50 flex items-center justify-center text-sky-400 active:scale-90 transition">
+      <!-- Quick Switch to Desktop, KakaoTalk Share & Telegram status icon -->
+      <div class="flex items-center space-x-1.5">
+        <button onclick="openKakaoShareModal('dday')" class="w-8 h-8 rounded-full bg-[#FEE500] hover:bg-[#FDD835] flex items-center justify-center text-[#191919] active:scale-90 transition shadow" title="카카오톡으로 알림 공유">
+          <i class="fa-solid fa-comment text-sm"></i>
+        </button>
+        <button onclick="triggerQuickAlert()" class="w-8 h-8 rounded-full bg-sky-600/30 border border-sky-500/50 flex items-center justify-center text-sky-400 active:scale-90 transition" title="텔레그램 알림봇">
           <i class="fa-brands fa-telegram text-sm"></i>
         </button>
         <a href="web/desktop_dashboard.html" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 text-xs active:scale-90 transition border border-gray-700" title="PC 버전으로 보기">
@@ -165,13 +168,16 @@
             <span class="text-xs font-bold text-white flex items-center">
               <i class="fa-solid fa-fire text-red-500 mr-1.5"></i> 마감 임박 D-Day
             </span>
-            <span class="text-[10px] text-gray-400">실시간 연동</span>
+            <button onclick="shareBriefingToKakao('dday')" class="px-2.5 py-1 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-[10px] font-extrabold rounded-lg shadow active:scale-95 transition flex items-center space-x-1">
+              <i class="fa-solid fa-comment text-[10px]"></i>
+              <span>D-Day 브리핑 카톡 공유</span>
+            </button>
           </div>
 
           <div class="p-3 bg-red-950/40 border border-red-800/60 rounded-xl flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-red-200">WaterlooWorks 1학년 이력서 점검</div>
-              <div class="text-[11px] text-red-300/80 mt-0.5">마감일: 2026-10-15</div>
+              <div class="text-xs font-bold text-red-200">캐나다 Co-op Work Permit 비자 신청 마감</div>
+              <div class="text-[11px] text-red-300/80 mt-0.5">마감일: 2026-11-20</div>
             </div>
             <div class="px-3 py-1 bg-red-600 text-white font-black text-xs rounded-lg shadow" data-due-date="2026-11-20">
               D-?
@@ -180,8 +186,8 @@
 
           <div class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-xl flex items-center justify-between">
             <div>
-              <div class="text-xs font-bold text-amber-200">북미 퀀트/빅테크 서머 인턴십 조기 마감</div>
-              <div class="text-[11px] text-amber-300/80 mt-0.5">마감일: 2026-10-31</div>
+              <div class="text-xs font-bold text-amber-200">PD1 이력서 & 필수 모듈 최종 마감</div>
+              <div class="text-[11px] text-amber-300/80 mt-0.5">마감일: 2026-12-04</div>
             </div>
             <div class="px-3 py-1 bg-amber-500 text-black font-black text-xs rounded-lg shadow" data-due-date="2026-12-04">
               D-?
@@ -259,6 +265,17 @@
           </button>
           <button onclick="filterMobileJobs('actuary')" id="m-filter-actuary" class="shrink-0 px-3 py-1.5 rounded-full font-medium bg-uwCard text-gray-300 border border-gray-800">
             📑 계리
+          </button>
+        </div>
+
+        <!-- 채용 브리핑 전체 카카오톡 원터치 공유 바 -->
+        <div class="flex items-center justify-between bg-[#FEE500]/10 border border-[#FEE500]/30 rounded-xl px-3 py-2">
+          <div class="text-[11px] text-gray-200 font-medium flex items-center space-x-1.5">
+            <i class="fa-solid fa-comment text-[#FEE500]"></i>
+            <span>텔레그램 추천 공고 브리핑을 카톡으로 전달</span>
+          </div>
+          <button onclick="shareBriefingToKakao('jobs')" class="px-2.5 py-1 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-[10px] font-extrabold rounded-lg shadow active:scale-95 transition shrink-0">
+            전체 공고 카톡 공유
           </button>
         </div>
 
@@ -385,6 +402,53 @@
           </div>
         </div>
 
+        <!-- KakaoTalk Notification & Job Share Center -->
+        <div class="bg-gradient-to-br from-yellow-950/50 via-gray-900 to-gray-900 p-4 rounded-2xl border border-[#FEE500]/50 space-y-3 shadow-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-9 h-9 bg-[#FEE500] rounded-xl flex items-center justify-center text-[#191919] text-lg shadow">
+                <i class="fa-solid fa-comment"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white">카카오톡(KakaoTalk) 알림 공유</h3>
+                <p class="text-[10.5px] text-[#FEE500] mt-0.5">
+                  텔레그램으로 오는 브리핑을 다른 사람에게 카톡 전달
+                </p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 bg-[#FEE500]/20 text-[#FEE500] text-[10px] font-bold rounded-full border border-[#FEE500]/40 shrink-0">
+              1-Tap 공유
+            </span>
+          </div>
+
+          <p class="text-[11px] text-gray-300 leading-relaxed">
+            버튼을 누르면 <b>텔레그램 알림과 동일한 실시간 브리핑 전문</b>이 생성되며, 스마트폰 카카오톡 친구/단톡방으로 즉시 전달할 수 있습니다.
+          </p>
+
+          <div class="space-y-2 pt-0.5">
+            <button onclick="shareBriefingToKakao('dday')" class="w-full py-2.5 bg-[#FEE500] hover:bg-[#FDD835] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow transition flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-comment text-sm"></i>
+              <span>[D-Day 전체 일정 브리핑] 카카오톡 공유하기</span>
+            </button>
+
+            <button onclick="shareBriefingToKakao('jobs')" class="w-full py-2.5 bg-[#FEE500]/90 hover:bg-[#FEE500] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow transition flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-briefcase text-sm"></i>
+              <span>[실시간 추천 인턴십 공고] 카카오톡 공유하기</span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
+              <button onclick="shareBriefingToKakao('link')" class="py-2 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[#FEE500] text-[11px] font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+                <i class="fa-solid fa-link text-[10px]"></i>
+                <span>대시보드 링크 공유</span>
+              </button>
+              <button onclick="openKakaoShareModal('dday')" class="py-2 bg-gray-800 hover:bg-gray-700 active:scale-95 text-gray-200 text-[11px] font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+                <i class="fa-regular fa-eye text-[10px]"></i>
+                <span>공유 문구 미리보기</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- PWA 스마트폰 홈 화면 추가 가이드 -->
         <div class="bg-uwCard p-4 rounded-2xl border border-gray-800 space-y-2 text-xs">
           <h4 class="font-bold text-white flex items-center">
@@ -453,40 +517,108 @@
       </div>
     </div>
 
+    <!-- KAKAOTALK SHARE PREVIEW & ACTION MODAL -->
+    <div id="kakao-share-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-3">
+      <div class="bg-gray-900 border border-[#FEE500]/50 rounded-3xl max-w-md w-full p-4 shadow-2xl space-y-3 text-white animate-fadeIn">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-2.5">
+          <div class="flex items-center space-x-2">
+            <div class="w-7 h-7 bg-[#FEE500] rounded-lg flex items-center justify-center text-[#191919] text-sm font-black">
+              <i class="fa-solid fa-comment"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-white" id="kakao-modal-title">카카오톡 알림 공유</h4>
+              <p class="text-[10px] text-gray-400">텔레그램 알림 원문을 카톡으로 공유합니다</p>
+            </div>
+          </div>
+          <button onclick="closeKakaoShareModal()" class="w-7 h-7 rounded-full bg-gray-800 text-gray-400 hover:text-white flex items-center justify-center text-xs">✕</button>
+        </div>
+
+        <!-- 공유 유형 선택 탭 -->
+        <div class="grid grid-cols-3 gap-1.5 bg-gray-950 p-1 rounded-xl border border-gray-800 text-[11px]">
+          <button onclick="switchKakaoShareType('dday')" id="k-tab-dday" class="py-1.5 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition">
+            📅 D-Day 일정
+          </button>
+          <button onclick="switchKakaoShareType('jobs')" id="k-tab-jobs" class="py-1.5 rounded-lg font-medium text-gray-400 hover:text-white transition">
+            💼 추천 공고
+          </button>
+          <button onclick="switchKakaoShareType('link')" id="k-tab-link" class="py-1.5 rounded-lg font-medium text-gray-400 hover:text-white transition">
+            📱 앱 바로가기
+          </button>
+        </div>
+
+        <!-- 메시지 미리보기 영역 -->
+        <div class="bg-gray-950 border border-gray-800 rounded-xl p-3 max-h-60 overflow-y-auto">
+          <pre id="kakao-share-preview-text" class="text-[11px] text-gray-200 whitespace-pre-wrap font-sans leading-relaxed select-all"></pre>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div class="space-y-2 pt-1">
+          <button onclick="executeNativeKakaoShare()" class="w-full py-2.5 bg-[#FEE500] hover:bg-[#FDD835] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-comment text-sm"></i>
+            <span>카카오톡 공유창 바로 열기 (스마트폰 추천)</span>
+          </button>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="copyKakaoShareText(true)" class="py-2 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[#FEE500] text-[11px] font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+              <i class="fa-regular fa-copy"></i>
+              <span>복사 후 카톡 열기</span>
+            </button>
+            <button onclick="copyKakaoShareText(false)" class="py-2 bg-gray-800 hover:bg-gray-700 active:scale-95 text-gray-200 text-[11px] font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+              <i class="fa-solid fa-check"></i>
+              <span>텍스트만 복사</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
+      const DASHBOARD_SHARE_URL = "https://dongfal07.github.io/waterloo-math-career-dashboard/";
       let mobileJobsData = [];
+      let mobileProfileData = {};
       let currentMobileFilter = 'ALL';
       let mobileChartInstance = null;
+      let currentKakaoShareType = 'dday';
+      let currentKakaoJobId = null;
 
       document.addEventListener('DOMContentLoaded', async () => {
         await loadMobileData();
         renderMobileJobs();
         renderHomeFeatured();
+
+        const params = new URLSearchParams(window.location.search);
+        const shareParam = params.get('share');
+        if (shareParam === 'dday' || shareParam === 'jobs' || shareParam === 'link') {
+          openKakaoShareModal(shareParam);
+        }
       });
 
       async function loadMobileData() {
         try {
-          // 1. 루트 경로(index.html 위치) 정적 JSON 시도
-          let res = await fetch('./data/internship_postings.json').catch(() => null);
-          
-          // 2. web/ 서브디렉토리 상대경로 시도
-          if (!res || !res.ok) {
-            res = await fetch('../data/internship_postings.json').catch(() => null);
+          let [jobsRes, profileRes] = await Promise.all([
+            fetch('./data/internship_postings.json').catch(() => null),
+            fetch('./data/waterloo_math_profile.json').catch(() => null)
+          ]);
+
+          if (!jobsRes || !jobsRes.ok) {
+            jobsRes = await fetch('../data/internship_postings.json').catch(() => null);
+          }
+          if (!jobsRes || !jobsRes.ok) {
+            jobsRes = await fetch('/api/postings').catch(() => null);
           }
 
-          // 3. 로컬 서버 API 시도
-          if (!res || !res.ok) {
-            res = await fetch('/api/postings').catch(() => null);
+          if (!profileRes || !profileRes.ok) {
+            profileRes = await fetch('../data/waterloo_math_profile.json').catch(() => null);
+          }
+          if (!profileRes || !profileRes.ok) {
+            profileRes = await fetch('/api/profile').catch(() => null);
           }
 
-          if (res && res.ok) {
-            mobileJobsData = await res.json();
-            return;
-          }
-          mobileJobsData = getMobileFallbackJobs();
+          mobileJobsData = (jobsRes && jobsRes.ok) ? await jobsRes.json() : getMobileFallbackJobs();
+          mobileProfileData = (profileRes && profileRes.ok) ? await profileRes.json() : getMobileFallbackProfile();
         } catch (e) {
           mobileJobsData = getMobileFallbackJobs();
+          mobileProfileData = getMobileFallbackProfile();
         }
       }
 
@@ -531,7 +663,13 @@
             </div>
             <div class="flex items-center justify-between text-[11px] pt-1 border-t border-gray-800 text-gray-400">
               <span><i class="fa-solid fa-location-dot mr-1"></i>${job.location}</span>
-              <a href="${job.url}" target="_blank" class="text-uwGold font-semibold">지원링크 →</a>
+              <div class="flex items-center space-x-2">
+                <button onclick="shareSingleJobToKakao('${job.id}')" class="px-2 py-0.5 bg-[#FEE500] text-[#191919] font-extrabold rounded text-[10px] active:scale-95 transition flex items-center space-x-1">
+                  <i class="fa-solid fa-comment text-[9px]"></i>
+                  <span>카톡 공유</span>
+                </button>
+                <a href="${job.url}" target="_blank" class="text-uwGold font-semibold">지원링크 →</a>
+              </div>
             </div>
           </div>
         `).join('');
@@ -580,11 +718,18 @@
 
               <div class="pt-2 border-t border-gray-800 flex items-center justify-between text-[11px]">
                 <span class="text-gray-400"><i class="fa-solid fa-clock mr-1 text-gray-500"></i>마감: ${job.deadline}</span>
-                <a href="${job.url}" target="_blank" 
-                  class="px-3 py-1.5 bg-uwGold text-black font-bold rounded-lg shadow active:scale-95 transition flex items-center space-x-1">
-                  <span>공식 지원</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                </a>
+                <div class="flex items-center space-x-1.5">
+                  <button onclick="shareSingleJobToKakao('${job.id}')"
+                    class="px-2.5 py-1.5 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold rounded-lg shadow active:scale-95 transition flex items-center space-x-1">
+                    <i class="fa-solid fa-comment text-[10px]"></i>
+                    <span>카톡 공유</span>
+                  </button>
+                  <a href="${job.url}" target="_blank" 
+                    class="px-3 py-1.5 bg-uwGold text-black font-bold rounded-lg shadow active:scale-95 transition flex items-center space-x-1">
+                    <span>공식 지원</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                  </a>
+                </div>
               </div>
             </div>
           `;
@@ -677,6 +822,321 @@
         setTimeout(() => {
           toast.classList.add('-translate-y-20', 'opacity-0');
         }, 3500);
+      }
+
+      // =========================================================
+      // 카카오톡(KakaoTalk) 알림 & 공고 공유 엔진
+      // =========================================================
+      function getKstDateString() {
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Seoul',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).formatToParts(new Date());
+        const get = (t) => parts.find((p) => p.type === t).value;
+        return `${get('year')}-${get('month')}-${get('day')}`;
+      }
+
+      function calcDaysLeftKst(dueStr, baseStr) {
+        const parseYmd = (s) => {
+          const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((s || '').trim());
+          return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : NaN;
+        };
+        const diff = parseYmd(dueStr) - parseYmd(baseStr);
+        if (isNaN(diff)) return { days: null, badge: 'D-?' };
+        if (diff > 0) return { days: diff, badge: `D-${diff}` };
+        if (diff === 0) return { days: 0, badge: 'D-Day' };
+        return { days: diff, badge: `마감 D+${-diff}` };
+      }
+
+      function buildKakaoShareMessage(type, jobId = null) {
+        const baseDate = getKstDateString();
+
+        if (type === 'single_job' && jobId) {
+          const job = mobileJobsData.find(j => j.id === jobId) || mobileJobsData[0];
+          if (!job) return '';
+          const flag = job.country === 'CA' ? '🇨🇦 캐나다' : '🇺🇸 미국';
+          return [
+            `💼 [Waterloo Math 인턴십 추천 공고 공유]`,
+            `──────────────────────`,
+            `🏢 기업: ${job.company} (${flag})`,
+            `📌 직무: ${job.title}`,
+            `💰 급여: ${job.hourly_rate}`,
+            `📍 지역: ${job.location}`,
+            `🛂 비자: ${job.visa_sponsorship}`,
+            `⏰ 마감: ${job.deadline}`,
+            ``,
+            `📝 핵심 요약:`,
+            `${job.summary}`,
+            ``,
+            `👉 공식 지원 링크: ${job.url}`,
+            `📱 전체 대시보드 보기: ${DASHBOARD_SHARE_URL}`
+          ].join('\n');
+        }
+
+        if (type === 'jobs') {
+          const activeJobs = mobileJobsData.filter(j => {
+            const { days } = calcDaysLeftKst(j.deadline, baseDate);
+            return days === null || days >= 0;
+          });
+          const caJobs = activeJobs.filter(j => j.country === 'CA').slice(0, 4);
+          const usJobs = activeJobs.filter(j => j.country === 'US').slice(0, 4);
+
+          const lines = [
+            `💼 [Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑`,
+            `──────────────────────`,
+            `📅 기준일: ${baseDate} (KST) | 추천 오픈 공고 ${activeJobs.length}건`,
+            ``
+          ];
+
+          if (caJobs.length > 0) {
+            lines.push(`🇨🇦 [캐나다 주요 Co-op · 인턴십]`);
+            caJobs.forEach((j, idx) => {
+              lines.push(`${idx + 1}. ${j.company} (${j.hourly_rate})`);
+              lines.push(`   • ${j.title}`);
+              lines.push(`   • 지역: ${j.location} | 마감: ${j.deadline}`);
+              lines.push(`   • 지원: ${j.url}`);
+            });
+            lines.push(``);
+          }
+
+          if (usJobs.length > 0) {
+            lines.push(`🇺🇸 [미국 J-1 비자 스폰서 주요 인턴십]`);
+            usJobs.forEach((j, idx) => {
+              lines.push(`${idx + 1}. ${j.company} (${j.hourly_rate})`);
+              lines.push(`   • ${j.title}`);
+              lines.push(`   • 지역: ${j.location} | 마감: ${j.deadline}`);
+              lines.push(`   • 지원: ${j.url}`);
+            });
+            lines.push(``);
+          }
+
+          lines.push(`──────────────────────`);
+          lines.push(`📱 전체 공고 대시보드에서 보기:`);
+          lines.push(DASHBOARD_SHARE_URL);
+          return lines.join('\n');
+        }
+
+        if (type === 'link') {
+          return [
+            `📱 [Waterloo Math] 수학과 1학년 인턴십 & 코옵 모바일 대시보드`,
+            `──────────────────────`,
+            `• 워털루 공식 Co-op & 학사 일정 실시간 D-Day`,
+            `• 캐나다/미국(Quant·AI·SWE·계리) 인턴십 공고 및 시급 통계`,
+            `• 유학생 비자(Co-op Work Permit / J-1) 핵심 가이드`,
+            ``,
+            `👉 스마트폰으로 바로 열기:`,
+            DASHBOARD_SHARE_URL
+          ].join('\n');
+        }
+
+        const rawAlerts = (mobileProfileData && mobileProfileData.d_day_alerts) || getMobileFallbackProfile().d_day_alerts;
+        const activeAlerts = [];
+        rawAlerts.slice().sort((a, b) => String(a.due_date).localeCompare(String(b.due_date))).forEach(alert => {
+          const { days, badge } = calcDaysLeftKst(alert.due_date, baseDate);
+          if (days !== null && days < 0) return;
+          activeAlerts.push({ alert, days, badge });
+        });
+
+        const fall2026 = activeAlerts.filter(x => String(x.alert.due_date).startsWith('2026-'));
+        const winter2027 = activeAlerts.filter(x => String(x.alert.due_date).startsWith('2027-'));
+
+        const lines = [
+          `🎓 [Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑`,
+          `──────────────────────`,
+          `📅 기준일: ${baseDate} (KST) | 총 ${activeAlerts.length}건 진행 중`,
+          ``
+        ];
+
+        if (fall2026.length > 0) {
+          lines.push(`🔥 [1] 2026 가을학기(1A) · 비자 · 잔여 라운드`);
+          fall2026.forEach(({ alert, days, badge }) => {
+            const icon = (days !== null && days <= 18) || alert.urgency === 'high' ? '🔴' : '🟡';
+            lines.push(`${icon} ${alert.title}`);
+            lines.push(`   • 일자: ${alert.due_date} (${badge})`);
+          });
+          lines.push(``);
+        }
+
+        if (winter2027.length > 0) {
+          lines.push(`🚀 [2] 2027 겨울학기(1B) · 첫 코옵(Spring 2027) 일정`);
+          winter2027.forEach(({ alert, badge }) => {
+            const icon = alert.urgency === 'high' ? '🔴' : '🟡';
+            lines.push(`${icon} ${alert.title}`);
+            lines.push(`   • 일자: ${alert.due_date} (${badge})`);
+          });
+          lines.push(``);
+        }
+
+        lines.push(`──────────────────────`);
+        lines.push(`🌐 워털루 공식 일정: https://uwaterloo.ca/co-operative-education/important-dates`);
+        lines.push(`📱 모바일 대시보드 열기: ${DASHBOARD_SHARE_URL}`);
+        return lines.join('\n');
+      }
+
+      function openKakaoShareModal(type = 'dday', jobId = null) {
+        currentKakaoShareType = type;
+        currentKakaoJobId = jobId;
+
+        const modal = document.getElementById('kakao-share-modal');
+        const previewEl = document.getElementById('kakao-share-preview-text');
+        const titleEl = document.getElementById('kakao-modal-title');
+
+        if (type === 'single_job') {
+          titleEl.textContent = '선택한 채용 공고 카카오톡 공유';
+        } else if (type === 'jobs') {
+          titleEl.textContent = '실시간 추천 공고 브리핑 카카오톡 공유';
+        } else if (type === 'link') {
+          titleEl.textContent = '모바일 대시보드 링크 카카오톡 공유';
+        } else {
+          titleEl.textContent = 'D-Day 전체 일정 브리핑 카카오톡 공유';
+        }
+
+        ['dday', 'jobs', 'link'].forEach(t => {
+          const btn = document.getElementById(`k-tab-${t}`);
+          if (!btn) return;
+          if (t === type) {
+            btn.className = "py-1.5 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition";
+          } else {
+            btn.className = "py-1.5 rounded-lg font-medium text-gray-400 hover:text-white transition";
+          }
+        });
+
+        previewEl.textContent = buildKakaoShareMessage(type, jobId);
+        modal.classList.remove('hidden');
+      }
+
+      function switchKakaoShareType(type) {
+        openKakaoShareModal(type, null);
+      }
+
+      function closeKakaoShareModal() {
+        document.getElementById('kakao-share-modal').classList.add('hidden');
+      }
+
+      async function shareBriefingToKakao(type = 'dday') {
+        currentKakaoShareType = type;
+        currentKakaoJobId = null;
+        const text = buildKakaoShareMessage(type);
+        const titleMap = {
+          dday: '[Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑',
+          jobs: '[Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑',
+          link: '[Waterloo Math] 모바일 커리어 대시보드'
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(() => {});
+        }
+
+        const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobileDevice && navigator.share) {
+          try {
+            await navigator.share({
+              title: titleMap[type] || 'Waterloo Math Career 알림',
+              text: text
+            });
+            showMobileToast('카카오톡 공유 실행', '공유 목록에서 카카오톡과 대화상대를 선택하세요.');
+            return;
+          } catch (err) {
+            if (err && err.name === 'AbortError') return;
+          }
+        }
+
+        openKakaoShareModal(type);
+      }
+
+      async function shareSingleJobToKakao(jobId) {
+        currentKakaoShareType = 'single_job';
+        currentKakaoJobId = jobId;
+        const text = buildKakaoShareMessage('single_job', jobId);
+        const job = mobileJobsData.find(j => j.id === jobId);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(() => {});
+        }
+
+        const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobileDevice && navigator.share) {
+          try {
+            await navigator.share({
+              title: job ? `[인턴십 공유] ${job.company} - ${job.title}` : 'Waterloo Math 인턴십 공고',
+              text: text
+            });
+            showMobileToast('카카오톡 공고 공유', '카카오톡을 선택하여 공고를 전달하세요.');
+            return;
+          } catch (err) {
+            if (err && err.name === 'AbortError') return;
+          }
+        }
+
+        openKakaoShareModal('single_job', jobId);
+      }
+
+      async function executeNativeKakaoShare() {
+        const text = document.getElementById('kakao-share-preview-text').textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text).catch(() => {});
+        }
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'Waterloo Math Career 알림 공유',
+              text: text
+            });
+            showMobileToast('공유창 열림', '목록에서 카카오톡을 선택해 전송하세요.');
+            return;
+          } catch (err) {
+            if (err && err.name === 'AbortError') return;
+          }
+        }
+
+        copyKakaoShareText(true);
+      }
+
+      async function copyKakaoShareText(openKakaoApp = false) {
+        const text = document.getElementById('kakao-share-preview-text').textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          showMobileToast('알림 전문 복사 완료!', '카카오톡 대화창에 붙여넣기(Ctrl+V) 하여 전송하세요.');
+        } catch (e) {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showMobileToast('알림 전문 복사 완료!', '카카오톡 대화창에 붙여넣기 하세요.');
+        }
+
+        if (openKakaoApp) {
+          setTimeout(() => {
+            window.location.href = 'kakaotalk://';
+          }, 350);
+        }
+      }
+
+      function getMobileFallbackProfile() {
+        return {
+          d_day_alerts: [
+            { id: "uw_f26_c2_emp_rank", title: "[WaterlooWorks] Fall Cycle 2 고용주 랭킹 발표 (2 p.m. ET)", due_date: "2026-11-11", urgency: "high" },
+            { id: "uw_f26_c2_match", title: "[WaterlooWorks] Fall Cycle 2 학생 랭킹 마감 & 매칭 발표", due_date: "2026-11-13", urgency: "high" },
+            { id: "uw_f26_c3_interview", title: "[WaterlooWorks] Fall Cycle 3 면접 주간 시작 (11/17~11/24)", due_date: "2026-11-17", urgency: "medium" },
+            { id: "ircc_coop_work_permit", title: "[비자 필수] 캐나다 Co-op Work Permit 비자 신청 권장 마감", due_date: "2026-11-20", urgency: "high" },
+            { id: "uw_f26_c3_match", title: "[WaterlooWorks] Fall Cycle 3 학생 랭킹 마감 & 최종 매칭 발표", due_date: "2026-11-27", urgency: "medium" },
+            { id: "uw_f26_direct_offer", title: "[WaterlooWorks] Direct Offer (상시 직접 오퍼) 채용 전환 시작", due_date: "2026-11-30", urgency: "medium" },
+            { id: "uw_f26_classes_end_pd1", title: "[학사/PD1] 1A 가을학기 정규 수업 종강 & PD1 이력서 최종 마감", due_date: "2026-12-08", urgency: "high" },
+            { id: "uw_f26_exams_start", title: "[학사] 1A 가을학기 기말고사 시작 (12/10~12/22)", due_date: "2026-12-10", urgency: "medium" },
+            { id: "uw_w27_c1a_open", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 공고 오픈 (50개 한도)", due_date: "2027-01-09", urgency: "high" },
+            { id: "uw_w27_classes_start", title: "[학사] 2027 겨울학기(1B) 개강", due_date: "2027-01-11", urgency: "medium" },
+            { id: "uw_w27_c1a_close", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 1차 지원 마감 (9 a.m. ET)", due_date: "2027-01-19", urgency: "high" },
+            { id: "uw_w27_c1_interviews", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 본 면접 시작 (1/22~2/9)", due_date: "2027-01-22", urgency: "high" },
+            { id: "uw_w27_c1b_close", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting B) 최종 지원 마감 (100개 한도)", due_date: "2027-01-26", urgency: "high" },
+            { id: "uw_w27_c1_emp_rank", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 고용주 랭킹 발표 (2 p.m. ET)", due_date: "2027-02-10", urgency: "high" },
+            { id: "uw_w27_c1_match", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 학생 랭킹 마감 & 1차 매칭 결과 발표", due_date: "2027-02-12", urgency: "high" }
+          ]
+        };
       }
 
       function getMobileFallbackJobs() {
