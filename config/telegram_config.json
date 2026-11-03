@@ -22,5 +22,8 @@
     "weekly_jobs_day": "Monday",
     "weekly_jobs_time": "10:00",
     "check_interval_seconds": 60
+  },
+  "kakao": {
+    "javascript_key": ""
   }
 }

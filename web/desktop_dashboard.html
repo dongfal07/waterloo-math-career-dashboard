@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Official Kakao JavaScript SDK (카카오톡 바로 실행 및 공유자 선택창 호출) -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -83,9 +85,9 @@
           <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse ml-0.5 shrink-0"></span>
         </div>
 
-        <!-- 카카오톡 알림/공고 공유 모달 열기 버튼 -->
-        <button onclick="openDesktopKakaoModal('dday')" 
-          class="flex items-center space-x-1.5 px-3 py-2 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-xs font-extrabold rounded-lg shadow-md transition active:scale-95 whitespace-nowrap shrink-0" title="텔레그램 알림 및 추천 공고를 카카오톡으로 공유">
+        <!-- 카카오톡 알림/공고 공유 바로 실행 버튼 -->
+        <button onclick="triggerDesktopKakaoShare('dday')" 
+          class="flex items-center space-x-1.5 px-3 py-2 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-xs font-extrabold rounded-lg shadow-md transition active:scale-95 whitespace-nowrap shrink-0" title="카카오톡 실행 및 공유자 선택">
           <i class="fa-solid fa-comment text-sm shrink-0"></i>
           <span class="whitespace-nowrap">카카오톡 알림 공유</span>
         </button>
@@ -180,7 +182,7 @@
             <span class="truncate">매일 09:00 발송 (PC꺼짐 무관)</span>
           </p>
           <div class="flex items-center space-x-1.5 shrink-0">
-            <button onclick="openDesktopKakaoModal('dday')" class="text-[#FEE500] hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-bold" title="텔레그램 알림을 카카오톡으로 공유">
+            <button onclick="triggerDesktopKakaoShare('dday')" class="text-[#FEE500] hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-bold" title="카카오톡 바로 실행 및 공유">
               [카톡 공유]
             </button>
             <button onclick="triggerTelegramAlert('dday')" class="text-uwGold hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-semibold" title="지금 즉시 스마트폰으로 테스트 전송">
@@ -489,24 +491,46 @@
       </div>
 
       <!-- 메시지 미리보기 영역 -->
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 max-h-72 overflow-y-auto custom-scrollbar">
+      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 max-h-56 overflow-y-auto custom-scrollbar">
         <pre id="d-kakao-preview-text" class="text-xs text-gray-200 whitespace-pre-wrap font-sans leading-relaxed select-all"></pre>
+      </div>
+
+      <!-- 카카오 공식 SDK (친구/채팅방 선택창 즉시 실행) 1회 설정 박스 -->
+      <div class="bg-gray-950/90 border border-[#FEE500]/40 rounded-xl p-3.5 space-y-2">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-[#FEE500] flex items-center">
+            <i class="fa-solid fa-bolt mr-1.5"></i>버튼 클릭 시 바로 '카카오톡 공유자(친구/단톡방) 선택창' 띄우기
+          </span>
+          <a href="https://developers.kakao.com/console/app" target="_blank" class="text-sky-400 hover:underline font-semibold text-[11px]">
+            카카오 디벨로퍼스에서 키 복사(30초) ↗
+          </a>
+        </div>
+        <div class="flex space-x-2">
+          <input id="d-kakao-js-key-input" type="text" placeholder="카카오 디벨로퍼스 [앱 키] → [JavaScript 키] (32자리) 붙여넣기" 
+            class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FEE500]">
+          <button onclick="saveDesktopKakaoJsKey()" class="px-4 py-2 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold text-xs rounded-lg shrink-0 active:scale-95 transition shadow">
+            저장 및 친구 선택창 열기
+          </button>
+        </div>
+        <p id="d-kakao-key-status" class="text-[11px] text-gray-400 leading-snug">
+          💡 카카오 디벨로퍼스 [플랫폼 → Web 사이트 도메인]에 <code class="text-sky-300">http://localhost:8080</code> 과 <code class="text-sky-300">https://dongfal07.github.io</code> 등록 후 JavaScript 키를 1회 저장하시면, 이후 버튼 클릭 즉시 카카오톡 친구/채팅방 선택창이 바로 열립니다.
+        </p>
       </div>
 
       <!-- 액션 버튼 -->
       <div class="space-y-2.5 pt-1">
-        <button onclick="copyDesktopKakaoText(true)" class="w-full py-3 bg-[#FEE500] hover:bg-[#FDD835] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+        <button onclick="executeDesktopNativeShare()" class="w-full py-3 bg-[#FEE500] hover:bg-[#FDD835] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
           <i class="fa-solid fa-comment text-sm"></i>
-          <span>알림 전문 복사 후 카카오톡(PC/모바일) 열기</span>
+          <span>지금 카카오톡 실행 & 공유자 선택하기</span>
         </button>
         <div class="grid grid-cols-2 gap-2.5">
-          <button onclick="copyDesktopKakaoText(false)" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[#FEE500] text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+          <button onclick="copyDesktopKakaoText(true)" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[#FEE500] text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
             <i class="fa-regular fa-copy"></i>
-            <span>클립보드에 복사하기</span>
+            <span>전문 복사 후 PC 카톡 열기</span>
           </button>
-          <button onclick="executeDesktopNativeShare()" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-gray-200 text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>시스템 공유창 열기</span>
+          <button onclick="copyDesktopKakaoText(false)" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-gray-200 text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-check"></i>
+            <span>클립보드에만 복사</span>
           </button>
         </div>
       </div>
@@ -587,19 +611,147 @@
     let profileData = {};
     let currentCountry = 'ALL';
     let currentTrack = 'ALL';
+    let currentDesktopKakaoType = 'dday';
+    let currentDesktopJobId = null;
+    let desktopKakaoJsKey = localStorage.getItem('UW_KAKAO_JS_KEY') || '';
 
     // 초기화
     document.addEventListener('DOMContentLoaded', async () => {
       await loadInitialData();
+      await loadDesktopKakaoConfig();
       renderEarningsChart();
 
       // URL 파라미터 ?share=dday 또는 ?share=jobs 자동 처리
       const params = new URLSearchParams(window.location.search);
       const shareParam = params.get('share');
       if (shareParam === 'dday' || shareParam === 'jobs' || shareParam === 'link') {
-        openDesktopKakaoModal(shareParam);
+        triggerDesktopKakaoShare(shareParam);
       }
     });
+
+    async function loadDesktopKakaoConfig() {
+      try {
+        const res = await fetch('/api/kakao-config').catch(() => null);
+        if (res && res.ok) {
+          const cfg = await res.json();
+          if (cfg.javascript_key && cfg.javascript_key.trim()) {
+            desktopKakaoJsKey = cfg.javascript_key.trim();
+            localStorage.setItem('UW_KAKAO_JS_KEY', desktopKakaoJsKey);
+          }
+        }
+      } catch (e) {}
+      ensureDesktopKakaoSdkReady();
+    }
+
+    function ensureDesktopKakaoSdkReady() {
+      if (!desktopKakaoJsKey || !window.Kakao) return false;
+      try {
+        if (!window.Kakao.isInitialized()) {
+          window.Kakao.init(desktopKakaoJsKey);
+        }
+        return window.Kakao.isInitialized();
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function saveDesktopKakaoJsKey() {
+      const inputEl = document.getElementById('d-kakao-js-key-input');
+      const statusEl = document.getElementById('d-kakao-key-status');
+      const key = (inputEl ? inputEl.value : '').trim();
+      if (!key) {
+        showToast('키 입력 필요', '카카오 디벨로퍼스의 JavaScript 키(32자리)를 입력해 주세요.');
+        return;
+      }
+      desktopKakaoJsKey = key;
+      localStorage.setItem('UW_KAKAO_JS_KEY', key);
+      if (window.Kakao && window.Kakao.isInitialized()) {
+        try { window.Kakao.cleanup(); } catch (e) {}
+      }
+      fetch('/api/kakao-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ javascript_key: key })
+      }).catch(() => {});
+
+      if (ensureDesktopKakaoSdkReady()) {
+        if (statusEl) {
+          statusEl.textContent = '✅ 카카오 SDK 연동 완료! 이제 버튼 클릭 시 즉시 카카오톡 친구/단톡방 선택창이 열립니다.';
+          statusEl.className = 'text-[11px] text-emerald-400 font-bold leading-snug';
+        }
+        showToast('카카오 SDK 연동 성공!', '카카오톡 공유자(친구/단톡방) 선택창을 바로 띄웁니다.');
+        sendDesktopViaKakaoSdk(currentDesktopKakaoType, currentDesktopJobId);
+      } else {
+        showToast('키 확인 필요', '유효한 카카오 JavaScript 키인지 확인해 주세요.');
+      }
+    }
+
+    function sendDesktopViaKakaoSdk(type = 'dday', jobId = null) {
+      if (!ensureDesktopKakaoSdkReady()) return false;
+      const fullText = buildDesktopKakaoMessage(type, jobId);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullText).catch(() => {});
+      }
+
+      try {
+        if (type === 'single_job' && jobId) {
+          const job = postingsData.find(j => j.id === jobId) || postingsData[0];
+          window.Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: `💼 [${job.company}] ${job.title}`,
+              description: `${job.hourly_rate} · ${job.location} · 마감 ${job.deadline}\n${job.summary}`,
+              imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
+              link: { mobileWebUrl: job.url, webUrl: job.url }
+            },
+            buttons: [
+              { title: '공식 지원하기', link: { mobileWebUrl: job.url, webUrl: job.url } },
+              { title: '전체 공고 대시보드', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } }
+            ]
+          });
+          return true;
+        }
+
+        if (type === 'jobs') {
+          window.Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: '💼 [Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑',
+              description: `캐나다(Waterloo/Toronto) 및 미국 J-1 비자 스폰서 퀀트·AI·SW·계리 실시간 추천 공고 ${postingsData.length}건 요약`,
+              imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+              link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl }
+            },
+            buttons: [
+              { title: '전체 채용공고 대시보드 열기', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } }
+            ]
+          });
+          return true;
+        }
+
+        window.Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '🎓 [Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑',
+            description: '워털루 수학과 1학년(1A/1B) 필수 비자(Co-op Work Permit), PD1 이력서, WaterlooWorks 라운드 실시간 마감 일정',
+            imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
+            link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl }
+          },
+          buttons: [
+            { title: '모바일 대시보드 열기', link: { mobileWebUrl: cloudUrl, webUrl: cloudUrl } },
+            {
+              title: '워털루 공식 일정 원문',
+              link: {
+                mobileWebUrl: 'https://uwaterloo.ca/co-operative-education/important-dates',
+                webUrl: 'https://uwaterloo.ca/co-operative-education/important-dates'
+              }
+            }
+          ]
+        });
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
 
     async function loadInitialData() {
       try {
@@ -1002,6 +1154,8 @@
     }
 
     function openDesktopKakaoModal(type = 'dday', jobId = null) {
+      currentDesktopKakaoType = type;
+      currentDesktopJobId = jobId;
       const modal = document.getElementById('desktop-kakao-modal');
       const previewEl = document.getElementById('d-kakao-preview-text');
       const titleEl = document.getElementById('d-kakao-modal-title');
@@ -1027,6 +1181,13 @@
       });
 
       previewEl.textContent = buildDesktopKakaoMessage(type, jobId);
+      const inputEl = document.getElementById('d-kakao-js-key-input');
+      const statusEl = document.getElementById('d-kakao-key-status');
+      if (inputEl && desktopKakaoJsKey) inputEl.value = desktopKakaoJsKey;
+      if (statusEl && ensureDesktopKakaoSdkReady()) {
+        statusEl.textContent = '✅ 카카오 SDK 연동됨: 버튼 클릭 시 즉시 카카오톡 친구/채팅방 선택창이 열립니다.';
+        statusEl.className = 'text-[11px] text-emerald-400 font-bold leading-snug';
+      }
       modal.classList.remove('hidden');
     }
 
@@ -1038,7 +1199,41 @@
       document.getElementById('desktop-kakao-modal').classList.add('hidden');
     }
 
-    function shareDesktopJobToKakao(jobId) {
+    async function triggerDesktopKakaoShare(type = 'dday') {
+      currentDesktopKakaoType = type;
+      currentDesktopJobId = null;
+      const text = buildDesktopKakaoMessage(type, null);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text).catch(() => {});
+      }
+
+      // 1순위: 카카오 JavaScript SDK가 설정된 경우 즉시 카카오톡 친구/채팅방 선택창 팝업 실행
+      if (sendDesktopViaKakaoSdk(type, null)) {
+        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 전송하세요!');
+        return;
+      }
+
+      // 2순위: PC 카카오톡 앱(kakaotalk://) 즉시 실행 + 설정/복사 모달 오픈
+      window.location.href = 'kakaotalk://';
+      showToast('카카오톡 실행 및 알림 복사 완료!', '열린 카카오톡에서 공유할 대상을 선택해 붙여넣기(Ctrl+V) 하세요.');
+      openDesktopKakaoModal(type, null);
+    }
+
+    async function shareDesktopJobToKakao(jobId) {
+      currentDesktopKakaoType = 'single_job';
+      currentDesktopJobId = jobId;
+      const text = buildDesktopKakaoMessage('single_job', jobId);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text).catch(() => {});
+      }
+
+      if (sendDesktopViaKakaoSdk('single_job', jobId)) {
+        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 공고를 전송하세요!');
+        return;
+      }
+
+      window.location.href = 'kakaotalk://';
+      showToast('카카오톡 실행 및 공고 복사 완료!', '열린 카카오톡에서 대화상대를 선택해 붙여넣기(Ctrl+V) 하세요.');
       openDesktopKakaoModal('single_job', jobId);
     }
 
@@ -1060,11 +1255,15 @@
       if (openKakaoApp) {
         setTimeout(() => {
           window.location.href = 'kakaotalk://';
-        }, 350);
+        }, 250);
       }
     }
 
     async function executeDesktopNativeShare() {
+      if (sendDesktopViaKakaoSdk(currentDesktopKakaoType, currentDesktopJobId)) {
+        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 전송하세요!');
+        return;
+      }
       const text = document.getElementById('d-kakao-preview-text').textContent;
       if (navigator.share) {
         try {
@@ -1077,7 +1276,7 @@
           if (err && err.name === 'AbortError') return;
         }
       }
-      copyDesktopKakaoText(false);
+      copyDesktopKakaoText(true);
     }
 
     // Fallback Mock Data (오프라인 브라우저 직접 실행 지원)

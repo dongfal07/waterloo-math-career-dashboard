@@ -128,8 +128,45 @@ class DashboardRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response(res)
             return
 
+        # API: 카카오 JavaScript SDK 앱 키 조회
+        if path == "/api/kakao-config":
+            local_cfg = os.path.join(CONFIG_DIR, "telegram_config.local.json")
+            cfg_path = local_cfg if os.path.exists(local_cfg) else os.path.join(CONFIG_DIR, "telegram_config.json")
+            cfg = telegram_notifier.load_json(cfg_path)
+            kakao_cfg = cfg.get("kakao", {})
+            self.send_json_response({
+                "javascript_key": kakao_cfg.get("javascript_key", "")
+            })
+            return
+
         # 일반 정적 파일 서빙
         return super().do_GET()
+
+    def do_POST(self):
+        parsed = urlparse(self.path)
+        path = parsed.path
+
+        if path == "/api/kakao-config":
+            length = int(self.headers.get("Content-Length", "0"))
+            raw_body = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
+            try:
+                body = json.loads(raw_body)
+                js_key = str(body.get("javascript_key", "")).strip()
+                for fname in ("telegram_config.json", "telegram_config.local.json"):
+                    fpath = os.path.join(CONFIG_DIR, fname)
+                    if fname == "telegram_config.json" or os.path.exists(fpath):
+                        cfg = telegram_notifier.load_json(fpath)
+                        if "kakao" not in cfg or not isinstance(cfg["kakao"], dict):
+                            cfg["kakao"] = {}
+                        cfg["kakao"]["javascript_key"] = js_key
+                        with open(fpath, "w", encoding="utf-8") as f:
+                            json.dump(cfg, f, ensure_ascii=False, indent=2)
+                self.send_json_response({"success": True, "javascript_key": js_key})
+            except Exception as e:
+                self.send_json_response({"success": False, "error": str(e)}, status_code=400)
+            return
+
+        self.send_json_response({"error": "Not found"}, status_code=404)
 
     def send_json_response(self, data, status_code=200):
         content = json.dumps(data, ensure_ascii=False).encode("utf-8")
