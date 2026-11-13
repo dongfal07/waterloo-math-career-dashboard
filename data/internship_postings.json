@@ -1,5 +1,29 @@
 [
   {
+    "company": "Capital Power",
+    "title": "Student Intern - Data Science",
+    "location": "Edmonton, AB, Canada",
+    "country": "CA",
+    "track": "data_ai",
+    "target_level": "Undergrad (Co-op / Intern)",
+    "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
+    "visa_sponsorship": "Co-op Work Permit 지원 가능",
+    "source": "SimplifyJobs Live (1d ago)",
+    "url": "https://capitalpower.wd10.myworkdayjobs.com/External/job/Edmonton-AB/Summer-Student---Data-Science_JR807223-1",
+    "posted_date": "2026-11-12",
+    "age_days": 1,
+    "age_label": "1d",
+    "deadline": "2026-12-17",
+    "tags": [
+      "Data Science",
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "summary": "[실시간 수집 · 1d 전 등록] Capital Power의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Edmonton, AB, Canada).",
+    "id": "live-01"
+  },
+  {
     "company": "exacare ai",
     "title": "Data and Analytics Intern",
     "location": "Toronto, ON, Canada",
@@ -8,11 +32,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (0d ago)",
+    "source": "SimplifyJobs Live (1d ago)",
     "url": "https://ats.rippling.com/exacare-inc/jobs/e42f12bc-041a-4ef2-90d8-a77cd7f1f166",
     "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
+    "age_days": 1,
+    "age_label": "1d",
     "deadline": "2026-12-17",
     "tags": [
       "AI / LLM",
@@ -20,8 +44,8 @@
       "Statistical Analysis",
       "Python"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] exacare ai의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
-    "id": "live-01"
+    "summary": "[실시간 수집 · 1d 전 등록] exacare ai의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
+    "id": "live-02"
   },
   {
     "company": "SOTI",
@@ -32,11 +56,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$28 ~ $42 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (2d ago)",
+    "source": "SimplifyJobs Live (3d ago)",
     "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern--May-2027---12-months-_R10677",
     "posted_date": "2026-11-10",
-    "age_days": 2,
-    "age_label": "2d",
+    "age_days": 3,
+    "age_label": "3d",
     "deadline": "2026-12-15",
     "tags": [
       "Algorithms",
@@ -44,8 +68,8 @@
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 2d 전 등록] SOTI의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Mississauga, ON, Canada).",
-    "id": "live-02"
+    "summary": "[실시간 수집 · 3d 전 등록] SOTI의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Mississauga, ON, Canada).",
+    "id": "live-03"
   },
   {
     "company": "PETRONAS Canada",
@@ -56,11 +80,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (6d ago)",
+    "source": "SimplifyJobs Live (7d ago)",
     "url": "https://petronascanada.wd3.myworkdayjobs.com/PETRONASCanada/job/Calgary/Summer-Student--Operation-Advancement_R0001881",
     "posted_date": "2026-11-06",
-    "age_days": 6,
-    "age_label": "6d",
+    "age_days": 7,
+    "age_label": "7d",
     "deadline": "2026-12-11",
     "tags": [
       "Python",
@@ -68,8 +92,8 @@
       "Machine Learning",
       "Statistics"
     ],
-    "summary": "[실시간 수집 · 6d 전 등록] PETRONAS Canada의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Calgary, AB, Canada).",
-    "id": "live-03"
+    "summary": "[실시간 수집 · 7d 전 등록] PETRONAS Canada의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Calgary, AB, Canada).",
+    "id": "live-04"
   },
   {
     "company": "Qualcomm",
@@ -80,11 +104,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (7d ago)",
+    "source": "SimplifyJobs Live (8d ago)",
     "url": "https://qualcomm.eightfold.ai/careers/job/446721969461",
     "posted_date": "2026-11-05",
-    "age_days": 7,
-    "age_label": "7d",
+    "age_days": 8,
+    "age_label": "8d",
     "deadline": "2026-12-10",
     "tags": [
       "Machine Learning",
@@ -92,8 +116,8 @@
       "SQL",
       "Statistics"
     ],
-    "summary": "[실시간 수집 · 7d 전 등록] Qualcomm의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Markham, ON, Canada).",
-    "id": "live-04"
+    "summary": "[실시간 수집 · 8d 전 등록] Qualcomm의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Markham, ON, Canada).",
+    "id": "live-05"
   },
   {
     "company": "Royal Bank of Canada",
@@ -104,11 +128,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (9d ago)",
+    "source": "SimplifyJobs Live (10d ago)",
     "url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/TORONTO-Ontario-Canada/XMLNAME-2027-Capital-Markets--Global-Equities--AI-Engineer--16-Months--Co-op-_R-0000187401-2",
     "posted_date": "2026-11-03",
-    "age_days": 9,
-    "age_label": "9d",
+    "age_days": 10,
+    "age_label": "10d",
     "deadline": "2026-12-08",
     "tags": [
       "AI / LLM",
@@ -116,8 +140,8 @@
       "Python",
       "SQL"
     ],
-    "summary": "[실시간 수집 · 9d 전 등록] Royal Bank of Canada의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
-    "id": "live-05"
+    "summary": "[실시간 수집 · 10d 전 등록] Royal Bank of Canada의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
+    "id": "live-06"
   },
   {
     "company": "NVIDIA",
@@ -128,11 +152,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$45 ~ $65 / hr CAD",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (10d ago)",
+    "source": "SimplifyJobs Live (11d ago)",
     "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Math-Libraries-Intern--cuEST---Summer-2027_JR2028449",
     "posted_date": "2026-11-02",
-    "age_days": 10,
-    "age_label": "10d",
+    "age_days": 11,
+    "age_label": "11d",
     "deadline": "2026-12-07",
     "tags": [
       "Algorithms",
@@ -140,8 +164,8 @@
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 10d 전 등록] NVIDIA의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Canada, Santa Clara, CA, United States).",
-    "id": "live-06"
+    "summary": "[실시간 수집 · 11d 전 등록] NVIDIA의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Canada, Santa Clara, CA, United States).",
+    "id": "live-07"
   },
   {
     "company": "Bank of Montreal",
@@ -152,11 +176,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$30 ~ $45 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (14d ago)",
+    "source": "SimplifyJobs Live (15d ago)",
     "url": "https://bmo.wd3.myworkdayjobs.com/External/job/Toronto-ON-CAN/BMO-Capital-Markets-Quantitative-Trading-Analyst---12-16-Month-Co-op_R260029657",
     "posted_date": "2026-10-29",
-    "age_days": 14,
-    "age_label": "14d",
+    "age_days": 15,
+    "age_label": "15d",
     "deadline": "2026-12-03",
     "tags": [
       "Quantitative Modeling",
@@ -164,8 +188,8 @@
       "Waterloo Co-op",
       "Python"
     ],
-    "summary": "[실시간 수집 · 14d 전 등록] Bank of Montreal의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
-    "id": "live-07"
+    "summary": "[실시간 수집 · 15d 전 등록] Bank of Montreal의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Toronto, ON, Canada).",
+    "id": "live-08"
   },
   {
     "company": "Ryan",
@@ -176,11 +200,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$28 ~ $42 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (14d ago)",
+    "source": "SimplifyJobs Live (15d ago)",
     "url": "https://ryan.wd1.myworkdayjobs.com/RyanCareers/job/North-York/Summer-2027-Intern--Software-Engineering_R0020807-1",
     "posted_date": "2026-10-29",
-    "age_days": 14,
-    "age_label": "14d",
+    "age_days": 15,
+    "age_label": "15d",
     "deadline": "2026-12-03",
     "tags": [
       "Algorithms",
@@ -188,31 +212,7 @@
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 14d 전 등록] Ryan의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (North York, ON, Canada).",
-    "id": "live-08"
-  },
-  {
-    "company": "Cenovus Energy",
-    "title": "Student Risk Analytics Intern",
-    "location": "Calgary, AB, Canada",
-    "country": "CA",
-    "track": "actuary",
-    "target_level": "Undergrad (Co-op / Intern)",
-    "hourly_rate": "$25 ~ $34 / hr CAD (Co-op)",
-    "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (15d ago)",
-    "url": "https://cenovus.wd3.myworkdayjobs.com/careers/job/CA-AB-Calgary/Student--Risk-Analytics--Calgary--May-2027-_R-411263",
-    "posted_date": "2026-10-28",
-    "age_days": 15,
-    "age_label": "15d",
-    "deadline": "2026-12-02",
-    "tags": [
-      "Risk Analytics",
-      "Statistical Analysis",
-      "SOA Exam P/FM",
-      "Risk Modeling"
-    ],
-    "summary": "[실시간 수집 · 15d 전 등록] Cenovus Energy의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (Calgary, AB, Canada).",
+    "summary": "[실시간 수집 · 15d 전 등록] Ryan의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (North York, ON, Canada).",
     "id": "live-09"
   },
   {
@@ -224,11 +224,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$27 ~ $38 / hr CAD (Co-op)",
     "visa_sponsorship": "Co-op Work Permit 지원 가능",
-    "source": "SimplifyJobs Live (16d ago)",
+    "source": "SimplifyJobs Live (17d ago)",
     "url": "https://apply.workable.com/altalink/j/3FB9DD016F/apply",
     "posted_date": "2026-10-27",
-    "age_days": 16,
-    "age_label": "16d",
+    "age_days": 17,
+    "age_label": "17d",
     "deadline": "2026-12-01",
     "tags": [
       "Python",
@@ -236,7 +236,7 @@
       "Machine Learning",
       "Statistics"
     ],
-    "summary": "[실시간 수집 · 16d 전 등록] AltaLink의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Calgary, AB, Canada).",
+    "summary": "[실시간 수집 · 17d 전 등록] AltaLink의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Calgary, AB, Canada).",
     "id": "live-10"
   },
   {
@@ -248,11 +248,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$55 ~ $85 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (0d ago)",
+    "source": "SimplifyJobs Live (1d ago)",
     "url": "https://boards.greenhouse.io/embed/job_app?token=8368989",
     "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
+    "age_days": 1,
+    "age_label": "1d",
     "deadline": "2026-12-17",
     "tags": [
       "Quantitative Modeling",
@@ -260,7 +260,7 @@
       "Python",
       "Probability & Stats"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] StepStone Group의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (La Jolla, San Diego, CA).",
+    "summary": "[실시간 수집 · 1d 전 등록] StepStone Group의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (La Jolla, San Diego, CA).",
     "id": "live-11"
   },
   {
@@ -272,11 +272,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$70 ~ $95 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (7d ago)",
+    "source": "SimplifyJobs Live (8d ago)",
     "url": "https://job-boards.eu.greenhouse.io/imc/jobs/4823946101",
     "posted_date": "2026-11-05",
-    "age_days": 7,
-    "age_label": "7d",
+    "age_days": 8,
+    "age_label": "8d",
     "deadline": "2026-12-10",
     "tags": [
       "Algorithmic Trading",
@@ -284,7 +284,7 @@
       "Probability & Stats",
       "Stochastic Modeling"
     ],
-    "summary": "[실시간 수집 · 7d 전 등록] IMC Trading의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Chicago, IL).",
+    "summary": "[실시간 수집 · 8d 전 등록] IMC Trading의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Chicago, IL).",
     "id": "live-12"
   },
   {
@@ -296,11 +296,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$70 ~ $95 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (14d ago)",
+    "source": "SimplifyJobs Live (15d ago)",
     "url": "https://job-boards.greenhouse.io/schonfeld/jobs/8324611",
     "posted_date": "2026-10-29",
-    "age_days": 14,
-    "age_label": "14d",
+    "age_days": 15,
+    "age_label": "15d",
     "deadline": "2026-12-03",
     "tags": [
       "Python",
@@ -308,7 +308,7 @@
       "Stochastic Modeling",
       "C++"
     ],
-    "summary": "[실시간 수집 · 14d 전 등록] Schonfeld의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (NYC).",
+    "summary": "[실시간 수집 · 15d 전 등록] Schonfeld의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (NYC).",
     "id": "live-13"
   },
   {
@@ -320,11 +320,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$55 ~ $85 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (16d ago)",
+    "source": "SimplifyJobs Live (17d ago)",
     "url": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Investment-Processes-Intern--Summer-2027_R1557",
     "posted_date": "2026-10-27",
-    "age_days": 16,
-    "age_label": "16d",
+    "age_days": 17,
+    "age_label": "17d",
     "deadline": "2026-12-01",
     "tags": [
       "Python",
@@ -332,7 +332,7 @@
       "Stochastic Modeling",
       "C++"
     ],
-    "summary": "[실시간 수집 · 16d 전 등록] Arrowstreet Capital의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Boston, MA).",
+    "summary": "[실시간 수집 · 17d 전 등록] Arrowstreet Capital의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Boston, MA).",
     "id": "live-14"
   },
   {
@@ -344,11 +344,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$55 ~ $85 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (17d ago)",
+    "source": "SimplifyJobs Live (18d ago)",
     "url": "https://fhlbi.wd1.myworkdayjobs.com/FHLBI_Careers/job/Indianapolis/Model-Risk-Intern_R636",
     "posted_date": "2026-10-26",
-    "age_days": 17,
-    "age_label": "17d",
+    "age_days": 18,
+    "age_label": "18d",
     "deadline": "2026-11-30",
     "tags": [
       "Risk Analytics",
@@ -356,7 +356,7 @@
       "Probability & Stats",
       "Stochastic Modeling"
     ],
-    "summary": "[실시간 수집 · 17d 전 등록] Federal Home Loan Bank of Indianapolis의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Indianapolis, IN).",
+    "summary": "[실시간 수집 · 18d 전 등록] Federal Home Loan Bank of Indianapolis의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (Indianapolis, IN).",
     "id": "live-15"
   },
   {
@@ -368,11 +368,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$55 ~ $85 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (20d ago)",
+    "source": "SimplifyJobs Live (21d ago)",
     "url": "https://careers-ice.icims.com/jobs/14113/job?mobile=true&needsRedirect=false",
     "posted_date": "2026-10-23",
-    "age_days": 20,
-    "age_label": "20d",
+    "age_days": 21,
+    "age_label": "21d",
     "deadline": "2026-11-27",
     "tags": [
       "Data Science",
@@ -380,8 +380,32 @@
       "Probability & Stats",
       "Stochastic Modeling"
     ],
-    "summary": "[실시간 수집 · 20d 전 등록] Glencore의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (NYC).",
+    "summary": "[실시간 수집 · 21d 전 등록] Glencore의 퀀트 금융·트레이딩·리스크 학부 인턴십/코옵 포지션 (NYC).",
     "id": "live-16"
+  },
+  {
+    "company": "State Farm",
+    "title": "Property and Casualty Underwriting Intern - Knowledge Management",
+    "location": "Richardson, TX, Bloomington, IL",
+    "country": "US",
+    "track": "actuary",
+    "target_level": "Undergrad (Co-op / Intern)",
+    "hourly_rate": "$30 ~ $45 / hr USD",
+    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
+    "source": "SimplifyJobs Live (0d ago)",
+    "url": "https://jobs.statefarm.com/jobs/46442?icims=1&lang=en-us",
+    "posted_date": "2026-11-13",
+    "age_days": 0,
+    "age_label": "0d",
+    "deadline": "2026-12-18",
+    "tags": [
+      "SOA Exam P/FM",
+      "Risk Modeling",
+      "Excel / R",
+      "Financial Math"
+    ],
+    "summary": "[실시간 수집 · 0d 전 등록] State Farm의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (Richardson, TX, Bloomington, IL).",
+    "id": "live-17"
   },
   {
     "company": "AXA",
@@ -392,11 +416,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$30 ~ $45 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (13d ago)",
+    "source": "SimplifyJobs Live (14d ago)",
     "url": "https://careers.axa.com/jobs/25498?icims=1",
     "posted_date": "2026-10-30",
-    "age_days": 13,
-    "age_label": "13d",
+    "age_days": 14,
+    "age_label": "14d",
     "deadline": "2026-12-04",
     "tags": [
       "Data Science",
@@ -404,8 +428,8 @@
       "SOA Exam P/FM",
       "Risk Modeling"
     ],
-    "summary": "[실시간 수집 · 13d 전 등록] AXA의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (NYC).",
-    "id": "live-17"
+    "summary": "[실시간 수집 · 14d 전 등록] AXA의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (NYC).",
+    "id": "live-18"
   },
   {
     "company": "Revantage Corporate Services",
@@ -416,11 +440,11 @@
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$30 ~ $45 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (15d ago)",
+    "source": "SimplifyJobs Live (16d ago)",
     "url": "https://revantage.wd1.myworkdayjobs.com/Revantage/job/Chicago-IL/Insurance-Technology---AI-Analytics-Intern--Summer-2027_JR104539",
     "posted_date": "2026-10-28",
-    "age_days": 15,
-    "age_label": "15d",
+    "age_days": 16,
+    "age_label": "16d",
     "deadline": "2026-12-02",
     "tags": [
       "AI / LLM",
@@ -428,215 +452,191 @@
       "SOA Exam P/FM",
       "Risk Modeling"
     ],
-    "summary": "[실시간 수집 · 15d 전 등록] Revantage Corporate Services의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (Dallas, TX, Chicago, IL).",
-    "id": "live-18"
-  },
-  {
-    "company": "Woolpert",
-    "title": "Aviation Modeling & Simulation Intern",
-    "location": "San Rafael, CA, Berkeley, CA",
-    "country": "US",
-    "track": "data_ai",
-    "target_level": "Undergrad (Co-op / Intern)",
-    "hourly_rate": "$38 ~ $55 / hr USD",
-    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://job-boards.greenhouse.io/woolpert/jobs/4430700009",
-    "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
-    "deadline": "2026-12-17",
-    "tags": [
-      "Python",
-      "SQL",
-      "Machine Learning",
-      "Statistics"
-    ],
-    "summary": "[실시간 수집 · 0d 전 등록] Woolpert의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (San Rafael, CA, Berkeley, CA).",
+    "summary": "[실시간 수집 · 16d 전 등록] Revantage Corporate Services의 보험계리·리스크 모델링 학부 인턴십/코옵 포지션 (Dallas, TX, Chicago, IL).",
     "id": "live-19"
   },
   {
-    "company": "TRC Companies",
-    "title": "GIS Intern",
-    "location": "Seattle, WA, Houston, TX, Lakewood, CO, Ralei 외",
+    "company": "TikTok",
+    "title": "Machine Learning Engineer Intern",
+    "location": "San Jose, CA",
     "country": "US",
     "track": "data_ai",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$38 ~ $55 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
     "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://careers.trccompanies.com/jobs/28698?icims=1&lang=en-us",
-    "posted_date": "2026-11-12",
+    "url": "https://lifeattiktok.com/search/7698822572474583301",
+    "posted_date": "2026-11-13",
     "age_days": 0,
     "age_label": "0d",
-    "deadline": "2026-12-17",
+    "deadline": "2026-12-18",
+    "tags": [
+      "Machine Learning",
+      "Python",
+      "SQL",
+      "Statistics"
+    ],
+    "summary": "[실시간 수집 · 0d 전 등록] TikTok의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (San Jose, CA).",
+    "id": "live-20"
+  },
+  {
+    "company": "Stratolaunch",
+    "title": "Business Intelligence & Systems Analyst Intern",
+    "location": "Mojave, CA",
+    "country": "US",
+    "track": "data_ai",
+    "target_level": "Undergrad (Co-op / Intern)",
+    "hourly_rate": "$38 ~ $55 / hr USD",
+    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
+    "source": "SimplifyJobs Live (0d ago)",
+    "url": "https://job-boards.greenhouse.io/stratolaunch/jobs/5480612008",
+    "posted_date": "2026-11-13",
+    "age_days": 0,
+    "age_label": "0d",
+    "deadline": "2026-12-18",
     "tags": [
       "Python",
       "SQL",
       "Machine Learning",
       "Statistics"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] TRC Companies의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Seattle, WA, Houston, TX, Lakewood, CO, Ralei 외).",
-    "id": "live-20"
+    "summary": "[실시간 수집 · 0d 전 등록] Stratolaunch의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Mojave, CA).",
+    "id": "live-21"
   },
   {
-    "company": "Riot Games",
-    "title": "Data Engineer Intern",
-    "location": "Remote in USA",
+    "company": "SharkNinja",
+    "title": "Data Science Intern",
+    "location": "Needham, MA",
     "country": "US",
     "track": "data_ai",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$38 ~ $55 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (1d ago)",
-    "url": "https://www.riotgames.com/en/work-with-us/job/8356716?gh_jid=8356716",
-    "posted_date": "2026-11-11",
-    "age_days": 1,
-    "age_label": "1d",
-    "deadline": "2026-12-16",
+    "source": "SimplifyJobs Live (0d ago)",
+    "url": "https://job-boards.greenhouse.io/sharkninjaoperatingllc/jobs/4727539006",
+    "posted_date": "2026-11-13",
+    "age_days": 0,
+    "age_label": "0d",
+    "deadline": "2026-12-18",
     "tags": [
       "Data Science",
       "Python",
       "SQL",
       "Machine Learning"
     ],
-    "summary": "[실시간 수집 · 1d 전 등록] Riot Games의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Remote in USA).",
-    "id": "live-21"
-  },
-  {
-    "company": "State of Wisconsin Investment Board",
-    "title": "Data Analytics Engineering Intern",
-    "location": "Madison, WI",
-    "country": "US",
-    "track": "data_ai",
-    "target_level": "Undergrad (Co-op / Intern)",
-    "hourly_rate": "$38 ~ $55 / hr USD",
-    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (1d ago)",
-    "url": "https://swib.wd12.myworkdayjobs.com/en-US/ext/job/Madison-Wisconsin/Data-Analytics-Engineering-Intern_R-001330",
-    "posted_date": "2026-11-11",
-    "age_days": 1,
-    "age_label": "1d",
-    "deadline": "2026-12-16",
-    "tags": [
-      "Data Science",
-      "Statistical Analysis",
-      "Python",
-      "SQL"
-    ],
-    "summary": "[실시간 수집 · 1d 전 등록] State of Wisconsin Investment Board의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Madison, WI).",
+    "summary": "[실시간 수집 · 0d 전 등록] SharkNinja의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Needham, MA).",
     "id": "live-22"
   },
   {
-    "company": "Panera Bread",
-    "title": "Data Science & AI Analytics Intern",
-    "location": "Newton, MA",
+    "company": "Microsoft",
+    "title": "Data Scientist Intern - CoreAI",
+    "location": "Redmond, WA",
+    "country": "US",
+    "track": "data_ai",
+    "target_level": "Undergrad (Co-op / Intern)",
+    "hourly_rate": "$50 ~ $68 / hr USD",
+    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
+    "source": "SimplifyJobs Live (0d ago)",
+    "url": "https://apply.careers.microsoft.com/careers/job/1970393557027390",
+    "posted_date": "2026-11-13",
+    "age_days": 0,
+    "age_label": "0d",
+    "deadline": "2026-12-18",
+    "tags": [
+      "AI / LLM",
+      "Data Science",
+      "Python",
+      "SQL"
+    ],
+    "summary": "[실시간 수집 · 0d 전 등록] Microsoft의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Redmond, WA).",
+    "id": "live-23"
+  },
+  {
+    "company": "Vizient",
+    "title": "Contract Operations Intern - Analytics",
+    "location": "Irving, TX",
     "country": "US",
     "track": "data_ai",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$38 ~ $55 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
     "source": "SimplifyJobs Live (1d ago)",
-    "url": "https://panerabread.wd5.myworkdayjobs.com/panera_careers/job/Newton-Support-Center/Data-Science---AI-Analytics---Summer-2027-Internship-Program_JR0049082",
-    "posted_date": "2026-11-11",
+    "url": "https://vizient.wd1.myworkdayjobs.com/Vizient_Careers/job/Chicago-IL-60607/XMLNAME-2027-Summer-Internship---Contract-Operations---Analytics_36238R-1",
+    "posted_date": "2026-11-12",
     "age_days": 1,
     "age_label": "1d",
-    "deadline": "2026-12-16",
-    "tags": [
-      "AI / LLM",
-      "Data Science",
-      "Statistical Analysis",
-      "Python"
-    ],
-    "summary": "[실시간 수집 · 1d 전 등록] Panera Bread의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Newton, MA).",
-    "id": "live-23"
-  },
-  {
-    "company": "McDonald's",
-    "title": "Global Tech Infrastructure & Operations Intern",
-    "location": "Chicago, IL",
-    "country": "US",
-    "track": "software",
-    "target_level": "Undergrad (Co-op / Intern)",
-    "hourly_rate": "$40 ~ $60 / hr USD",
-    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://jobs.mcdonalds.com/job/Chicago-Global-Tech-Infrastructure-&-Operations-Intern-IL-60607/1449562300/?ats=successfactors",
-    "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
     "deadline": "2026-12-17",
     "tags": [
-      "Algorithms",
-      "Python / C++",
-      "Distributed Systems",
-      "Git"
+      "Statistical Analysis",
+      "Python",
+      "SQL",
+      "Machine Learning"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] McDonald's의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Chicago, IL).",
+    "summary": "[실시간 수집 · 1d 전 등록] Vizient의 데이터 사이언스·AI·머신러닝 학부 인턴십/코옵 포지션 (Irving, TX).",
     "id": "live-24"
   },
   {
-    "company": "NBCUniversal",
-    "title": "Software Engineer Intern",
-    "location": "Universal City, LA",
+    "company": "Muon Space",
+    "title": "Software Engineer Intern - Information Systems",
+    "location": "San Jose, CA",
     "country": "US",
     "track": "software",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$40 ~ $60 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
     "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000161179529",
-    "posted_date": "2026-11-12",
+    "url": "https://job-boards.greenhouse.io/muonspace/jobs/5293973007",
+    "posted_date": "2026-11-13",
     "age_days": 0,
     "age_label": "0d",
-    "deadline": "2026-12-17",
+    "deadline": "2026-12-18",
     "tags": [
       "Algorithms",
       "Python / C++",
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] NBCUniversal의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Universal City, LA).",
+    "summary": "[실시간 수집 · 0d 전 등록] Muon Space의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (San Jose, CA).",
     "id": "live-25"
   },
   {
-    "company": "Brex",
-    "title": "Software Engineer Intern",
-    "location": "SF",
+    "company": "Octant Bio",
+    "title": "Software Engineering Intern",
+    "location": "Emeryville, CA",
     "country": "US",
     "track": "software",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$40 ~ $60 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
     "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://www.brex.com/careers/8936403002?gh_jid=8936403002",
-    "posted_date": "2026-11-12",
+    "url": "https://www.octant.bio/jobs?gh_jid=6260895004",
+    "posted_date": "2026-11-13",
     "age_days": 0,
     "age_label": "0d",
-    "deadline": "2026-12-17",
+    "deadline": "2026-12-18",
     "tags": [
       "Algorithms",
       "Python / C++",
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] Brex의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (SF).",
+    "summary": "[실시간 수집 · 0d 전 등록] Octant Bio의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Emeryville, CA).",
     "id": "live-26"
   },
   {
-    "company": "Formlabs",
-    "title": "Manufacturing Test Software Intern - Manufacturing",
-    "location": "Somerville, MA",
+    "company": "Vital Lyfe",
+    "title": "Software Engineer Intern",
+    "location": "Torrance, CA",
     "country": "US",
     "track": "software",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$40 ~ $60 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://careers.formlabs.com/job/8374598/apply/?gh_jid=8374598",
+    "source": "SimplifyJobs Live (1d ago)",
+    "url": "https://jobs.ashbyhq.com/vital-lyfe/5b5e7e6d-d59e-410b-9a7f-619717c3c942/application?embed=true",
     "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
+    "age_days": 1,
+    "age_label": "1d",
     "deadline": "2026-12-17",
     "tags": [
       "Algorithms",
@@ -644,31 +644,55 @@
       "Distributed Systems",
       "Git"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] Formlabs의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Somerville, MA).",
+    "summary": "[실시간 수집 · 1d 전 등록] Vital Lyfe의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Torrance, CA).",
     "id": "live-27"
   },
   {
-    "company": "The Marzetti Company",
-    "title": "AI Solutions Intern - Human Resources",
-    "location": "Columbus, OH",
+    "company": "General Dynamics Mission Systems",
+    "title": "Software/Systems Engineering Intern",
+    "location": "Middletown, RI",
     "country": "US",
     "track": "software",
     "target_level": "Undergrad (Co-op / Intern)",
     "hourly_rate": "$40 ~ $60 / hr USD",
     "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
-    "source": "SimplifyJobs Live (0d ago)",
-    "url": "https://careers.marzetticompany.com/jobs/8128?icims=1&lang=en-us",
+    "source": "SimplifyJobs Live (1d ago)",
+    "url": "https://careers-gdms.icims.com/jobs/75808/job?mobile=true&needsRedirect=false",
     "posted_date": "2026-11-12",
-    "age_days": 0,
-    "age_label": "0d",
+    "age_days": 1,
+    "age_label": "1d",
     "deadline": "2026-12-17",
     "tags": [
-      "AI / LLM",
       "Algorithms",
       "Python / C++",
-      "Distributed Systems"
+      "Distributed Systems",
+      "Git"
     ],
-    "summary": "[실시간 수집 · 0d 전 등록] The Marzetti Company의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Columbus, OH).",
+    "summary": "[실시간 수집 · 1d 전 등록] General Dynamics Mission Systems의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Middletown, RI).",
     "id": "live-28"
+  },
+  {
+    "company": "CareSource",
+    "title": "Software Engineer Intern",
+    "location": "Remote in USA",
+    "country": "US",
+    "track": "software",
+    "target_level": "Undergrad (Co-op / Intern)",
+    "hourly_rate": "$40 ~ $60 / hr USD",
+    "visa_sponsorship": "J-1 / F-1 비자 스폰서십 가능",
+    "source": "SimplifyJobs Live (1d ago)",
+    "url": "https://caresource.wd1.myworkdayjobs.com/caresource/job/Remote/XMLNAME-2027-Summer-Internship-Program---Software-Engineer_R14136",
+    "posted_date": "2026-11-12",
+    "age_days": 1,
+    "age_label": "1d",
+    "deadline": "2026-12-17",
+    "tags": [
+      "Algorithms",
+      "Python / C++",
+      "Distributed Systems",
+      "Git"
+    ],
+    "summary": "[실시간 수집 · 1d 전 등록] CareSource의 소프트웨어 엔지니어링 학부 인턴십/코옵 포지션 (Remote in USA).",
+    "id": "live-29"
   }
 ]
