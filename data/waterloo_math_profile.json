@@ -339,16 +339,16 @@
     }
   },
   "live_sync_metadata": {
-    "last_synced_kst": "2026-11-13 14:12:09 KST",
+    "last_synced_kst": "2026-11-14 14:01:34 KST",
     "uw_official_dates_url": "https://uwaterloo.ca/co-operative-education/important-dates",
     "uw_official_page_verified": true,
     "live_jobs_source_url": "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/README.md",
     "live_jobs_stats": {
-      "total_open_na_roles": 767,
-      "canada_open_roles": 43,
+      "total_open_na_roles": 718,
+      "canada_open_roles": 44,
       "quant_open_roles": 18,
-      "data_ai_open_roles": 387,
-      "software_open_roles": 359,
+      "data_ai_open_roles": 363,
+      "software_open_roles": 334,
       "actuary_open_roles": 3
     }
   }
