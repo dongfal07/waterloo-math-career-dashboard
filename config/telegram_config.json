@@ -33,9 +33,10 @@
   },
   "scheduler": {
     "enabled": true,
-    "daily_briefing_time": "09:00",
+    "cron_utc": "37 23 * * *",
+    "daily_briefing_time": "08:40~08:55 KST",
     "weekly_jobs_day": "Monday",
-    "weekly_jobs_time": "10:00",
+    "weekly_jobs_time": "08:40~08:55 KST",
     "check_interval_seconds": 60
   },
   "kakao": {

@@ -2,11 +2,10 @@ name: Waterloo Math Career 24/7 Daily Telegram Alert
 
 on:
   schedule:
-    # 매일 한국 시간 오전 09:00 (UTC 00:00) 에 실시간 공고 동기화 및 D-Day 전체 일정 브리핑
-    - cron: '0 0 * * *'
-    # 매주 월요일 한국 시간 오전 10:00 (UTC 01:00) 에 실시간 크롤링 인턴십 종합 공고 발송
-    - cron: '0 1 * * 1'
-  workflow_dispatch: # 웹에서 즉시 수동 실행 지원
+    # 전 세계 00:00 UTC 자정 및 정각(:00) 큐 대기 병목(4~6시간 지연)을 회피하기 위해
+    # 23:37 UTC (한국 시간 오전 08:37) 비정각 소수 분 단위로 스케줄링 -> 매일 아침 08:40~08:55 KST 정시 도착
+    - cron: '37 23 * * *'
+  workflow_dispatch: # GitHub 웹에서 즉시 수동 실행 지원
     inputs:
       alert_type:
         description: '발송할 알림 종류 (dday / jobs / all)'
@@ -14,7 +13,7 @@ on:
         default: 'all'
 
 concurrency:
-  group: telegram-alert-${{ github.event.schedule || 'manual' }}
+  group: telegram-alert-${{ github.event_name }}
   cancel-in-progress: true
 
 permissions:
@@ -32,6 +31,15 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Check KST Day of Week
+        id: kst_time
+        run: |
+          DOW=$(TZ='Asia/Seoul' date +%u)
+          NOW_KST=$(TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M:%S KST')
+          echo "dow=$DOW" >> "$GITHUB_OUTPUT"
+          echo "now_kst=$NOW_KST" >> "$GITHUB_OUTPUT"
+          echo "Current KST: $NOW_KST (ISO Day of Week: $DOW, 1=Monday)"
+
       - name: Crawl Live Internships & Sync Official Waterloo Schedule
         run: python scripts/live_crawler.py
 
@@ -40,20 +48,20 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/internship_postings.json data/waterloo_math_profile.json web/assets/uw-core.js
-          git diff --staged --quiet || (git commit -m "chore(data): auto-sync live North American internships and official Waterloo schedule" && git push)
+          git diff --staged --quiet || (git commit -m "chore(data): auto-sync live North American internships and official Waterloo schedule" && git pull --rebase origin main && git push)
 
-      - name: Send Full D-Day Schedule Alert (Daily 09:00 KST or Manual)
+      - name: Send Full D-Day Schedule Alert (Daily Morning KST or Manual)
         if: >-
-          (github.event_name == 'schedule' && github.event.schedule == '0 0 * * *') ||
+          github.event_name == 'schedule' ||
           (github.event_name == 'workflow_dispatch' && (inputs.alert_type == 'dday' || inputs.alert_type == 'all' || inputs.alert_type == ''))
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/telegram_notifier.py --dday
 
-      - name: Send Live Crawled Job Postings (Monday 10:00 KST or Manual)
+      - name: Send Live Crawled Job Postings (Monday Morning KST or Manual)
         if: >-
-          (github.event_name == 'schedule' && github.event.schedule == '0 1 * * 1') ||
+          (github.event_name == 'schedule' && steps.kst_time.outputs.dow == '1') ||
           (github.event_name == 'workflow_dispatch' && (inputs.alert_type == 'jobs' || inputs.alert_type == 'all'))
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
