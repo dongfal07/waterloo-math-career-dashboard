@@ -1,0 +1,20 @@
+{
+  "name": "Waterloo Math 2028 Career Intelligence",
+  "short_name": "UW Math '28",
+  "description": "University of Waterloo Faculty of Mathematics 1학년 · 2028 첫 Co-op 타깃 실시간 북미 인턴십 & 학사 일정 인텔리전스 포털",
+  "start_url": "./index.html?view=mobile",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070A12",
+  "theme_color": "#070A12",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "web/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -3,344 +3,469 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Waterloo Math Career Intelligence Portal (Desktop)</title>
+  <title>Waterloo Math 2028 Career Intelligence (Desktop)</title>
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="manifest" href="../manifest.json">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Official Kakao JavaScript SDK (카카오톡 바로 실행 및 공유자 선택창 호출) -->
+  <!-- Official Kakao JavaScript SDK -->
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            uwGold: '#FDD017',
-            uwGoldHover: '#E5A823',
-            uwBlack: '#111827',
-            uwDarkSlate: '#1E293B',
+            uwGold: '#F5C518',
+            uwGoldHover: '#EAB308',
+            mathPink: '#EC4899',
+            uwCanvas: '#070A12',
+            uwSurface: '#0F1523',
+            uwElevated: '#161F33'
           }
         }
       }
-    }
+    };
   </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; background-color: #0B0F19; color: #F3F4F6; }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #1E293B; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #FDD017; }
-  </style>
+  <link rel="stylesheet" href="assets/uw-theme.css">
 </head>
-<body class="min-h-screen flex flex-col custom-scrollbar">
+<body class="min-h-screen flex flex-col custom-scrollbar bg-uwCanvas text-slate-100">
 
-  <!-- TOP GLOBAL HEADER (Desktop Optimized) -->
-  <header class="bg-uwDarkSlate border-b border-gray-800 sticky top-0 z-50 shadow-lg">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-      
-      <!-- Brand & Student Profile (화면 크기 맞춤 자동 스케일링 및 줄바꿈 차단) -->
-      <div class="flex items-center space-x-3 xl:space-x-4 shrink-0">
-        <div class="w-9 h-9 xl:w-11 xl:h-11 bg-uwGold rounded-xl flex items-center justify-center font-black text-black text-base xl:text-xl shadow-md shrink-0">
-          UW
-        </div>
-        <div class="shrink-0">
-          <div class="flex items-center space-x-2 whitespace-nowrap">
-            <h1 class="text-[clamp(13px,1.1vw,18px)] font-bold text-white tracking-wide whitespace-nowrap">
+  <!-- Signature UW Gold + Faculty of Math Pink Tie Top Ribbon -->
+  <div class="uw-brand-ribbon w-full sticky top-0 z-50"></div>
+
+  <!-- TOP COMMAND HEADER -->
+  <header class="bg-[#0B101D]/95 backdrop-blur-md border-b border-slate-800/90 sticky top-[3px] z-40">
+    <div class="max-w-[1400px] mx-auto px-5 py-3 flex items-center justify-between gap-3">
+
+      <!-- Left: Brand Identity & 2028 Target Sequence Pill -->
+      <div class="flex items-center space-x-3 shrink-0">
+        <img src="assets/icon.svg" alt="UW Math Logo" class="w-10 h-10 rounded-xl shadow border border-slate-700/70 shrink-0">
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-[clamp(14px,1.15vw,18px)] font-extrabold text-white tracking-tight whitespace-nowrap">
               Waterloo Math Career Intelligence
             </h1>
-            <span class="px-2 py-0.5 text-[clamp(9.5px,0.7vw,11px)] font-bold bg-uwGold/20 text-uwGold border border-uwGold/40 rounded-full whitespace-nowrap shrink-0">
-              Desktop Pro Edition
+            <span class="px-2 py-0.5 text-[11px] font-bold bg-mathPink/15 text-pink-300 border border-mathPink/40 rounded-full whitespace-nowrap">
+              1학년 · 2028 첫 Co-op 타깃
             </span>
           </div>
-          <p class="text-[clamp(9.5px,0.72vw,12px)] text-gray-400 whitespace-nowrap mt-0.5">
-            University of Waterloo • Faculty of Mathematics • 1st Year (1A/1B) Co-op Portal
+          <p class="text-[11.5px] text-slate-400 whitespace-nowrap mt-0.5">
+            University of Waterloo · Faculty of Mathematics · Honours Math (1A/1B → 2028 WT1)
           </p>
         </div>
       </div>
 
-      <!-- Quick D-Day Tickers (화면 크기에 따른 유연한 자동 스케일링 및 줄바꿈 원천 차단) -->
-      <div class="hidden lg:flex items-center space-x-2 xl:space-x-3 bg-gray-900/90 px-3 xl:px-4 py-1.5 rounded-lg border border-gray-700/60 text-[clamp(10px,0.8vw,12px)] whitespace-nowrap shrink-0">
-        <div class="flex items-center space-x-1.5 text-red-400 font-medium whitespace-nowrap">
-          <i class="fa-solid fa-fire text-red-500 text-[11px] shrink-0"></i>
-          <span class="whitespace-nowrap">이력서 검토 마감:</span>
-          <span class="font-bold px-1.5 py-0.5 bg-red-950/80 text-red-300 rounded border border-red-800/70 whitespace-nowrap shrink-0 text-[10.5px]" data-due-date="2026-11-20">D-?</span>
-        </div>
-        <span class="text-gray-600 shrink-0">|</span>
-        <div class="flex items-center space-x-1.5 text-amber-300 font-medium whitespace-nowrap">
-          <i class="fa-solid fa-briefcase text-[11px] shrink-0"></i>
-          <span class="whitespace-nowrap">서머 퀀트 인턴:</span>
-          <span class="font-bold px-1.5 py-0.5 bg-amber-950/80 text-amber-200 rounded border border-amber-800/70 whitespace-nowrap shrink-0 text-[10.5px]" data-due-date="2026-12-04">D-?</span>
-        </div>
-      </div>
+      <!-- Center: Dynamic Urgent D-Day Tickers (Bound to JSON, Clickable) -->
+      <button onclick="switchIntelTab('schedule')" id="header-dday-strip"
+        class="hidden xl:flex items-center space-x-3 bg-slate-900/90 hover:bg-slate-800/90 px-3.5 py-1.5 rounded-lg border border-slate-800 hover:border-slate-700 transition text-xs whitespace-nowrap"
+        title="클릭하여 2026~2028 전체 마일스톤 일정 보기">
+        <span class="text-slate-400 font-medium"><i class="fa-regular fa-calendar-check text-uwGold mr-1.5"></i>임박 일정 불러오는 중...</span>
+      </button>
 
-      <!-- Right Action Tools -->
+      <!-- Right: Live Sync, Telegram, Kakao & Mobile View -->
       <div class="flex items-center space-x-2 shrink-0">
-        <!-- 텔레그램 연동 상태 뱃지 (줄바꿈 방지 및 자동 스케일링) -->
-        <div class="hidden md:flex items-center space-x-1.5 px-2.5 xl:px-3 py-1.5 bg-sky-950/70 border border-sky-800/60 rounded-lg text-[clamp(10px,0.75vw,11px)] text-sky-300 whitespace-nowrap shrink-0">
-          <i class="fa-brands fa-telegram text-sky-400 text-sm shrink-0"></i>
-          <span class="font-semibold whitespace-nowrap">24h 클라우드 알림 가동중</span>
-          <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse ml-0.5 shrink-0"></span>
-        </div>
-
-        <!-- 카카오톡 알림/공고 공유 바로 실행 버튼 -->
-        <button onclick="triggerDesktopKakaoShare('dday')" 
-          class="flex items-center space-x-1.5 px-3 py-2 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-xs font-extrabold rounded-lg shadow-md transition active:scale-95 whitespace-nowrap shrink-0" title="카카오톡 실행 및 공유자 선택">
-          <i class="fa-solid fa-comment text-sm shrink-0"></i>
-          <span class="whitespace-nowrap">카카오톡 알림 공유</span>
+        <button onclick="handleLiveSync()" id="btn-live-sync"
+          class="hidden md:flex items-center space-x-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700/80 transition active:scale-95 whitespace-nowrap"
+          title="SimplifyJobs 북미 인턴십 실시간 수집 및 일정 동기화">
+          <i id="sync-icon" class="fa-solid fa-arrows-rotate text-emerald-400 text-xs"></i>
+          <span id="sync-label" class="font-quant text-[11px]">실시간 동기화</span>
         </button>
 
-        <!-- 모바일 뷰 시뮬레이터 & QR 열기 버튼 -->
-        <button onclick="openMobilePreviewModal()" 
-          class="flex items-center space-x-1.5 px-3 xl:px-3.5 py-2 bg-uwGold hover:bg-uwGoldHover text-black text-xs font-extrabold rounded-lg shadow-md transition active:scale-95 whitespace-nowrap shrink-0">
-          <i class="fa-solid fa-mobile-screen-button text-sm shrink-0"></i>
-          <span class="whitespace-nowrap">스마트폰 모바일 뷰 (미리보기/QR)</span>
+        <button onclick="handleTelegramSend('dday')"
+          class="hidden sm:flex items-center space-x-1.5 px-2.5 py-1.5 bg-sky-950/60 hover:bg-sky-900/70 text-sky-300 text-xs font-semibold rounded-lg border border-sky-800/60 transition active:scale-95 whitespace-nowrap"
+          title="텔레그램 알림 즉시 발송 테스트">
+          <i class="fa-brands fa-telegram text-sky-400 text-sm"></i>
+          <span class="hidden lg:inline">24h 알림봇</span>
+          <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+        </button>
+
+        <button onclick="triggerDesktopKakaoShare('dday')"
+          class="flex items-center space-x-1.5 px-3 py-1.5 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-xs font-extrabold rounded-lg shadow transition active:scale-95 whitespace-nowrap"
+          title="카카오톡 친구/단톡방 공유">
+          <i class="fa-solid fa-comment text-xs"></i>
+          <span>카톡 공유</span>
+        </button>
+
+        <button onclick="openMobilePreviewModal()"
+          class="flex items-center space-x-1.5 px-3 py-1.5 bg-uwGold hover:bg-uwGoldHover text-slate-950 text-xs font-extrabold rounded-lg shadow transition active:scale-95 whitespace-nowrap">
+          <i class="fa-solid fa-mobile-screen-button text-xs"></i>
+          <span>모바일 앱 / QR</span>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- MAIN CONTAINER (3-COLUMN DESKTOP GRID) -->
-  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-6">
+  <!-- MAIN WORKSPACE -->
+  <main class="max-w-[1400px] mx-auto px-5 py-5 flex-1 w-full space-y-5">
 
-    <!-- 1. TOP KPI METRIC CARDS (반응형 화면 맞춤 유체 자동 스케일링) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[clamp(8px,1vw,16px)]">
-      
-      <!-- Card 1: 1학년 평균 시급 -->
-      <div class="bg-uwDarkSlate/80 p-[clamp(12px,1.1vw,18px)] rounded-xl border border-gray-800 shadow relative overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-gray-700 min-w-0">
-        <div class="flex items-center justify-between gap-1.5 min-w-0">
-          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="1학년 (Work Term 1) 평균 시급">1학년 (Work Term 1) 평균 시급</span>
-          <span class="text-uwGold bg-uwGold/10 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded font-bold whitespace-nowrap shrink-0">Official Stat</span>
+    <!-- 1. HERO SEQUENCE RAIL: 1st Year (2026) -> First Co-op (2028) -->
+    <section class="uw-panel rounded-2xl p-4">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-3 mb-3 border-b border-slate-800/80">
+        <div class="flex items-center flex-wrap gap-2">
+          <span class="px-2.5 py-0.5 rounded-md bg-uwGold/15 text-uwGold border border-uwGold/30 text-xs font-bold">
+            Co-op Sequence Map
+          </span>
+          <h2 class="text-sm font-bold text-white" id="seq-headline">
+            Honours Math 1학년 재학 (2026–2027) → 2028년 첫 공식 Co-op (Work Term 1) 로드맵
+          </h2>
         </div>
-        <div class="mt-[clamp(6px,0.6vw,10px)] flex items-baseline space-x-1.5 min-w-0">
-          <span class="text-[clamp(20px,1.65vw,28px)] font-black text-white leading-tight tracking-tight whitespace-nowrap">$23.40</span>
-          <span class="text-[clamp(10px,0.72vw,12px)] text-gray-400 whitespace-nowrap">CAD / hr</span>
-        </div>
-        <p class="text-[clamp(9.5px,0.72vw,11.5px)] text-emerald-400 mt-[clamp(4px,0.4vw,8px)] flex items-center min-w-0 truncate" title="Term 6 진입 시 평균 $43.10/hr 까지 상승">
-          <i class="fa-solid fa-arrow-trend-up mr-1 shrink-0"></i>
-          <span class="truncate">Term 6 진입 시 평균 $43.10/hr 까지 상승</span>
-        </p>
-        <div class="absolute -right-2 -bottom-2 opacity-10 text-uwGold text-[clamp(36px,3.2vw,54px)] pointer-events-none select-none">
-          <i class="fa-solid fa-dollar-sign"></i>
-        </div>
-      </div>
-
-      <!-- Card 2: 코옵 취업 성공률 -->
-      <div class="bg-uwDarkSlate/80 p-[clamp(12px,1.1vw,18px)] rounded-xl border border-gray-800 shadow relative overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-gray-700 min-w-0">
-        <div class="flex items-center justify-between gap-1.5 min-w-0">
-          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="수학과 Co-op 취업 성공률">수학과 Co-op 취업 성공률</span>
-          <span class="text-emerald-400 bg-emerald-500/10 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded font-bold whitespace-nowrap shrink-0">Top Tier</span>
-        </div>
-        <div class="mt-[clamp(6px,0.6vw,10px)] flex items-baseline space-x-1.5 min-w-0">
-          <span class="text-[clamp(20px,1.65vw,28px)] font-black text-white leading-tight tracking-tight whitespace-nowrap">96.4%</span>
-          <span class="text-[clamp(10px,0.72vw,12px)] text-gray-400 whitespace-nowrap">학부 연계 기준</span>
-        </div>
-        <p class="text-[clamp(9.5px,0.72vw,11.5px)] text-gray-400 mt-[clamp(4px,0.4vw,8px)] truncate" title="WaterlooWorks & 직접 수주(Self-Arranged) 포함">
-          WaterlooWorks & 직접 수주(Self-Arranged) 포함
-        </p>
-        <div class="absolute -right-2 -bottom-2 opacity-10 text-emerald-400 text-[clamp(36px,3.2vw,54px)] pointer-events-none select-none">
-          <i class="fa-solid fa-chart-line"></i>
-        </div>
-      </div>
-
-      <!-- Card 3: 1학년 추천 인턴십 공고 -->
-      <div class="bg-uwDarkSlate/80 p-[clamp(12px,1.1vw,18px)] rounded-xl border border-gray-800 shadow relative overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-gray-700 min-w-0">
-        <div class="flex items-center justify-between gap-1.5 min-w-0">
-          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="1학년 지원 가능 추천 공고">1학년 지원 가능 추천 공고</span>
-          <span id="badge-job-count" class="text-sky-400 bg-sky-500/10 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded font-bold whitespace-nowrap shrink-0">12 Active</span>
-        </div>
-        <div class="mt-[clamp(6px,0.6vw,10px)] flex items-baseline space-x-1.5 min-w-0">
-          <span class="text-[clamp(20px,1.65vw,28px)] font-black text-white leading-tight tracking-tight whitespace-nowrap">12건</span>
-          <span class="text-[clamp(10px,0.72vw,12px)] text-gray-400 whitespace-nowrap truncate">북미 퀀트/빅테크/금융</span>
-        </div>
-        <p class="text-[clamp(9.5px,0.72vw,11.5px)] text-sky-400 mt-[clamp(4px,0.4vw,8px)] truncate" title="🇨🇦 캐나다 8건 | 🇺🇸 미국(비자스폰) 4건">
-          🇨🇦 캐나다 8건 | 🇺🇸 미국(비자스폰) 4건
-        </p>
-        <div class="absolute -right-2 -bottom-2 opacity-10 text-sky-400 text-[clamp(36px,3.2vw,54px)] pointer-events-none select-none">
-          <i class="fa-solid fa-briefcase"></i>
-        </div>
-      </div>
-
-      <!-- Card 4: 텔레그램 연동 상태 (GitHub Actions 24시간 클라우드 가동 반영) -->
-      <div class="bg-uwDarkSlate/80 p-[clamp(12px,1.1vw,18px)] rounded-xl border border-gray-800 shadow relative overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-gray-700 min-w-0">
-        <div class="flex items-center justify-between gap-1.5 min-w-0">
-          <span class="text-[clamp(11px,0.8vw,13px)] font-medium text-gray-300 truncate" title="모바일 텔레그램 24시간 알림">모바일 텔레그램 24h 알림</span>
-          <span id="tg-status-indicator" class="text-emerald-400 bg-emerald-500/15 text-[clamp(9.5px,0.68vw,11.5px)] px-2 py-0.5 rounded-full font-bold whitespace-nowrap shrink-0 border border-emerald-500/30 flex items-center shadow-sm">
-            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse mr-1.5 shrink-0"></span>
-            <span>24h 가동중</span>
+        <div class="flex items-center space-x-3 text-xs text-slate-400">
+          <span id="last-synced-badge" class="font-quant text-[11px] text-slate-400">동기화 확인 중...</span>
+          <span class="text-slate-700">|</span>
+          <span class="text-pink-300 font-semibold">
+            첫 코옵 출근(<span class="font-quant">2028-01-10</span>)까지 <strong class="font-quant text-white px-1.5 py-0.5 rounded bg-mathPink/25 border border-mathPink/40 ml-0.5" data-due-date="2028-01-10">D-?</strong>
           </span>
         </div>
-        <div class="mt-[clamp(6px,0.6vw,10px)] flex items-baseline space-x-1.5 min-w-0">
-          <span class="text-[clamp(17px,1.4vw,23px)] font-black text-white leading-tight tracking-tight whitespace-nowrap">GitHub 무중단 발송</span>
-        </div>
-        <div class="flex items-center justify-between mt-[clamp(4px,0.4vw,8px)] text-[clamp(9.5px,0.72vw,11.5px)] min-w-0">
-          <p class="text-sky-300 truncate flex items-center min-w-0 mr-1" title="매일 09:00 D-Day • 월 10:00 공고 자동 발송 (PC 종료 무관)">
-            <i class="fa-solid fa-cloud mr-1 text-[10px] text-sky-400 shrink-0"></i>
-            <span class="truncate">매일 09:00 발송 (PC꺼짐 무관)</span>
-          </p>
-          <div class="flex items-center space-x-1.5 shrink-0">
-            <button onclick="triggerDesktopKakaoShare('dday')" class="text-[#FEE500] hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-bold" title="카카오톡 바로 실행 및 공유">
-              [카톡 공유]
-            </button>
-            <button onclick="triggerTelegramAlert('dday')" class="text-uwGold hover:underline whitespace-nowrap shrink-0 transition-colors text-[10px] font-semibold" title="지금 즉시 스마트폰으로 테스트 전송">
-              [즉시 전송]
-            </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+        <div class="p-3 rounded-xl border seq-step-active flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="font-quant text-[11px] font-bold text-uwGold">STEP 1 · 2026.09 – 2027.04</span>
+            <span class="px-2 py-0.5 rounded-full bg-uwGold text-slate-950 text-[10px] font-extrabold">현재 학기 (1A/1B)</span>
           </div>
+          <div class="font-bold text-white mt-1.5">1학년 전공 GPA & CWP 비자 확보</div>
+          <p class="text-[11px] text-slate-300 mt-0.5">MATH 135/136 · CS 135/136 고학점, 1학년 Discovery 지원</p>
         </div>
-        <div class="absolute -right-2 -bottom-2 opacity-10 text-sky-400 text-[clamp(36px,3.2vw,54px)] pointer-events-none select-none">
-          <i class="fa-brands fa-telegram"></i>
+
+        <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="font-quant text-[11px] font-bold text-emerald-400">STEP 2 · 2027.05 – 2027.08</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">골든타임</span>
+          </div>
+          <div class="font-bold text-white mt-1.5">Summer Bridge 실전 스펙 도약</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">대외 인턴·URA 연구·SOA P/FM·7~8월 2028 외부 조기공채</p>
+        </div>
+
+        <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="font-quant text-[11px] font-bold text-sky-400">STEP 3 · 2027.09 – 2027.12</span>
+            <span class="px-2 py-0.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 text-[10px] font-bold">2A 리크루팅</span>
+          </div>
+          <div class="font-bold text-white mt-1.5">PD1 수강 & WaterlooWorks Cycle 1</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">CCA 1:1 레쥬메 첨삭 · Cycle 1 본 면접 및 상호 랭킹 매칭</p>
+        </div>
+
+        <div class="p-3 rounded-xl border seq-step-target flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="font-quant text-[11px] font-bold text-pink-300">STEP 4 · 2028 Winter / Spring</span>
+            <span class="px-2 py-0.5 rounded-full bg-mathPink text-white text-[10px] font-extrabold">🎯 첫 Co-op</span>
+          </div>
+          <div class="font-bold text-white mt-1.5">Work Term 1 공식 인턴십 출근</div>
+          <p class="text-[11px] text-slate-300 mt-0.5">4개월 유급 풀타임 근무 · Excellent 평가 및 차기 미국 J-1 도약</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 4 PRECISION KPI TILES (100% Dynamic Data Binding) -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+
+      <!-- KPI 1: Live North American Job Pool -->
+      <div class="uw-panel rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-300">북미 학부 인턴십 실시간 선별</span>
+          <span id="kpi-open-pool-badge" class="font-quant text-[10.5px] px-2 py-0.5 rounded bg-sky-500/15 text-sky-300 border border-sky-500/30 font-bold">
+            Pool 705
+          </span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-2">
+          <span id="kpi-total-jobs" class="font-quant text-2xl font-extrabold text-white">--건</span>
+          <span class="text-xs text-slate-400">유학생 비자 가능 공고</span>
+        </div>
+        <p id="kpi-country-split" class="text-[11.5px] text-sky-300 mt-1.5 font-medium">
+          🇨🇦 캐나다 --건 · 🇺🇸 미국(J-1/F-1) --건
+        </p>
+      </div>
+
+      <!-- KPI 2: Official Waterloo Math Co-op Earnings -->
+      <div class="uw-panel rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-300">워털루 수학과 공식 시급 궤적</span>
+          <span id="kpi-emp-rate" class="font-quant text-[10.5px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">
+            취업률 96.4%
+          </span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-1.5">
+          <span class="font-quant text-2xl font-extrabold text-uwGold">$23.40</span>
+          <span class="text-xs text-slate-400">→</span>
+          <span class="font-quant text-lg font-bold text-white">$43.10</span>
+          <span class="text-[11px] text-slate-400">CAD/hr</span>
+        </div>
+        <p class="text-[11.5px] text-slate-400 mt-1.5">
+          WT1 첫 코옵 평균 → WT6 고학년 평균 (미국 퀀트 별도)
+        </p>
+      </div>
+
+      <!-- KPI 3: Personal Application & Checklist Tracker -->
+      <div class="uw-panel rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-300">내 관심 공고 & 1학년 준비율</span>
+          <span id="kpi-checklist-pct" class="font-quant text-[10.5px] px-2 py-0.5 rounded bg-uwGold/15 text-uwGold border border-uwGold/30 font-bold">
+            0% 완료
+          </span>
+        </div>
+        <div class="mt-2 flex items-center space-x-3">
+          <button onclick="setStatusFilter('BOOKMARKED')" class="text-left group">
+            <span class="text-[11px] text-slate-400 block group-hover:text-uwGold">⭐ 관심 저장</span>
+            <span id="kpi-bookmarked-count" class="font-quant text-xl font-extrabold text-white">0건</span>
+          </button>
+          <span class="text-slate-700">|</span>
+          <button onclick="setStatusFilter('APPLIED')" class="text-left group">
+            <span class="text-[11px] text-slate-400 block group-hover:text-emerald-300">✅ 지원 완료</span>
+            <span id="kpi-applied-count" class="font-quant text-xl font-extrabold text-emerald-400">0건</span>
+          </button>
+        </div>
+        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mt-2">
+          <div id="kpi-checklist-bar" class="h-full bg-gradient-to-r from-uwGold to-mathPink transition-all duration-300" style="width: 28%"></div>
         </div>
       </div>
 
-    </div>
+      <!-- KPI 4: Next Urgent Milestone & Notification Actions -->
+      <div class="uw-panel rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-300">가장 가까운 핵심 학사·비자 일정</span>
+          <span id="kpi-next-dday-badge" class="font-quant text-[10.5px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold">
+            D-?
+          </span>
+        </div>
+        <div id="kpi-next-dday-title" class="mt-2 text-sm font-bold text-white line-clamp-1">
+          일정 불러오는 중...
+        </div>
+        <div class="flex items-center justify-between mt-1.5 text-[11px]">
+          <span id="kpi-next-dday-date" class="font-quant text-slate-400">----</span>
+          <div class="flex items-center space-x-2">
+            <button onclick="triggerDesktopKakaoShare('jobs')" class="text-[#FEE500] hover:underline font-bold">[공고 카톡공유]</button>
+            <button onclick="handleTelegramSend('jobs')" class="text-sky-300 hover:underline font-semibold">[공고 텔레그램]</button>
+          </div>
+        </div>
+      </div>
 
-    <!-- 2. MAIN 3-COLUMN CONTENT GRID -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    </section>
 
-      <!-- LEFT COLUMN: INTERNSHIP & CO-OP POSTINGS (Col Span: 6) -->
-      <section class="lg:col-span-6 bg-uwDarkSlate/70 rounded-2xl border border-gray-800 p-5 flex flex-col">
-        
-        <!-- Header & Filter Bar -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-gray-800 gap-3">
+    <!-- 3. MAIN ASYMMETRIC 2-ZONE WORKSPACE (Left 7 Cols: Jobs | Right 5 Cols: 4-Tab Intelligence Hub) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+      <!-- ================================================================= -->
+      <!-- LEFT 7 COLUMNS: LIVE NORTH AMERICAN INTERNSHIP EXPLORER & TRACKER -->
+      <!-- ================================================================= -->
+      <section class="lg:col-span-7 uw-panel rounded-2xl p-5 flex flex-col space-y-3.5">
+
+        <!-- Title + Country Switch -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 class="text-base font-bold text-white flex items-center">
-              <i class="fa-solid fa-magnifying-glass text-uwGold mr-2"></i>
-              수학과 1학년 추천 인턴십 & 코옵 공고
-            </h2>
-            <p class="text-xs text-gray-400">WaterlooWorks, RippleMatch, Handshake 공공 데이터 연계</p>
+            <div class="flex items-center space-x-2">
+              <h2 class="text-base font-extrabold text-white">실시간 북미 인턴십 · Co-op 탐색기</h2>
+              <span id="badge-filtered-count" class="font-quant px-2 py-0.5 text-[11px] font-bold rounded-md bg-uwGold/15 text-uwGold border border-uwGold/30">
+                0 Active
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              2027 여름 대외 인턴십 실전 지원 및 2028 첫 코옵 요구 기술스택·시급 벤치마킹 (태그 클릭 시 즉시 검색)
+            </p>
           </div>
-          <!-- Country Filter -->
-          <div class="flex items-center space-x-1 bg-gray-900/90 p-1 rounded-lg border border-gray-700/60 text-xs">
-            <button onclick="setCountryFilter('ALL')" id="filter-ctry-all" class="px-2.5 py-1 rounded-md font-semibold bg-uwGold text-black shadow">전체</button>
-            <button onclick="setCountryFilter('CA')" id="filter-ctry-ca" class="px-2.5 py-1 rounded-md font-semibold text-gray-400 hover:text-white">🇨🇦 캐나다</button>
-            <button onclick="setCountryFilter('US')" id="filter-ctry-us" class="px-2.5 py-1 rounded-md font-semibold text-gray-400 hover:text-white">🇺🇸 미국</button>
+
+          <div class="flex items-center space-x-1 bg-slate-900 p-1 rounded-lg border border-slate-800 text-xs shrink-0">
+            <button onclick="setCountryFilter('ALL')" id="filter-ctry-all" class="px-2.5 py-1 rounded-md font-bold bg-uwGold text-slate-950">전체</button>
+            <button onclick="setCountryFilter('CA')" id="filter-ctry-ca" class="px-2.5 py-1 rounded-md font-semibold text-slate-400 hover:text-white">🇨🇦 캐나다</button>
+            <button onclick="setCountryFilter('US')" id="filter-ctry-us" class="px-2.5 py-1 rounded-md font-semibold text-slate-400 hover:text-white">🇺🇸 미국</button>
           </div>
         </div>
 
-        <!-- Track Filter Pills -->
-        <div class="flex flex-wrap gap-1.5 py-3 border-b border-gray-800/80 text-xs">
-          <button onclick="setTrackFilter('ALL')" id="track-btn-all" class="px-3 py-1 rounded-full bg-gray-800 text-uwGold font-bold border border-uwGold/40">전체 직무</button>
-          <button onclick="setTrackFilter('quant')" id="track-btn-quant" class="px-3 py-1 rounded-full bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800">📊 퀀트/트레이딩</button>
-          <button onclick="setTrackFilter('data_ai')" id="track-btn-data_ai" class="px-3 py-1 rounded-full bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800">🤖 데이터/AI</button>
-          <button onclick="setTrackFilter('software')" id="track-btn-software" class="px-3 py-1 rounded-full bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800">💻 소프트웨어</button>
-          <button onclick="setTrackFilter('actuary')" id="track-btn-actuary" class="px-3 py-1 rounded-full bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800">📑 보험계리/리스크</button>
+        <!-- Search Input + Sort Dropdown -->
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+            <input id="job-search-input" type="text" oninput="handleSearchInput(this.value)"
+              placeholder="기업명, 직무, 도시(Toronto, NYC), 기술(Python, C++, SOA, Risk) 검색..."
+              class="w-full bg-slate-950/90 border border-slate-800 focus:border-uwGold rounded-xl pl-8 pr-8 py-2 text-xs text-white placeholder-slate-500 focus:outline-none">
+            <button id="btn-clear-search" onclick="clearSearchInput()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+              ✕
+            </button>
+          </div>
+
+          <select id="job-sort-select" onchange="handleSortChange(this.value)"
+            class="bg-slate-950/90 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 font-semibold focus:outline-none focus:border-uwGold shrink-0">
+            <option value="recent">정렬: 최신 등록순</option>
+            <option value="deadline">정렬: 마감 임박순</option>
+            <option value="pay">정렬: 시급 높은순 (환율반영)</option>
+          </select>
         </div>
 
-        <!-- Postings Scrollable List -->
-        <div id="job-postings-list" class="flex-1 overflow-y-auto max-h-[620px] custom-scrollbar space-y-3 pt-3 pr-1">
-          <!-- Javascript 로 동적 렌더링 -->
-          <div class="text-center py-12 text-gray-500 text-sm">
-            <i class="fa-solid fa-spinner fa-spin mr-2"></i> 공고 데이터를 불러오는 중...
+        <!-- Personal Status Filter + Track Filter Pills -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800/90 text-xs">
+          <!-- Track Pills -->
+          <div class="flex flex-wrap gap-1.5" id="track-filter-bar">
+            <button onclick="setTrackFilter('ALL')" data-track="ALL" class="px-2.5 py-1 rounded-lg bg-slate-800 text-uwGold font-bold border border-uwGold/40">전체 직무</button>
+            <button onclick="setTrackFilter('quant')" data-track="quant" class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800">퀀트·금융</button>
+            <button onclick="setTrackFilter('data_ai')" data-track="data_ai" class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800">데이터·AI</button>
+            <button onclick="setTrackFilter('software')" data-track="software" class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800">소프트웨어</button>
+            <button onclick="setTrackFilter('actuary')" data-track="actuary" class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800">보험계리·리스크</button>
+          </div>
+
+          <!-- Personal Bookmark / Applied Filter -->
+          <div class="flex items-center space-x-1 bg-slate-950/80 p-1 rounded-lg border border-slate-800 text-[11px]">
+            <button onclick="setStatusFilter('ALL')" id="status-btn-ALL" class="px-2 py-0.5 rounded font-bold bg-slate-800 text-white">전체</button>
+            <button onclick="setStatusFilter('BOOKMARKED')" id="status-btn-BOOKMARKED" class="px-2 py-0.5 rounded font-medium text-slate-400 hover:text-uwGold">⭐ 관심</button>
+            <button onclick="setStatusFilter('APPLIED')" id="status-btn-APPLIED" class="px-2 py-0.5 rounded font-medium text-slate-400 hover:text-emerald-400">✅ 지원완료</button>
+          </div>
+        </div>
+
+        <!-- Job Postings List -->
+        <div id="job-postings-list" class="space-y-3 max-h-[760px] overflow-y-auto custom-scrollbar pr-1">
+          <div class="text-center py-14 text-slate-500 text-xs">
+            <i class="fa-solid fa-spinner fa-spin mr-2"></i> 실시간 북미 인턴십 데이터를 불러오는 중...
           </div>
         </div>
 
       </section>
 
-      <!-- CENTER COLUMN: WATERLOO CO-OP ROADMAP & VISA GUIDE (Col Span: 3) -->
-      <section class="lg:col-span-3 bg-uwDarkSlate/70 rounded-2xl border border-gray-800 p-5 flex flex-col space-y-5">
-        
-        <!-- Section Header -->
-        <div>
-          <h2 class="text-base font-bold text-white flex items-center">
-            <i class="fa-solid fa-compass text-emerald-400 mr-2"></i>
-            1학년 코옵 준비 로드맵
-          </h2>
-          <p class="text-xs text-gray-400">1A/1B Term 단계별 필수 이수 과제</p>
+      <!-- ================================================================= -->
+      <!-- RIGHT 5 COLUMNS: 4-TAB INTELLIGENCE HUB                           -->
+      <!-- ================================================================= -->
+      <section class="lg:col-span-5 uw-panel rounded-2xl p-5 flex flex-col space-y-4">
+
+        <!-- 4-Tab Switcher -->
+        <div class="grid grid-cols-4 gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+          <button onclick="switchIntelTab('schedule')" id="intel-btn-schedule"
+            class="py-2 px-1.5 rounded-lg font-bold bg-uwGold text-slate-950 transition text-center whitespace-nowrap">
+            📅 일정·할일
+          </button>
+          <button onclick="switchIntelTab('tracks')" id="intel-btn-tracks"
+            class="py-2 px-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition text-center whitespace-nowrap">
+            🧭 4대 트랙
+          </button>
+          <button onclick="switchIntelTab('stats')" id="intel-btn-stats"
+            class="py-2 px-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition text-center whitespace-nowrap">
+            📊 통계·비자
+          </button>
+          <button onclick="switchIntelTab('resources')" id="intel-btn-resources"
+            class="py-2 px-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition text-center whitespace-nowrap">
+            🌐 공식DB(13)
+          </button>
         </div>
 
-        <!-- Roadmap Timeline Cards -->
-        <div id="roadmap-timeline-container" class="space-y-3.5 flex-1 overflow-y-auto max-h-[380px] custom-scrollbar pr-1 text-xs">
-          <!-- Javascript 로 동적 렌더링 -->
+        <!-- =============================================================== -->
+        <!-- SUB-TAB 1: SCHEDULE, PERSISTENT CHECKLIST & 2028 ROADMAP        -->
+        <!-- =============================================================== -->
+        <div id="intel-pane-schedule" class="tab-pane active space-y-4">
+
+          <!-- Persistent Checklist -->
+          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-extrabold text-white flex items-center">
+                <i class="fa-solid fa-list-check text-emerald-400 mr-1.5"></i>
+                1학년 → 2028 첫 코옵 필수 체크리스트 (자동저장)
+              </h3>
+              <span id="checklist-counter" class="font-quant text-[11px] font-bold text-uwGold">0/0</span>
+            </div>
+
+            <div id="desktop-checklist-items" class="space-y-1.5 max-h-52 overflow-y-auto custom-scrollbar pr-1"></div>
+
+            <!-- Add Custom To-Do -->
+            <form onsubmit="handleAddCustomTodo(event)" class="flex gap-1.5 pt-1">
+              <input id="custom-todo-input" type="text" placeholder="개인 목표 추가 (예: STAT 230 예습, SOA Exam P 접수)"
+                class="flex-1 bg-slate-900 border border-slate-800 focus:border-uwGold rounded-lg px-2.5 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none">
+              <button type="submit" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-uwGold text-xs font-bold rounded-lg border border-slate-700 shrink-0">
+                + 추가
+              </button>
+            </form>
+          </div>
+
+          <!-- Full 2026-2028 D-Day Schedule -->
+          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-xs font-extrabold text-white flex items-center">
+                <i class="fa-regular fa-calendar-days text-mathPink mr-1.5"></i>
+                워털루 학사 & 2028 Co-op 전체 D-Day 일정
+              </h3>
+              <div class="flex space-x-1 text-[10.5px]">
+                <button onclick="setScheduleFilter('ALL')" id="sched-f-ALL" class="px-2 py-0.5 rounded bg-slate-800 text-white font-bold">전체</button>
+                <button onclick="setScheduleFilter('short_term')" id="sched-f-short_term" class="px-2 py-0.5 rounded text-slate-400 hover:text-white">1학년 단기</button>
+                <button onclick="setScheduleFilter('target_2028')" id="sched-f-target_2028" class="px-2 py-0.5 rounded text-pink-300 hover:text-white">🎯 2028 코옵</button>
+              </div>
+            </div>
+
+            <div id="desktop-dday-list" class="space-y-2 max-h-64 overflow-y-auto custom-scrollbar pr-1"></div>
+          </div>
+
+          <!-- 4-Phase Master Timeline -->
+          <div class="space-y-2">
+            <h3 class="text-xs font-extrabold text-slate-300 px-0.5">단계별 실행 전략 (Sequence 3 · 2028 WT1 기준)</h3>
+            <div id="roadmap-timeline-container" class="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1"></div>
+          </div>
+
         </div>
 
-        <!-- 비자 및 규정 가이드 박스 -->
-        <div class="p-3.5 bg-gray-900/90 rounded-xl border border-gray-800 space-y-2">
-          <div class="flex items-center justify-between text-xs font-bold text-white">
-            <span class="flex items-center text-amber-300">
-              <i class="fa-solid fa-passport mr-1.5"></i> 비자 & 스폰서십 핵심
-            </span>
-            <span class="text-[10px] text-gray-400">수학과 유학생</span>
-          </div>
-          <div class="text-[11px] text-gray-300 space-y-1.5 leading-relaxed">
-            <div class="p-2 bg-gray-800/60 rounded border border-gray-700/50">
-              <span class="font-semibold text-white">🇨🇦 Co-op Work Permit:</span> 1A 학기 즉시 신청 필요. 학교 발급 Co-op Letter 첨부 시 무료.
-            </div>
-            <div class="p-2 bg-gray-800/60 rounded border border-gray-700/50">
-              <span class="font-semibold text-white">🇺🇸 미국 인턴 J-1:</span> Citadel, Jane Street, Google 등 고용주가 DS-2019 및 비자 전액 스폰서십 제공.
+        <!-- =============================================================== -->
+        <!-- SUB-TAB 2: 4 CAREER TRACKS (MAJORS, COURSES, SKILLS, EMPLOYERS) -->
+        <!-- =============================================================== -->
+        <div id="intel-pane-tracks" class="tab-pane space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-xs font-extrabold text-white">워털루 수학과 4대 핵심 진로 트랙 매트릭스</h3>
+              <p class="text-[11px] text-slate-400">세부전공(2학년 진입), 1학년 권장 과목 및 대표 채용 기업 (클릭 시 좌측 공고 연동)</p>
             </div>
           </div>
+          <div id="career-tracks-container" class="space-y-3 max-h-[680px] overflow-y-auto custom-scrollbar pr-1"></div>
         </div>
 
-      </section>
+        <!-- =============================================================== -->
+        <!-- SUB-TAB 3: OFFICIAL STATS, REGIONAL/SECTOR & 3-STAGE VISA GUIDE -->
+        <!-- =============================================================== -->
+        <div id="intel-pane-stats" class="tab-pane space-y-3.5 max-h-[700px] overflow-y-auto custom-scrollbar pr-1">
 
-      <!-- RIGHT COLUMN: OFFICIAL STATS & 4-PILLAR RESOURCE HUB (Col Span: 3) -->
-      <section class="lg:col-span-3 bg-uwDarkSlate/70 rounded-2xl border border-gray-800 p-5 flex flex-col space-y-5">
-        
-        <!-- Header -->
-        <div>
-          <h2 class="text-base font-bold text-white flex items-center">
-            <i class="fa-solid fa-chart-pie text-sky-400 mr-2"></i>
-            공식 통계 & 리소스 허브
-          </h2>
-          <p class="text-xs text-gray-400">워털루 대학 및 북미 공식 데이터 출처</p>
+          <!-- Chart: Term 1-6 Earnings -->
+          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-white">워털루 수학과 Work Term 1~6 평균 시급 상승 곡선</span>
+              <span class="font-quant text-[11px] text-uwGold font-bold">CAD / hr</span>
+            </div>
+            <div class="h-40 w-full">
+              <canvas id="earningsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Regional & Sector Distribution Bars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <h4 class="text-xs font-bold text-white">코옵 취업 지역 분포</h4>
+              <div id="regional-dist-bars" class="space-y-2 text-[11px]"></div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <h4 class="text-xs font-bold text-white">수학과 진출 산업군 비중</h4>
+              <div id="sector-dist-bars" class="space-y-2 text-[11px]"></div>
+            </div>
+          </div>
+
+          <!-- 3-Stage International Student Visa Strategy -->
+          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-extrabold text-white flex items-center">
+                <i class="fa-solid fa-passport text-uwGold mr-1.5"></i>
+                유학생 북미 비자 3단계 완전 전략 (코옵 → 미국 인턴 → 졸업 후 정착)
+              </h4>
+            </div>
+            <div id="visa-guide-cards" class="space-y-2"></div>
+          </div>
+
         </div>
 
-        <!-- Chart 1: Hourly Earnings Trend -->
-        <div class="bg-gray-900/80 p-3.5 rounded-xl border border-gray-800">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-semibold text-gray-300">워털루 수학과 학기별 평균 시급</span>
-            <span class="text-[10px] text-uwGold font-bold">CAD/hr</span>
+        <!-- =============================================================== -->
+        <!-- SUB-TAB 4: ALL 13 OFFICIAL RESOURCES FROM 01. DB                -->
+        <!-- =============================================================== -->
+        <div id="intel-pane-resources" class="tab-pane space-y-3 max-h-[700px] overflow-y-auto custom-scrollbar pr-1">
+          <div>
+            <h3 class="text-xs font-extrabold text-white">01. DB 북미 대학 취업 공식 데이터 & 플랫폼 13선</h3>
+            <p class="text-[11px] text-slate-400">연방 통계청·대학 리포트·신입 전용 채용·H-1B 비자 검증 공식 출처 전수 수록</p>
           </div>
-          <div class="h-36 w-full">
-            <canvas id="earningsChart"></canvas>
-          </div>
-        </div>
-
-        <!-- 4-Pillar Official Resource Links -->
-        <div class="space-y-2 flex-1 overflow-y-auto max-h-[300px] custom-scrollbar pr-1">
-          <div class="text-xs font-semibold text-gray-400 mb-1 flex items-center justify-between">
-            <span>01. DB 공식 사이트 바로가기</span>
-            <i class="fa-solid fa-external-link-alt text-[10px]"></i>
-          </div>
-          
-          <a href="https://collegescorecard.ed.gov/" target="_blank" 
-            class="block p-2.5 bg-gray-900/60 hover:bg-gray-800/80 rounded-lg border border-gray-800 transition text-xs">
-            <div class="font-bold text-white flex items-center justify-between">
-              <span>College Scorecard</span>
-              <span class="text-[10px] text-uwGold bg-uwGold/10 px-1.5 py-0.5 rounded">미국 교육부</span>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-0.5">전공별 실제 졸업생 중위 소득 및 대출 부채 비교</p>
-          </a>
-
-          <a href="https://www.statcan.gc.ca/" target="_blank" 
-            class="block p-2.5 bg-gray-900/60 hover:bg-gray-800/80 rounded-lg border border-gray-800 transition text-xs">
-            <div class="font-bold text-white flex items-center justify-between">
-              <span>Statistics Canada</span>
-              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">캐나다 통계청</span>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-0.5">온타리오 공립대 수학/CS 졸업생 취업률 및 중간 소득</p>
-          </a>
-
-          <a href="https://waterlooworks.uwaterloo.ca/" target="_blank" 
-            class="block p-2.5 bg-gray-900/60 hover:bg-gray-800/80 rounded-lg border border-gray-800 transition text-xs">
-            <div class="font-bold text-white flex items-center justify-between">
-              <span>WaterlooWorks 포털</span>
-              <span class="text-[10px] text-amber-300 bg-amber-500/10 px-1.5 py-0.5 rounded">UW 공식</span>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-0.5">워털루 재학생 전용 코옵 공고 및 인터뷰 매칭</p>
-          </a>
-
-          <a href="https://www.myvisajobs.com/" target="_blank" 
-            class="block p-2.5 bg-gray-900/60 hover:bg-gray-800/80 rounded-lg border border-gray-800 transition text-xs">
-            <div class="font-bold text-white flex items-center justify-between">
-              <span>MyVisaJobs / H1BGrader</span>
-              <span class="text-[10px] text-purple-400 bg-purple-500/10 px-1.5 py-0.5 rounded">비자 스폰서</span>
-            </div>
-            <p class="text-[11px] text-gray-400 mt-0.5">미국 노동부(LCA) 기반 외국인 H-1B 승인 건수 및 급여</p>
-          </a>
+          <div id="official-resources-container" class="space-y-3.5"></div>
         </div>
 
       </section>
@@ -349,63 +474,55 @@
 
   </main>
 
-  <!-- TOAST NOTIFICATION MODAL -->
-  <div id="toast-modal" class="fixed bottom-6 right-6 max-w-sm bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition duration-300 flex items-start space-x-3">
-    <div id="toast-icon" class="text-uwGold text-lg mt-0.5">
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-modal" class="fixed bottom-6 right-6 max-w-sm bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition duration-300 flex items-start space-x-3 pointer-events-none">
+    <div id="toast-icon" class="text-uwGold text-base mt-0.5">
       <i class="fa-solid fa-circle-check"></i>
     </div>
     <div class="flex-1">
       <div id="toast-title" class="text-xs font-bold">알림</div>
-      <div id="toast-body" class="text-xs text-gray-300 mt-0.5">메시지 내용</div>
+      <div id="toast-body" class="text-[11.5px] text-slate-300 mt-0.5 leading-snug">메시지 내용</div>
     </div>
-    <button onclick="hideToast()" class="text-gray-400 hover:text-white text-xs">✕</button>
   </div>
 
   <!-- INTERACTIVE SMARTPHONE SIMULATOR & QR CODE MODAL -->
   <div id="mobile-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-gray-900 border border-gray-700 rounded-3xl max-w-4xl w-full p-6 shadow-2xl relative flex flex-col md:flex-row gap-6 items-center max-h-[95vh] overflow-y-auto">
-      
-      <!-- 닫기 버튼 -->
-      <button onclick="closeMobilePreviewModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-base w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center transition border border-gray-700 hover:border-gray-500 z-10">✕</button>
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full p-6 shadow-2xl relative flex flex-col md:flex-row gap-6 items-center max-h-[95vh] overflow-y-auto">
+      <button onclick="closeMobilePreviewModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-base w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center transition border border-slate-700 z-10">✕</button>
 
-      <!-- 왼쪽: 실제 스마트폰 프레임 (Live Interactive iPhone Frame) -->
-      <div class="w-[330px] h-[670px] bg-black rounded-[44px] border-[8px] border-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden flex flex-col ring-1 ring-white/10 shrink-0">
-        <!-- iPhone Dynamic Island -->
-        <div class="h-6 bg-slate-900 flex justify-center items-center shrink-0">
-          <div class="w-20 h-3.5 bg-black rounded-full flex items-center justify-end pr-1.5 space-x-1">
+      <!-- Live Mobile Simulator Frame -->
+      <div class="w-[340px] h-[690px] bg-black rounded-[44px] border-[8px] border-slate-800 shadow-2xl relative overflow-hidden flex flex-col ring-1 ring-white/10 shrink-0">
+        <div class="h-6 bg-slate-950 flex justify-center items-center shrink-0">
+          <div class="w-20 h-3.5 bg-black rounded-full flex items-center justify-end pr-1.5">
             <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
           </div>
         </div>
-        <!-- Live Mobile Iframe -->
-        <iframe src="mobile_dashboard.html" class="w-full flex-1 border-0 bg-[#0B0F19]" id="mobile-preview-iframe"></iframe>
-        <!-- iPhone Home Bar Indicator -->
-        <div class="h-4 bg-slate-900 flex justify-center items-center shrink-0">
-          <div class="w-24 h-1 bg-gray-600 rounded-full"></div>
+        <iframe src="mobile_dashboard.html" class="w-full flex-1 border-0 bg-[#070A12]" id="mobile-preview-iframe" title="모바일 앱 미리보기"></iframe>
+        <div class="h-4 bg-slate-950 flex justify-center items-center shrink-0">
+          <div class="w-24 h-1 bg-slate-700 rounded-full"></div>
         </div>
       </div>
 
-      <!-- 오른쪽: 모바일 사용 가이드 및 QR 코드 연동 -->
+      <!-- QR Code & Mobile Access Guide -->
       <div class="flex-1 space-y-4 text-white">
         <div>
-          <span class="px-2.5 py-1 bg-uwGold/20 text-uwGold text-xs font-bold rounded-full border border-uwGold/30">
-            📱 스마트폰 실시간 시뮬레이터
+          <span class="px-2.5 py-1 bg-mathPink/20 text-pink-300 text-xs font-bold rounded-full border border-mathPink/40">
+            📱 스마트폰 PWA 모바일 웹앱
           </span>
-          <h3 class="text-xl font-bold mt-2 text-white">Waterloo Math 모바일 전용 앱</h3>
-          <p class="text-xs text-gray-300 mt-1 leading-relaxed">
-            좌측 스마트폰 기기 프레임에서 **하단 4대 탭(홈, 공고, 통계, 알림)**을 직접 터치/클릭하여 모바일 앱을 즉시 체험해 보실 수 있습니다.
+          <h3 class="text-xl font-extrabold mt-2 text-white">Waterloo Math 2028 모바일 앱</h3>
+          <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+            좌측 시뮬레이터에서 하단 5대 탭(홈 · 공고 · 트랙 · 통계/DB · 알림)을 직접 클릭해 보거나, 스마트폰 카메라로 아래 QR 코드를 스캔하세요. 관심 공고와 체크리스트가 실시간 연동됩니다.
           </p>
         </div>
 
-        <!-- QR 코드 & 실기기 접속 안내 박스 (아이폰 & 안드로이드 완벽 호환) -->
-        <div class="p-4 bg-gray-800/90 rounded-2xl border border-gray-700 space-y-3">
+        <div class="p-4 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-3">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-gray-200 flex items-center">
-              <i class="fa-solid fa-qrcode text-uwGold mr-2 text-base"></i>
-              내 스마트폰 카메라로 QR 스캔
+            <span class="text-xs font-bold text-slate-200 flex items-center">
+              <i class="fa-solid fa-qrcode text-uwGold mr-2 text-base"></i> 스마트폰 카메라 QR 스캔
             </span>
             <div class="flex items-center space-x-1.5 text-[10px]">
-              <span class="px-1.5 py-0.5 bg-blue-500/20 text-blue-300 font-semibold rounded border border-blue-500/30">🍎 아이폰 Safari</span>
-              <span class="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 font-semibold rounded border border-emerald-500/30">🤖 안드로이드 Chrome</span>
+              <span class="px-1.5 py-0.5 bg-sky-500/20 text-sky-300 font-semibold rounded border border-sky-500/30">iOS Safari</span>
+              <span class="px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 font-semibold rounded border border-emerald-500/30">Android Chrome</span>
             </div>
           </div>
 
@@ -413,183 +530,771 @@
             <div class="w-32 h-32 bg-white p-1.5 rounded-xl shrink-0 flex items-center justify-center shadow-lg">
               <img id="qr-code-img" src="" alt="QR Code" class="w-full h-full object-contain">
             </div>
-            <div class="space-y-2 text-xs flex-1">
-              <div class="space-y-1 bg-gray-900/90 p-2.5 rounded-xl border border-gray-800">
+            <div class="space-y-2 text-xs flex-1 min-w-0">
+              <div class="space-y-1 bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
                 <div class="flex items-center justify-between">
                   <span class="text-[10px] font-bold text-emerald-400 flex items-center">
                     <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse mr-1"></span>
-                    24시간 365일 클라우드 주소
+                    24/7 무중단 접속 주소
                   </span>
-                  <span class="text-[9.5px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 rounded font-semibold">PC 종료 무관</span>
+                  <span class="text-[9.5px] px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 rounded font-semibold">PWA 설치 지원</span>
                 </div>
-                <div class="p-2 bg-gray-950 rounded-lg border border-gray-700 font-mono text-[10px] text-sky-300 break-all select-all font-semibold" id="mobile-url-display">
+                <div class="p-2 bg-slate-950 rounded-lg border border-slate-800 font-quant text-[10px] text-sky-300 break-all select-all" id="mobile-url-display">
                   https://dongfal07.github.io/waterloo-math-career-dashboard/
-                </div>
-                <div class="text-[10px] text-gray-400 leading-snug pt-0.5">
-                  ✓ LTE/5G 어디서든 스캔 시 스마트폰 화면으로 자동 분기<br>
-                  ✓ 컴퓨터가 꺼져 있어도 스마트폰으로 바로 열립니다.
                 </div>
               </div>
 
               <div class="flex items-center space-x-3 pt-0.5 text-xs">
-                <button onclick="copyMobileUrl()" class="text-[11px] text-uwGold hover:underline font-bold flex items-center">
+                <button onclick="copyMobileUrl()" class="text-[11px] text-uwGold hover:underline font-bold">
                   <i class="fa-regular fa-copy mr-1"></i> 주소 복사
                 </button>
-                <span class="text-gray-600">|</span>
-                <button onclick="toggleUrlMode()" id="toggle-url-btn" class="text-[11px] text-gray-400 hover:text-white flex items-center">
-                  <i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 모드로 전환
+                <span class="text-slate-600">|</span>
+                <button onclick="toggleUrlMode()" id="toggle-url-btn" class="text-[11px] text-slate-400 hover:text-white">
+                  <i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 주소로 전환
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 액션 버튼들 -->
         <div class="space-y-2 pt-1">
-          <a href="mobile_dashboard.html" target="_blank" 
-            class="w-full py-2.5 bg-uwGold hover:bg-uwGoldHover text-black font-extrabold text-xs rounded-xl text-center shadow transition flex items-center justify-center space-x-2 active:scale-95">
+          <a href="mobile_dashboard.html" target="_blank"
+            class="w-full py-2.5 bg-uwGold hover:bg-uwGoldHover text-slate-950 font-extrabold text-xs rounded-xl text-center shadow transition flex items-center justify-center space-x-2">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <span>새 브라우저 탭에서 전체 화면으로 열기</span>
+            <span>새 탭에서 모바일 전용 화면 열기</span>
           </a>
-          <button onclick="closeMobilePreviewModal()" 
-            class="w-full py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold rounded-xl border border-gray-700 transition">
-            시뮬레이터 닫기
+          <button onclick="closeMobilePreviewModal()"
+            class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl border border-slate-700 transition">
+            닫기
           </button>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- DESKTOP KAKAOTALK SHARE PREVIEW & COPY MODAL -->
+  <!-- DESKTOP KAKAOTALK SHARE MODAL -->
   <div id="desktop-kakao-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-gray-900 border border-[#FEE500]/50 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 text-white">
-      <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+    <div class="bg-slate-900 border border-[#FEE500]/50 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 text-white">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div class="flex items-center space-x-2.5">
           <div class="w-9 h-9 bg-[#FEE500] rounded-xl flex items-center justify-center text-[#191919] text-lg font-black shadow">
             <i class="fa-solid fa-comment"></i>
           </div>
           <div>
             <h3 class="text-sm font-extrabold text-white" id="d-kakao-modal-title">카카오톡 알림 & 공고 공유</h3>
-            <p class="text-[11px] text-gray-400">텔레그램 알림 원문을 다른 사람의 카카오톡으로 전달합니다</p>
+            <p class="text-[11px] text-slate-400">2028 코옵 마일스톤 및 실시간 북미 인턴십 브리핑을 카톡으로 전달합니다</p>
           </div>
         </div>
-        <button onclick="closeDesktopKakaoModal()" class="w-8 h-8 rounded-full bg-gray-800 text-gray-400 hover:text-white flex items-center justify-center text-sm border border-gray-700">✕</button>
+        <button onclick="closeDesktopKakaoModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm border border-slate-700">✕</button>
       </div>
 
-      <!-- 공유 유형 선택 탭 -->
-      <div class="grid grid-cols-3 gap-2 bg-gray-950 p-1.5 rounded-xl border border-gray-800 text-xs">
-        <button onclick="switchDesktopKakaoType('dday')" id="dk-tab-dday" class="py-2 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition">
-          📅 D-Day 전체 브리핑
-        </button>
-        <button onclick="switchDesktopKakaoType('jobs')" id="dk-tab-jobs" class="py-2 rounded-lg font-medium text-gray-400 hover:text-white transition">
-          💼 추천 인턴십 브리핑
-        </button>
-        <button onclick="switchDesktopKakaoType('link')" id="dk-tab-link" class="py-2 rounded-lg font-medium text-gray-400 hover:text-white transition">
-          📱 모바일 앱 링크
-        </button>
+      <div class="grid grid-cols-3 gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800 text-xs">
+        <button onclick="switchDesktopKakaoType('dday')" id="dk-tab-dday" class="py-2 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition">📅 D-Day 일정</button>
+        <button onclick="switchDesktopKakaoType('jobs')" id="dk-tab-jobs" class="py-2 rounded-lg font-medium text-slate-400 hover:text-white transition">💼 추천 공고</button>
+        <button onclick="switchDesktopKakaoType('link')" id="dk-tab-link" class="py-2 rounded-lg font-medium text-slate-400 hover:text-white transition">📱 포털 링크</button>
       </div>
 
-      <!-- 메시지 미리보기 영역 -->
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 max-h-56 overflow-y-auto custom-scrollbar">
-        <pre id="d-kakao-preview-text" class="text-xs text-gray-200 whitespace-pre-wrap font-sans leading-relaxed select-all"></pre>
+      <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 max-h-56 overflow-y-auto custom-scrollbar">
+        <pre id="d-kakao-preview-text" class="text-xs text-slate-200 whitespace-pre-wrap font-sans leading-relaxed select-all"></pre>
       </div>
 
-      <!-- 카카오 공식 SDK (친구/채팅방 선택창 즉시 실행) 1회 설정 박스 -->
-      <div class="bg-gray-950/90 border border-[#FEE500]/40 rounded-xl p-3.5 space-y-2">
+      <div class="bg-slate-950/90 border border-[#FEE500]/30 rounded-xl p-3 space-y-2">
         <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-[#FEE500] flex items-center">
-            <i class="fa-solid fa-bolt mr-1.5"></i>버튼 클릭 시 바로 '카카오톡 공유자(친구/단톡방) 선택창' 띄우기
-          </span>
-          <a href="https://developers.kakao.com/console/app" target="_blank" class="text-sky-400 hover:underline font-semibold text-[11px]">
-            카카오 디벨로퍼스에서 키 복사(30초) ↗
-          </a>
+          <span class="font-bold text-[#FEE500]"><i class="fa-solid fa-bolt mr-1.5"></i>카카오 JavaScript SDK 키 설정</span>
+          <a href="https://developers.kakao.com/console/app" target="_blank" class="text-sky-400 hover:underline text-[11px]">카카오 디벨로퍼스 ↗</a>
         </div>
         <div class="flex space-x-2">
-          <input id="d-kakao-js-key-input" type="text" placeholder="카카오 디벨로퍼스 [앱 키] → [JavaScript 키] (32자리) 붙여넣기" 
-            class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FEE500]">
-          <button onclick="saveDesktopKakaoJsKey()" class="px-4 py-2 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold text-xs rounded-lg shrink-0 active:scale-95 transition shadow">
-            저장 및 친구 선택창 열기
+          <input id="d-kakao-js-key-input" type="text" placeholder="JavaScript 키(32자리)"
+            class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-[#FEE500]">
+          <button onclick="saveDesktopKakaoJsKey()" class="px-3.5 py-1.5 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold text-xs rounded-lg shrink-0">
+            저장 및 공유
           </button>
         </div>
-        <p id="d-kakao-key-status" class="text-[11px] text-gray-400 leading-snug">
-          💡 카카오 디벨로퍼스 [플랫폼 → Web 사이트 도메인]에 <code class="text-sky-300">http://localhost:8080</code> 과 <code class="text-sky-300">https://dongfal07.github.io</code> 등록 후 JavaScript 키를 1회 저장하시면, 이후 버튼 클릭 즉시 카카오톡 친구/채팅방 선택창이 바로 열립니다.
-        </p>
+        <p id="d-kakao-key-status" class="text-[11px] text-slate-400"></p>
       </div>
 
-      <!-- 액션 버튼 -->
-      <div class="space-y-2.5 pt-1">
-        <button onclick="executeDesktopNativeShare()" class="w-full py-3 bg-[#FEE500] hover:bg-[#FDD835] active:scale-95 text-[#191919] text-xs font-extrabold rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
-          <i class="fa-solid fa-comment text-sm"></i>
-          <span>지금 카카오톡 실행 & 공유자 선택하기</span>
+      <div class="space-y-2 pt-1">
+        <button onclick="executeDesktopNativeShare()" class="w-full py-2.5 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] text-xs font-extrabold rounded-xl shadow transition flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-comment"></i>
+          <span>카카오톡 공유자 선택창 열기</span>
         </button>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button onclick="copyDesktopKakaoText(true)" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[#FEE500] text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
-            <i class="fa-regular fa-copy"></i>
-            <span>전문 복사 후 PC 카톡 열기</span>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="copyDesktopKakaoText(true)" class="py-2 bg-slate-800 hover:bg-slate-700 text-[#FEE500] text-xs font-bold rounded-xl border border-slate-700">
+            복사 후 PC 카톡 실행
           </button>
-          <button onclick="copyDesktopKakaoText(false)" class="py-2.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-gray-200 text-xs font-bold rounded-xl border border-gray-700 transition flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-check"></i>
-            <span>클립보드에만 복사</span>
+          <button onclick="copyDesktopKakaoText(false)" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700">
+            클립보드 텍스트 복사
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- Shared Core Engine -->
+  <script src="assets/uw-core.js"></script>
+
+  <!-- Desktop View Controller -->
   <script>
-    // 스마트폰 접속용 24시간 클라우드 및 로컬 IP 설정
-    const cloudUrl = "https://dongfal07.github.io/waterloo-math-career-dashboard/";
-    let isCloudMode = true;
-    let serverLocalIp = "192.168.50.119";
-    let serverPort = "8080";
+    const state = {
+      data: { profile: {}, postings: [], resources: {} },
+      country: 'ALL',
+      track: 'ALL',
+      status: 'ALL',
+      query: '',
+      sortBy: 'recent',
+      intelTab: 'schedule',
+      scheduleFilter: 'ALL',
+      kakaoType: 'dday',
+      kakaoJobId: null,
+      isCloudQr: true,
+      localIp: '127.0.0.1',
+      localPort: '8080',
+      chartInstance: null
+    };
 
-    // 모바일 프리뷰 모달 제어
-    async function openMobilePreviewModal() {
-      const modal = document.getElementById('mobile-modal');
-      modal.classList.remove('hidden');
+    document.addEventListener('DOMContentLoaded', async () => {
+      state.data = await UWCore.loadAllData('../data');
+      await UWCore.syncKakaoKeyFromServer();
+      renderAll();
+      UWCore.updateAllDDayNodes();
+      setInterval(UWCore.updateAllDDayNodes, 60 * 1000);
 
-      // 서버 API에서 실제 로컬 네트워크 IP 조회
-      try {
-        const res = await fetch('/api/server-info');
-        if (res.ok) {
-          const info = await res.json();
-          if (info.local_ip && info.local_ip !== "127.0.0.1") {
-            serverLocalIp = info.local_ip;
-          }
-          if (info.port) {
-            serverPort = info.port;
-          }
-        }
-      } catch (e) {
-        // 서버 미응답 시 기존 감지된 로컬 IP 유지
+      window.addEventListener('uw-state-change', () => {
+        renderKpis();
+        renderPostings();
+        renderChecklist();
+      });
+      window.addEventListener('storage', () => {
+        renderKpis();
+        renderPostings();
+        renderChecklist();
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const shareParam = params.get('share');
+      if (shareParam === 'dday' || shareParam === 'jobs' || shareParam === 'link') {
+        triggerDesktopKakaoShare(shareParam);
+      }
+    });
+
+    function renderAll() {
+      renderHeaderAndMeta();
+      renderKpis();
+      renderTrackButtons();
+      renderPostings();
+      renderChecklist();
+      renderDDaySchedule();
+      renderRoadmap();
+      renderCareerTracks();
+      renderStatsAndVisa();
+      renderOfficialResources();
+    }
+
+    function renderHeaderAndMeta() {
+      const meta = state.data.profile.live_sync_metadata || {};
+      const syncedEl = document.getElementById('last-synced-badge');
+      if (syncedEl) {
+        const ts = meta.last_synced_kst ? meta.last_synced_kst.replace(':00 KST', ' KST') : '최신 스냅샷';
+        syncedEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>동기화: ${UWCore.escapeHtml(ts)}`;
       }
 
-      updateMobileQrCode();
+      const upcoming = UWCore.getUpcomingAlerts(state.data.profile.d_day_alerts || []);
+      const strip = document.getElementById('header-dday-strip');
+      if (strip && upcoming.length > 0) {
+        const top2 = upcoming.slice(0, 2);
+        strip.innerHTML = top2.map((item, idx) => {
+          const shortTitle = item.title.replace(/^\[[^\]]+\]\s*/, '').slice(0, 22);
+          const colorCls = item.dday.isUrgent
+            ? 'bg-rose-950/80 text-rose-300 border-rose-800/70'
+            : 'bg-amber-950/80 text-amber-200 border-amber-800/70';
+          return `
+            ${idx > 0 ? '<span class="text-slate-700">|</span>' : ''}
+            <span class="flex items-center space-x-1.5">
+              <span class="text-slate-300 font-medium">${UWCore.escapeHtml(shortTitle)}</span>
+              <span class="font-quant font-bold px-1.5 py-0.5 rounded border text-[10.5px] ${colorCls}">${UWCore.escapeHtml(item.dday.label)}</span>
+            </span>
+          `;
+        }).join('');
+      }
     }
 
-    function updateMobileQrCode() {
-      const mobileUrl = isCloudMode 
-        ? cloudUrl 
-        : `http://${serverLocalIp}:${serverPort}/web/mobile_dashboard.html`;
+    function renderKpis() {
+      const activeJobs = UWCore.getActivePostings(state.data.postings);
+      const caCount = activeJobs.filter((j) => j.country === 'CA').length;
+      const usCount = activeJobs.filter((j) => j.country === 'US').length;
+      const liveStats = (state.data.profile.live_sync_metadata || {}).live_jobs_stats || {};
 
-      document.getElementById('mobile-url-display').textContent = mobileUrl;
-      
-      // QR 코드 이미지 갱신
-      const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(mobileUrl)}`;
-      document.getElementById('qr-code-img').src = qrApi;
+      document.getElementById('kpi-total-jobs').textContent = `${activeJobs.length}건`;
+      document.getElementById('kpi-country-split').textContent = `🇨🇦 캐나다 ${caCount}건 · 🇺🇸 미국(J-1/F-1) ${usCount}건`;
+      if (liveStats.total_open_na_roles) {
+        document.getElementById('kpi-open-pool-badge').textContent = `북미 전체 ${liveStats.total_open_na_roles}건`;
+      }
+
+      const empRate = (state.data.profile.coop_statistics || {}).employment_rate || '96.4%';
+      document.getElementById('kpi-emp-rate').textContent = `취업률 ${empRate}`;
+
+      const tracker = UWCore.getTrackerStats(activeJobs);
+      const chk = UWCore.getChecklistState(state.data.profile);
+      document.getElementById('kpi-bookmarked-count').textContent = `${tracker.bookmarkedCount}건`;
+      document.getElementById('kpi-applied-count').textContent = `${tracker.appliedCount}건`;
+      document.getElementById('kpi-checklist-pct').textContent = `${chk.pct}% 완료`;
+      document.getElementById('kpi-checklist-bar').style.width = `${chk.pct}%`;
+
+      const upcoming = UWCore.getUpcomingAlerts(state.data.profile.d_day_alerts || []);
+      if (upcoming.length > 0) {
+        const next = upcoming[0];
+        document.getElementById('kpi-next-dday-badge').textContent = next.dday.label;
+        document.getElementById('kpi-next-dday-title').textContent = next.title;
+        document.getElementById('kpi-next-dday-title').title = next.title;
+        document.getElementById('kpi-next-dday-date').textContent = `목표일: ${next.due_date}`;
+      }
     }
 
-    function toggleUrlMode() {
-      isCloudMode = !isCloudMode;
-      const btn = document.getElementById('toggle-url-btn');
-      if (isCloudMode) {
-        btn.innerHTML = '<i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 모드로 전환';
-        showToast('클라우드 모드', '24시간 무중단 클라우드 주소로 QR 코드가 전환되었습니다.');
+    function renderTrackButtons() {
+      const activeJobs = UWCore.getActivePostings(state.data.postings);
+      const counts = {
+        ALL: activeJobs.length,
+        quant: activeJobs.filter((j) => j.track === 'quant').length,
+        data_ai: activeJobs.filter((j) => j.track === 'data_ai').length,
+        software: activeJobs.filter((j) => j.track === 'software').length,
+        actuary: activeJobs.filter((j) => j.track === 'actuary').length
+      };
+      const labels = {
+        ALL: '전체 직무',
+        quant: '퀀트·금융',
+        data_ai: '데이터·AI',
+        software: '소프트웨어',
+        actuary: '보험계리'
+      };
+      document.querySelectorAll('#track-filter-bar button[data-track]').forEach((btn) => {
+        const t = btn.getAttribute('data-track');
+        const isActive = t === state.track;
+        btn.className = isActive
+          ? 'px-2.5 py-1 rounded-lg bg-uwGold text-slate-950 font-extrabold shadow text-xs'
+          : 'px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800 text-xs font-medium';
+        btn.innerHTML = `${labels[t]} <span class="font-quant text-[10.5px] opacity-80 ml-0.5">${counts[t] || 0}</span>`;
+      });
+    }
+
+    function renderPostings() {
+      const container = document.getElementById('job-postings-list');
+      const filtered = UWCore.filterAndSortPostings(state.data.postings, {
+        country: state.country,
+        track: state.track,
+        status: state.status,
+        query: state.query,
+        sortBy: state.sortBy
+      });
+
+      document.getElementById('badge-filtered-count').textContent = `${filtered.length}건 표시`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-14 px-4 rounded-xl bg-slate-950/50 border border-slate-800/80 space-y-2">
+            <div class="text-slate-400 text-xs font-semibold">조건에 일치하는 인턴십 공고가 없습니다.</div>
+            <p class="text-[11px] text-slate-500">검색어를 지우거나 국가·직무·관심 필터를 '전체'로 초기화해 보세요.</p>
+            <button onclick="resetJobFilters()" class="mt-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-uwGold text-xs font-bold rounded-lg border border-slate-700">
+              필터 전체 초기화
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const trackBadgeMap = {
+        quant: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">퀀트·트레이딩</span>',
+        data_ai: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-fuchsia-500/15 text-pink-300 border border-fuchsia-500/30">데이터·AI</span>',
+        software: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/15 text-sky-300 border border-sky-500/30">소프트웨어</span>',
+        actuary: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">보험계리·리스크</span>'
+      };
+
+      container.innerHTML = filtered.map((job) => {
+        const flag = job.country === 'CA' ? '🇨🇦' : '🇺🇸';
+        const borderAccent = job.isApplied
+          ? 'uw-card-applied'
+          : (job.isBookmarked ? 'uw-card-bookmarked' : '');
+        const ageChip = job.age_label
+          ? `<span class="font-quant px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">${UWCore.escapeHtml(job.age_label)} 전</span>`
+          : '';
+
+        return `
+          <article class="uw-card ${borderAccent} p-4 rounded-xl space-y-2.5">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <div class="flex items-center flex-wrap gap-1.5">
+                  <span class="font-extrabold text-white text-sm">${UWCore.escapeHtml(job.company)}</span>
+                  <span>${flag}</span>
+                  ${trackBadgeMap[job.track] || ''}
+                  ${ageChip}
+                </div>
+                <h3 class="text-xs font-bold text-uwGold mt-1 leading-snug">${UWCore.escapeHtml(job.title)}</h3>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="font-quant text-xs font-extrabold text-emerald-400">${UWCore.escapeHtml(job.hourly_rate)}</div>
+                <div class="font-quant text-[10.5px] text-slate-400 mt-0.5">마감 ${UWCore.escapeHtml(job.deadline)} (${UWCore.escapeHtml(job.dday.label)})</div>
+              </div>
+            </div>
+
+            <p class="text-[11.5px] text-slate-300 leading-relaxed">${UWCore.escapeHtml(job.summary)}</p>
+
+            <div class="flex flex-wrap gap-1 items-center">
+              ${(job.tags || []).map((t) => `
+                <button onclick="filterByTag('${UWCore.escapeHtml(t)}')" title="클릭하여 '${UWCore.escapeHtml(t)}' 검색"
+                  class="px-2 py-0.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-uwGold text-[10px] rounded border border-slate-800 transition">
+                  #${UWCore.escapeHtml(t)}
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+              <div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-slate-400">
+                <span><i class="fa-solid fa-location-dot mr-1 text-slate-500"></i>${UWCore.escapeHtml(job.location)}</span>
+                <span><i class="fa-solid fa-shield-halved mr-1 text-emerald-400"></i>${UWCore.escapeHtml(job.visa_sponsorship)}</span>
+              </div>
+
+              <div class="flex items-center space-x-1.5">
+                <button onclick="onToggleBookmark('${job.id}')"
+                  class="px-2.5 py-1 rounded-lg border text-[11px] font-bold transition ${job.isBookmarked ? 'bg-uwGold/20 text-uwGold border-uwGold/50' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'}"
+                  title="관심 공고 저장">
+                  <i class="${job.isBookmarked ? 'fa-solid' : 'fa-regular'} fa-star mr-0.5"></i>관심
+                </button>
+
+                <button onclick="onToggleApplied('${job.id}')"
+                  class="px-2.5 py-1 rounded-lg border text-[11px] font-bold transition ${job.isApplied ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'}"
+                  title="지원 완료 표시">
+                  <i class="fa-solid fa-check mr-0.5"></i>${job.isApplied ? '지원됨' : '지원체크'}
+                </button>
+
+                <button onclick="shareDesktopJobToKakao('${job.id}')"
+                  class="px-2.5 py-1 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold rounded-lg transition active:scale-95">
+                  카톡
+                </button>
+
+                <a href="${UWCore.escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer"
+                  class="px-3 py-1 bg-uwGold hover:bg-uwGoldHover text-slate-950 font-extrabold rounded-lg transition flex items-center space-x-1">
+                  <span>지원하기</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[9.5px]"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderChecklist() {
+      const chk = UWCore.getChecklistState(state.data.profile);
+      document.getElementById('checklist-counter').textContent = `${chk.doneCount}/${chk.totalCount} 완료 (${chk.pct}%)`;
+      const container = document.getElementById('desktop-checklist-items');
+      container.innerHTML = chk.items.map((item) => `
+        <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-slate-900/70 hover:bg-slate-900 border border-slate-800/70 text-xs">
+          <label class="flex items-start space-x-2.5 cursor-pointer flex-1 min-w-0">
+            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="onToggleCheck('${item.id}', this.checked)"
+              class="mt-0.5 w-4 h-4 rounded accent-[#F5C518] shrink-0">
+            <span class="${item.done ? 'line-through text-slate-500' : 'text-slate-200'} leading-snug">
+              <span class="px-1.5 py-0.2 mr-1 rounded bg-slate-800 text-[10px] font-semibold text-uwGold">${UWCore.escapeHtml(item.phase)}</span>
+              ${UWCore.escapeHtml(item.text)}
+            </span>
+          </label>
+          ${item.isCustom ? `
+            <button onclick="onRemoveCustomTodo('${item.id}')" class="text-slate-500 hover:text-rose-400 text-xs px-1" title="삭제">✕</button>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function renderDDaySchedule() {
+      const upcoming = UWCore.getUpcomingAlerts(state.data.profile.d_day_alerts || []);
+      const filtered = upcoming.filter((a) => {
+        if (state.scheduleFilter === 'ALL') return true;
+        if (state.scheduleFilter === 'target_2028') return a.phase_group === 'target_2028' || String(a.due_date) >= '2027-07-01';
+        return a.phase_group === 'short_term' && String(a.due_date) < '2027-07-01';
+      });
+
+      const listEl = document.getElementById('desktop-dday-list');
+      listEl.innerHTML = filtered.map((a) => {
+        const is2028 = a.phase_group === 'target_2028' || String(a.due_date).startsWith('2028-');
+        const badgeCls = a.dday.isUrgent
+          ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+          : (is2028 ? 'bg-mathPink/20 text-pink-300 border-mathPink/40' : 'bg-slate-800 text-uwGold border-slate-700');
+        return `
+          <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800/80 flex items-center justify-between gap-2.5">
+            <div class="min-w-0">
+              <div class="text-xs font-semibold text-slate-100 leading-snug">${UWCore.escapeHtml(a.title)}</div>
+              <div class="font-quant text-[10.5px] text-slate-400 mt-0.5">${UWCore.escapeHtml(a.due_date)} · ${UWCore.escapeHtml(a.category || '')}</div>
+            </div>
+            <span class="font-quant text-[11px] font-extrabold px-2.5 py-1 rounded-lg border shrink-0 ${badgeCls}">
+              ${UWCore.escapeHtml(a.dday.label)}
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderRoadmap() {
+      const timeline = state.data.profile.waterloo_coop_timeline || [];
+      const container = document.getElementById('roadmap-timeline-container');
+      container.innerHTML = timeline.map((item) => {
+        const isCurrent = item.status === 'In Progress';
+        const isTarget = String(item.status).includes('2028');
+        const pillCls = isCurrent
+          ? 'bg-uwGold text-slate-950 font-extrabold'
+          : (isTarget ? 'bg-mathPink text-white font-extrabold' : 'bg-slate-800 text-slate-300 font-semibold');
+        return `
+          <div class="p-3 rounded-xl bg-slate-950/70 border ${isCurrent ? 'border-uwGold/40' : (isTarget ? 'border-mathPink/40' : 'border-slate-800')} space-y-1.5 text-xs">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-quant text-[11px] font-bold text-slate-300">${UWCore.escapeHtml(item.phase)}</span>
+              <span class="px-2 py-0.5 text-[10px] rounded-full ${pillCls}">${UWCore.escapeHtml(item.status)}</span>
+            </div>
+            <div class="font-bold text-white">${UWCore.escapeHtml(item.title)}</div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">${UWCore.escapeHtml(item.description)}</p>
+            <ul class="space-y-0.5 pt-1 text-[11px] text-slate-300 list-disc list-inside">
+              ${(item.action_items || []).map((act) => `<li>${UWCore.escapeHtml(act)}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCareerTracks() {
+      const tracks = (state.data.profile.student || {}).career_tracks || [];
+      const container = document.getElementById('career-tracks-container');
+      container.innerHTML = tracks.map((tr) => `
+        <div class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800 space-y-2.5 text-xs">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <h4 class="font-extrabold text-white text-sm">${UWCore.escapeHtml(tr.kor_name || tr.name)}</h4>
+              <div class="text-[11px] text-uwGold font-medium">${UWCore.escapeHtml(tr.name)}</div>
+            </div>
+            <button onclick="setTrackFilter('${tr.id}')"
+              class="px-2.5 py-1 rounded-lg bg-uwGold/15 hover:bg-uwGold text-uwGold hover:text-slate-950 border border-uwGold/30 text-[11px] font-bold transition shrink-0">
+              이 트랙 공고 보기 →
+            </button>
+          </div>
+          <p class="text-[11.5px] text-slate-300 leading-relaxed">${UWCore.escapeHtml(tr.description)}</p>
+
+          <div class="space-y-1">
+            <div class="text-[10.5px] font-bold text-slate-400">워털루 추천 세부전공 (2A 선언)</div>
+            <div class="flex flex-wrap gap-1">
+              ${(tr.target_majors || []).map((m) => `<span class="px-2 py-0.5 rounded bg-slate-900 text-pink-300 border border-mathPink/30 text-[10.5px] font-semibold">${UWCore.escapeHtml(m)}</span>`).join('')}
+            </div>
+          </div>
+
+          ${tr.first_year_courses ? `
+            <div class="space-y-1">
+              <div class="text-[10.5px] font-bold text-slate-400">1학년(1A/1B) 핵심 선이수 과목</div>
+              <div class="flex flex-wrap gap-1">
+                ${tr.first_year_courses.map((c) => `<span class="font-quant px-2 py-0.5 rounded bg-slate-900 text-sky-300 border border-slate-800 text-[10px]">${UWCore.escapeHtml(c)}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="space-y-1">
+            <div class="text-[10.5px] font-bold text-slate-400">필수 기술 스택 & 대표 채용사 (클릭 시 검색)</div>
+            <div class="flex flex-wrap gap-1">
+              ${(tr.recommended_skills || []).map((s) => `<span class="px-2 py-0.5 rounded bg-slate-800/90 text-slate-200 text-[10px]">${UWCore.escapeHtml(s)}</span>`).join('')}
+            </div>
+            <div class="flex flex-wrap gap-1 pt-1">
+              ${(tr.top_employers || []).map((emp) => `
+                <button onclick="filterByTag('${UWCore.escapeHtml(emp.split(' ')[0])}')"
+                  class="px-2 py-0.5 rounded bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/25 text-[10px] font-semibold">
+                  🏢 ${UWCore.escapeHtml(emp)}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderStatsAndVisa() {
+      const stats = state.data.profile.coop_statistics || {};
+      const earningsObj = stats.average_hourly_earnings_cad || {};
+      const labels = Object.keys(earningsObj);
+      const values = Object.values(earningsObj);
+
+      const canvas = document.getElementById('earningsChart');
+      if (canvas) {
+        if (state.chartInstance) state.chartInstance.destroy();
+        state.chartInstance = new Chart(canvas.getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: labels.length ? labels.map((l) => l.replace('Work Term ', 'WT')) : ['WT1', 'WT2', 'WT3', 'WT4', 'WT5', 'WT6'],
+            datasets: [{
+              label: '평균 시급 (CAD)',
+              data: values.length ? values : [23.4, 26.85, 30.2, 34.5, 38.8, 43.1],
+              borderColor: '#F5C518',
+              backgroundColor: 'rgba(245, 197, 24, 0.14)',
+              borderWidth: 2.5,
+              tension: 0.3,
+              fill: true,
+              pointBackgroundColor: '#EC4899',
+              pointBorderColor: '#F5C518',
+              pointRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => `$${Number(c.raw).toFixed(2)} CAD / hr` } }
+            },
+            scales: {
+              x: { grid: { color: '#1E293B' }, ticks: { color: '#94A3B8', font: { size: 10 } } },
+              y: { grid: { color: '#1E293B' }, ticks: { color: '#94A3B8', font: { size: 10 }, callback: (v) => `$${v}` } }
+            }
+          }
+        });
+      }
+
+      // Regional Distribution
+      const reg = stats.regional_distribution || {};
+      const regEl = document.getElementById('regional-dist-bars');
+      regEl.innerHTML = Object.entries(reg).map(([k, v]) => {
+        const num = parseInt(String(v).replace(/[^0-9]/g, ''), 10) || 0;
+        return `
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-slate-300 truncate pr-2">${UWCore.escapeHtml(k)}</span>
+              <span class="font-quant font-bold text-uwGold">${num}%</span>
+            </div>
+            <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-uwGold rounded-full" style="width:${num}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Sector Breakdown
+      const sec = stats.faculty_breakdown_percentages || {};
+      const secEl = document.getElementById('sector-dist-bars');
+      secEl.innerHTML = Object.entries(sec).map(([k, v]) => {
+        const num = parseInt(String(v).replace(/[^0-9]/g, ''), 10) || 0;
+        return `
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-slate-300 truncate pr-2">${UWCore.escapeHtml(k)}</span>
+              <span class="font-quant font-bold text-pink-300">${num}%</span>
+            </div>
+            <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-mathPink rounded-full" style="width:${num}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 3-Stage Visa Guide
+      const vg = state.data.profile.visa_guide || {};
+      const visaEl = document.getElementById('visa-guide-cards');
+      visaEl.innerHTML = Object.values(vg).map((v) => `
+        <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1 text-xs">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-white">${UWCore.escapeHtml(v.title)}</span>
+            ${v.badge ? `<span class="px-2 py-0.5 rounded bg-uwGold/15 text-uwGold text-[10px] font-bold shrink-0">${UWCore.escapeHtml(v.badge)}</span>` : ''}
+          </div>
+          <p class="text-[11px] text-slate-300 leading-relaxed">${UWCore.escapeHtml(v.summary)}</p>
+          <p class="text-[11px] text-emerald-300 font-medium pt-0.5">💡 ${UWCore.escapeHtml(v.key_point)}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderOfficialResources() {
+      const cats = (state.data.resources || {}).categories || [];
+      const container = document.getElementById('official-resources-container');
+      container.innerHTML = cats.map((cat) => `
+        <div class="p-3.5 rounded-xl bg-slate-950/75 border border-slate-800 space-y-2.5">
+          <div>
+            <h4 class="text-xs font-extrabold text-uwGold">${UWCore.escapeHtml(cat.name)}</h4>
+            <p class="text-[11px] text-slate-400">${UWCore.escapeHtml(cat.description)}</p>
+          </div>
+          <div class="space-y-2">
+            ${(cat.resources || []).map((r) => `
+              <a href="${UWCore.escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer"
+                class="block p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition space-y-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold text-white">${UWCore.escapeHtml(r.name)} ↗</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 shrink-0">${UWCore.escapeHtml(r.issuer)}</span>
+                </div>
+                <p class="text-[11px] text-slate-300">${UWCore.escapeHtml(r.purpose)}</p>
+                <p class="text-[10.5px] text-pink-300 font-medium">🎯 수학과 활용: ${UWCore.escapeHtml(r.math_action)}</p>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // -------------------------------------------------------------------------
+    // User Interactions
+    // -------------------------------------------------------------------------
+    function setCountryFilter(ctry) {
+      state.country = ctry;
+      ['all', 'ca', 'us'].forEach((c) => {
+        const btn = document.getElementById(`filter-ctry-${c}`);
+        btn.className = c.toUpperCase() === ctry
+          ? 'px-2.5 py-1 rounded-md font-bold bg-uwGold text-slate-950 shadow'
+          : 'px-2.5 py-1 rounded-md font-semibold text-slate-400 hover:text-white';
+      });
+      renderPostings();
+    }
+
+    function setTrackFilter(track) {
+      state.track = track;
+      renderTrackButtons();
+      renderPostings();
+    }
+
+    function setStatusFilter(st) {
+      state.status = st;
+      ['ALL', 'BOOKMARKED', 'APPLIED'].forEach((k) => {
+        const btn = document.getElementById(`status-btn-${k}`);
+        btn.className = k === st
+          ? 'px-2 py-0.5 rounded font-bold bg-uwGold text-slate-950'
+          : 'px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white';
+      });
+      renderPostings();
+    }
+
+    function handleSearchInput(val) {
+      state.query = val;
+      document.getElementById('btn-clear-search').classList.toggle('hidden', !val);
+      renderPostings();
+    }
+
+    function clearSearchInput() {
+      const inp = document.getElementById('job-search-input');
+      inp.value = '';
+      handleSearchInput('');
+    }
+
+    function filterByTag(tagText) {
+      const inp = document.getElementById('job-search-input');
+      inp.value = tagText;
+      state.country = 'ALL';
+      state.track = 'ALL';
+      state.status = 'ALL';
+      setCountryFilter('ALL');
+      setStatusFilter('ALL');
+      renderTrackButtons();
+      handleSearchInput(tagText);
+      inp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetJobFilters() {
+      state.country = 'ALL';
+      state.track = 'ALL';
+      state.status = 'ALL';
+      clearSearchInput();
+      setCountryFilter('ALL');
+      setStatusFilter('ALL');
+      renderTrackButtons();
+      renderPostings();
+    }
+
+    function handleSortChange(val) {
+      state.sortBy = val;
+      renderPostings();
+    }
+
+    function onToggleBookmark(jobId) {
+      const added = UWCore.toggleBookmark(jobId);
+      showToast(added ? '⭐ 관심 공고 저장' : '관심 공고 해제', added ? '상단 [⭐ 관심] 필터에서 모아볼 수 있습니다.' : '관심 목록에서 제외되었습니다.');
+    }
+
+    function onToggleApplied(jobId) {
+      const added = UWCore.toggleApplied(jobId);
+      showToast(added ? '✅ 지원 완료 기록!' : '지원 완료 해제', added ? '지원 파이프라인 현황에 반영되었습니다.' : '미지원 상태로 변경되었습니다.');
+    }
+
+    function switchIntelTab(tab) {
+      state.intelTab = tab;
+      ['schedule', 'tracks', 'stats', 'resources'].forEach((t) => {
+        document.getElementById(`intel-pane-${t}`).classList.toggle('active', t === tab);
+        const btn = document.getElementById(`intel-btn-${t}`);
+        btn.className = t === tab
+          ? 'py-2 px-1.5 rounded-lg font-extrabold bg-uwGold text-slate-950 transition text-center whitespace-nowrap shadow'
+          : 'py-2 px-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition text-center whitespace-nowrap';
+      });
+      if (tab === 'stats') {
+        setTimeout(renderStatsAndVisa, 40);
+      }
+    }
+
+    function setScheduleFilter(f) {
+      state.scheduleFilter = f;
+      ['ALL', 'short_term', 'target_2028'].forEach((k) => {
+        const btn = document.getElementById(`sched-f-${k}`);
+        btn.className = k === f
+          ? 'px-2 py-0.5 rounded bg-uwGold text-slate-950 font-extrabold'
+          : 'px-2 py-0.5 rounded text-slate-400 hover:text-white';
+      });
+      renderDDaySchedule();
+    }
+
+    function onToggleCheck(id, checked) {
+      UWCore.setChecklistDone(id, checked, state.data.profile);
+    }
+
+    function handleAddCustomTodo(e) {
+      e.preventDefault();
+      const inp = document.getElementById('custom-todo-input');
+      if (UWCore.addCustomTodo(inp.value, '개인 목표')) {
+        inp.value = '';
+        showToast('체크리스트 추가 완료', '브라우저에 영구 저장되었습니다.');
+      }
+    }
+
+    function onRemoveCustomTodo(id) {
+      UWCore.removeCustomTodo(id);
+    }
+
+    async function handleLiveSync() {
+      const icon = document.getElementById('sync-icon');
+      const label = document.getElementById('sync-label');
+      icon.classList.add('fa-spin');
+      label.textContent = '수집 중...';
+
+      const res = await UWCore.triggerLiveSync();
+      icon.classList.remove('fa-spin');
+      label.textContent = '실시간 동기화';
+
+      if (res.success) {
+        state.data = await UWCore.loadAllData('../data');
+        renderAll();
+        showToast('실시간 크롤링 동기화 완료!', `북미 오픈 공고 ${res.stats?.total_open_na_roles || ''}건 탐색 · 맞춤 ${res.postings_count}건 최신화`);
       } else {
-        btn.innerHTML = '<i class="fa-solid fa-cloud mr-1"></i> 24h 클라우드 모드로 전환';
-        showToast('로컬 Wi-Fi 모드', `로컬 사설망 주소(http://${serverLocalIp}:${serverPort})로 전환되었습니다.`);
+        showToast('동기화 안내', res.message || '클라우드 자동 동기화 모드입니다.');
+      }
+    }
+
+    async function handleTelegramSend(type) {
+      showToast('텔레그램 전송 요청...', '알림봇으로 브리핑을 발송합니다.');
+      const res = await UWCore.triggerTelegramAlert(type);
+      if (res.success) {
+        showToast(
+          '알림 전송 완료!',
+          res.mode === 'dry-run' ? '모의 발송(Dry-run)으로 정상 출력되었습니다.' : '스마트폰 텔레그램으로 메시지가 전송되었습니다.'
+        );
+      } else {
+        showToast('텔레그램 안내', res.message || res.error || '로컬 서버 실행 시 즉시 전송됩니다.');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Mobile Simulator & QR Modal
+    // -------------------------------------------------------------------------
+    async function openMobilePreviewModal() {
+      document.getElementById('mobile-modal').classList.remove('hidden');
+      if (window.location.protocol !== 'file:') {
+        try {
+          const res = await fetch('/api/server-info');
+          if (res.ok) {
+            const info = await res.json();
+            if (info.local_ip && info.local_ip !== '127.0.0.1') state.localIp = info.local_ip;
+            if (info.port) state.localPort = info.port;
+          }
+        } catch (_) {}
       }
       updateMobileQrCode();
     }
@@ -598,594 +1303,48 @@
       document.getElementById('mobile-modal').classList.add('hidden');
     }
 
+    function updateMobileQrCode() {
+      const url = state.isCloudQr
+        ? UWCore.CLOUD_URL
+        : `http://${state.localIp}:${state.localPort}/web/mobile_dashboard.html`;
+      document.getElementById('mobile-url-display').textContent = url;
+      document.getElementById('qr-code-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+    }
+
+    function toggleUrlMode() {
+      state.isCloudQr = !state.isCloudQr;
+      const btn = document.getElementById('toggle-url-btn');
+      btn.innerHTML = state.isCloudQr
+        ? '<i class="fa-solid fa-wifi mr-1"></i> 로컬 Wi-Fi 주소로 전환'
+        : '<i class="fa-solid fa-cloud mr-1"></i> 24/7 클라우드 주소로 전환';
+      updateMobileQrCode();
+    }
+
     function copyMobileUrl() {
       const text = document.getElementById('mobile-url-display').textContent.trim();
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('주소 복사 완료', '클립보드에 모바일 대시보드 주소가 복사되었습니다.');
-      }).catch(() => {
-        showToast('복사 안내', text);
-      });
-    }
-    // 상태 변수
-    let postingsData = [];
-    let profileData = {};
-    let currentCountry = 'ALL';
-    let currentTrack = 'ALL';
-    let currentDesktopKakaoType = 'dday';
-    let currentDesktopJobId = null;
-    const DEFAULT_KAKAO_JS_KEY = 'd8dd99b5dce9a95e6702730ea00159e9';
-    let desktopKakaoJsKey = localStorage.getItem('UW_KAKAO_JS_KEY') || DEFAULT_KAKAO_JS_KEY;
-
-    // 초기화
-    document.addEventListener('DOMContentLoaded', async () => {
-      await loadInitialData();
-      await loadDesktopKakaoConfig();
-      renderEarningsChart();
-
-      // URL 파라미터 ?share=dday 또는 ?share=jobs 자동 처리
-      const params = new URLSearchParams(window.location.search);
-      const shareParam = params.get('share');
-      if (shareParam === 'dday' || shareParam === 'jobs' || shareParam === 'link') {
-        triggerDesktopKakaoShare(shareParam);
-      }
-    });
-
-    async function loadDesktopKakaoConfig() {
-      try {
-        const res = await fetch('/api/kakao-config').catch(() => null);
-        if (res && res.ok) {
-          const cfg = await res.json();
-          if (cfg.javascript_key && cfg.javascript_key.trim()) {
-            desktopKakaoJsKey = cfg.javascript_key.trim();
-            localStorage.setItem('UW_KAKAO_JS_KEY', desktopKakaoJsKey);
-          }
-        }
-      } catch (e) {}
-      ensureDesktopKakaoSdkReady();
+      navigator.clipboard.writeText(text).then(() => showToast('주소 복사 완료', text));
     }
 
-    function ensureDesktopKakaoSdkReady() {
-      if (!desktopKakaoJsKey || !window.Kakao) return false;
-      try {
-        if (!window.Kakao.isInitialized()) {
-          window.Kakao.init(desktopKakaoJsKey);
-        }
-        return window.Kakao.isInitialized();
-      } catch (e) {
-        return false;
-      }
-    }
-
-    async function saveDesktopKakaoJsKey() {
-      const inputEl = document.getElementById('d-kakao-js-key-input');
-      const statusEl = document.getElementById('d-kakao-key-status');
-      const key = (inputEl ? inputEl.value : '').trim();
-      if (!key) {
-        showToast('키 입력 필요', '카카오 디벨로퍼스의 JavaScript 키(32자리)를 입력해 주세요.');
-        return;
-      }
-      desktopKakaoJsKey = key;
-      localStorage.setItem('UW_KAKAO_JS_KEY', key);
-      if (window.Kakao && window.Kakao.isInitialized()) {
-        try { window.Kakao.cleanup(); } catch (e) {}
-      }
-      fetch('/api/kakao-config', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ javascript_key: key })
-      }).catch(() => {});
-
-      if (ensureDesktopKakaoSdkReady()) {
-        if (statusEl) {
-          statusEl.textContent = '✅ 카카오 SDK 연동 완료! 이제 버튼 클릭 시 즉시 카카오톡 친구/단톡방 선택창이 열립니다.';
-          statusEl.className = 'text-[11px] text-emerald-400 font-bold leading-snug';
-        }
-        showToast('카카오 SDK 연동 성공!', '카카오톡 공유자(친구/단톡방) 선택창을 바로 띄웁니다.');
-        sendDesktopViaKakaoSdk(currentDesktopKakaoType, currentDesktopJobId);
-      } else {
-        showToast('키 확인 필요', '유효한 카카오 JavaScript 키인지 확인해 주세요.');
-      }
-    }
-
-    function sendDesktopViaKakaoSdk(type = 'dday', jobId = null) {
-      if (!ensureDesktopKakaoSdkReady()) return false;
-      const fullText = buildDesktopKakaoMessage(type, jobId);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(fullText).catch(() => {});
-      }
-
-      const safeShareUrl = (window.location.origin && window.location.origin.startsWith('http'))
-        ? window.location.href.split('?')[0]
-        : cloudUrl;
-
-      try {
-        if (type === 'single_job' && jobId) {
-          const job = postingsData.find(j => j.id === jobId) || postingsData[0];
-          window.Kakao.Share.sendDefault({
-            objectType: 'feed',
-            content: {
-              title: `💼 [${job.company}] ${job.title}`,
-              description: `${job.hourly_rate} · ${job.location} · 마감 ${job.deadline}\n${job.summary}`,
-              imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-              link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
-            },
-            buttons: [
-              { title: '채용공고 및 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
-            ]
-          });
-          return true;
-        }
-
-        if (type === 'jobs') {
-          window.Kakao.Share.sendDefault({
-            objectType: 'feed',
-            content: {
-              title: '💼 [Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑',
-              description: `캐나다(Waterloo/Toronto) 및 미국 J-1 비자 스폰서 퀀트·AI·SW·계리 실시간 추천 공고 ${postingsData.length}건 요약`,
-              imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-              link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
-            },
-            buttons: [
-              { title: '전체 채용공고 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
-            ]
-          });
-          return true;
-        }
-
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: '🎓 [Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑',
-            description: '워털루 수학과 1학년(1A/1B) 필수 비자(Co-op Work Permit), PD1 이력서, WaterlooWorks 라운드 실시간 마감 일정',
-            imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80',
-            link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl }
-          },
-          buttons: [
-            { title: '실시간 대시보드 열기', link: { mobileWebUrl: safeShareUrl, webUrl: safeShareUrl } }
-          ]
-        });
-        return true;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    async function loadInitialData() {
-      try {
-        let [postingsRes, profileRes] = await Promise.all([
-          fetch('/api/postings').catch(() => null),
-          fetch('/api/profile').catch(() => null)
-        ]);
-
-        // 클라우드 정적 호스팅(GitHub Pages) 대응: 로컬 API가 없으면 상대 경로 JSON 파일 시도
-        if (!postingsRes || !postingsRes.ok) {
-          postingsRes = await fetch('../data/internship_postings.json').catch(() => null);
-        }
-        if (!profileRes || !profileRes.ok) {
-          profileRes = await fetch('../data/waterloo_math_profile.json').catch(() => null);
-        }
-
-        if (postingsRes && postingsRes.ok) {
-          postingsData = await postingsRes.json();
-        } else {
-          postingsData = getFallbackPostings();
-        }
-
-        if (profileRes && profileRes.ok) {
-          profileData = await profileRes.json();
-        } else {
-          profileData = getFallbackProfile();
-        }
-      } catch (e) {
-        postingsData = getFallbackPostings();
-        profileData = getFallbackProfile();
-      }
-
-      renderPostings();
-      renderRoadmap();
-    }
-
-    // 공고 렌더링
-    function renderPostings() {
-      const container = document.getElementById('job-postings-list');
-      const filtered = postingsData.filter(job => {
-        const matchCtry = (currentCountry === 'ALL' || job.country === currentCountry);
-        const matchTrack = (currentTrack === 'ALL' || job.track === currentTrack);
-        return matchCtry && matchTrack;
-      });
-
-      document.getElementById('badge-job-count').textContent = `${filtered.length} Active`;
-      const totEl = document.getElementById('kpi-total-jobs');
-      const splitEl = document.getElementById('kpi-country-split');
-      if (totEl) totEl.textContent = `${postingsData.length}건`;
-      if (splitEl) {
-        const ca = postingsData.filter(j => j.country === 'CA').length;
-        const us = postingsData.filter(j => j.country === 'US').length;
-        splitEl.textContent = `🇨🇦 캐나다 ${ca}건 | 🇺🇸 미국(비자스폰) ${us}건`;
-      }
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-12 text-gray-500 text-xs">
-            <i class="fa-solid fa-circle-exclamation text-xl mb-2 text-gray-600 block"></i>
-            선택한 조건에 해당하는 공고가 없습니다.
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = filtered.map(job => {
-        const flag = job.country === 'CA' ? '🇨🇦' : '🇺🇸';
-        const isHighPay = job.hourly_rate.includes('USD') || parseInt(job.hourly_rate.replace(/[^0-9]/g, '')) > 30;
-        
-        let trackBadge = '';
-        if (job.track === 'quant') trackBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">퀀트/트레이딩</span>';
-        else if (job.track === 'data_ai') trackBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">데이터/AI</span>';
-        else if (job.track === 'software') trackBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">소프트웨어</span>';
-        else trackBadge = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">보험계리</span>';
-
-        return `
-          <div class="p-4 bg-gray-900/80 hover:bg-gray-800/90 rounded-xl border border-gray-800 hover:border-gray-700 transition space-y-2.5">
-            <div class="flex items-start justify-between">
-              <div>
-                <div class="flex items-center space-x-2">
-                  <span class="font-bold text-white text-sm">${job.company}</span>
-                  <span>${flag}</span>
-                  ${trackBadge}
-                </div>
-                <h3 class="text-xs font-semibold text-uwGold mt-0.5">${job.title}</h3>
-              </div>
-              <div class="text-right">
-                <span class="text-xs font-black ${isHighPay ? 'text-emerald-400' : 'text-gray-200'}">${job.hourly_rate}</span>
-                <div class="text-[10px] text-gray-500">마감: ${job.deadline}</div>
-              </div>
-            </div>
-
-            <p class="text-[11px] text-gray-300 leading-relaxed">${job.summary}</p>
-
-            <div class="flex flex-wrap gap-1 items-center">
-              <span class="text-[10px] text-gray-500 mr-1"><i class="fa-solid fa-tags mr-1"></i>스택:</span>
-              ${job.tags.map(t => `<span class="px-1.5 py-0.5 bg-gray-800 text-gray-300 text-[10px] rounded border border-gray-700/60">${t}</span>`).join('')}
-            </div>
-
-            <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between text-[11px]">
-              <div class="flex items-center space-x-3 text-gray-400">
-                <span><i class="fa-solid fa-location-dot mr-1 text-gray-500"></i>${job.location}</span>
-                <span><i class="fa-solid fa-shield-halved mr-1 text-emerald-400"></i>${job.visa_sponsorship}</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <button onclick="shareDesktopJobToKakao('${job.id}')"
-                  class="px-2.5 py-1 bg-[#FEE500] hover:bg-[#FDD835] text-[#191919] font-extrabold rounded transition flex items-center space-x-1 active:scale-95 shadow-sm">
-                  <i class="fa-solid fa-comment text-[10px]"></i>
-                  <span>카톡 공유</span>
-                </button>
-                <a href="${job.url}" target="_blank" 
-                  class="px-2.5 py-1 bg-uwGold/10 hover:bg-uwGold text-uwGold hover:text-black font-semibold rounded border border-uwGold/40 transition flex items-center space-x-1">
-                  <span>지원 및 세부 정보</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // 로드맵 렌더링
-    function renderRoadmap() {
-      const container = document.getElementById('roadmap-timeline-container');
-      const timeline = profileData.waterloo_coop_timeline || [];
-
-      container.innerHTML = timeline.map(item => `
-        <div class="p-3 bg-gray-900/70 rounded-xl border border-gray-800 space-y-1.5">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-white text-xs">${item.phase}</span>
-            <span class="px-2 py-0.5 text-[10px] font-semibold rounded ${item.status === 'In Progress' ? 'bg-uwGold/20 text-uwGold border border-uwGold/30' : 'bg-gray-800 text-gray-400'}">
-              ${item.status}
-            </span>
-          </div>
-          <div class="font-semibold text-gray-200 text-[11px]">${item.title}</div>
-          <p class="text-[11px] text-gray-400">${item.description}</p>
-          <ul class="list-disc list-inside text-[10px] text-gray-300 space-y-0.5 pt-1">
-            ${item.action_items.map(a => `<li>${a}</li>`).join('')}
-          </ul>
-        </div>
-      `).join('');
-    }
-
-    // 필터 함수
-    function setCountryFilter(ctry) {
-      currentCountry = ctry;
-      ['all', 'ca', 'us'].forEach(c => {
-        const btn = document.getElementById(`filter-ctry-${c}`);
-        if (c.toUpperCase() === ctry) {
-          btn.className = "px-2.5 py-1 rounded-md font-semibold bg-uwGold text-black shadow";
-        } else {
-          btn.className = "px-2.5 py-1 rounded-md font-semibold text-gray-400 hover:text-white";
-        }
-      });
-      renderPostings();
-    }
-
-    function setTrackFilter(track) {
-      currentTrack = track;
-      ['all', 'quant', 'data_ai', 'software', 'actuary'].forEach(t => {
-        const btn = document.getElementById(`track-btn-${t}`);
-        if (t === track) {
-          btn.className = "px-3 py-1 rounded-full bg-gray-800 text-uwGold font-bold border border-uwGold/40 shadow";
-        } else {
-          btn.className = "px-3 py-1 rounded-full bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800";
-        }
-      });
-      renderPostings();
-    }
-
-    // Chart.js 시각화
-    function renderEarningsChart() {
-      const ctx = document.getElementById('earningsChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Term 1 (1st)', 'Term 2', 'Term 3', 'Term 4', 'Term 5', 'Term 6'],
-          datasets: [{
-            label: '평균 시급 (CAD)',
-            data: [23.40, 26.85, 30.20, 34.50, 38.80, 43.10],
-            borderColor: '#FDD017',
-            backgroundColor: 'rgba(253, 208, 23, 0.1)',
-            borderWidth: 2,
-            tension: 0.3,
-            fill: true,
-            pointBackgroundColor: '#FDD017',
-            pointRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: (ctx) => `$${ctx.raw.toFixed(2)} CAD / hr`
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: { color: '#1E293B' },
-              ticks: { color: '#94A3B8', font: { size: 9 } }
-            },
-            y: {
-              grid: { color: '#1E293B' },
-              ticks: { color: '#94A3B8', font: { size: 9 }, callback: (v) => `$${v}` }
-            }
-          }
-        }
-      });
-    }
-
-    // 텔레그램 알림 트리거
-    async function triggerTelegramAlert(type) {
-      showToast('텔레그램 발송 요청 중...', '서버에 알림 전송을 요청하고 있습니다.');
-      try {
-        const res = await fetch(`/api/notify?type=${type}`);
-        const result = await res.json();
-        if (result.success) {
-          showToast(
-            '알림 발송 완료!',
-            result.mode === 'dry-run' 
-              ? '콘솔 및 모의 발송 모드로 성공적으로 전송되었습니다.'
-              : '휴대폰 텔레그램 앱으로 메시지가 발송되었습니다!'
-          );
-        } else {
-          showToast('알림 발송 실패', result.error || '발송 중 오류가 발생했습니다.');
-        }
-      } catch (e) {
-        showToast('알림 전송 안내', '로컬 서버 미가동 상태입니다. python scripts/run_server.py 실행 시 연동됩니다.');
-      }
-    }
-
-    // Toast UI
-    function showToast(title, body) {
-      const modal = document.getElementById('toast-modal');
-      document.getElementById('toast-title').textContent = title;
-      document.getElementById('toast-body').textContent = body;
-      modal.classList.remove('translate-y-20', 'opacity-0');
-      setTimeout(hideToast, 4000);
-    }
-
-    function hideToast() {
-      const modal = document.getElementById('toast-modal');
-      modal.classList.add('translate-y-20', 'opacity-0');
-    }
-
-    // =========================================================
-    // 데스크톱 카카오톡(KakaoTalk) 알림 & 공고 공유 엔진
-    // =========================================================
-    function getDesktopKstDate() {
-      const parts = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Asia/Seoul',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      }).formatToParts(new Date());
-      const get = (t) => parts.find((p) => p.type === t).value;
-      return `${get('year')}-${get('month')}-${get('day')}`;
-    }
-
-    function calcDesktopDaysLeft(dueStr, baseStr) {
-      const parseYmd = (s) => {
-        const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((s || '').trim());
-        return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : NaN;
-      };
-      const diff = parseYmd(dueStr) - parseYmd(baseStr);
-      if (isNaN(diff)) return { days: null, badge: 'D-?' };
-      if (diff > 0) return { days: diff, badge: `D-${diff}` };
-      if (diff === 0) return { days: 0, badge: 'D-Day' };
-      return { days: diff, badge: `마감 D+${-diff}` };
-    }
-
-    function buildDesktopKakaoMessage(type, jobId = null) {
-      const baseDate = getDesktopKstDate();
-
-      if (type === 'single_job' && jobId) {
-        const job = postingsData.find(j => j.id === jobId) || postingsData[0];
-        if (!job) return '';
-        const flag = job.country === 'CA' ? '🇨🇦 캐나다' : '🇺🇸 미국';
-        return [
-          `💼 [Waterloo Math 인턴십 추천 공고 공유]`,
-          `──────────────────────`,
-          `🏢 기업: ${job.company} (${flag})`,
-          `📌 직무: ${job.title}`,
-          `💰 급여: ${job.hourly_rate}`,
-          `📍 지역: ${job.location}`,
-          `🛂 비자: ${job.visa_sponsorship}`,
-          `⏰ 마감: ${job.deadline}`,
-          ``,
-          `📝 핵심 요약:`,
-          `${job.summary}`,
-          ``,
-          `👉 공식 지원 링크: ${job.url}`,
-          `📱 전체 대시보드 보기: ${cloudUrl}`
-        ].join('\n');
-      }
-
-      if (type === 'jobs') {
-        const activeJobs = postingsData.filter(j => {
-          const { days } = calcDesktopDaysLeft(j.deadline, baseDate);
-          return days === null || days >= 0;
-        });
-        const caJobs = activeJobs.filter(j => j.country === 'CA').slice(0, 4);
-        const usJobs = activeJobs.filter(j => j.country === 'US').slice(0, 4);
-
-        const lines = [
-          `💼 [Waterloo Math] 북미 인턴십 & Co-op 채용 브리핑`,
-          `──────────────────────`,
-          `📅 기준일: ${baseDate} (KST) | 추천 오픈 공고 ${activeJobs.length}건`,
-          ``
-        ];
-
-        if (caJobs.length > 0) {
-          lines.push(`🇨🇦 [캐나다 주요 Co-op · 인턴십]`);
-          caJobs.forEach((j, idx) => {
-            lines.push(`${idx + 1}. ${j.company} (${j.hourly_rate})`);
-            lines.push(`   • ${j.title}`);
-            lines.push(`   • 지역: ${j.location} | 마감: ${j.deadline}`);
-            lines.push(`   • 지원: ${j.url}`);
-          });
-          lines.push(``);
-        }
-
-        if (usJobs.length > 0) {
-          lines.push(`🇺🇸 [미국 J-1 비자 스폰서 주요 인턴십]`);
-          usJobs.forEach((j, idx) => {
-            lines.push(`${idx + 1}. ${j.company} (${j.hourly_rate})`);
-            lines.push(`   • ${j.title}`);
-            lines.push(`   • 지역: ${j.location} | 마감: ${j.deadline}`);
-            lines.push(`   • 지원: ${j.url}`);
-          });
-          lines.push(``);
-        }
-
-        lines.push(`──────────────────────`);
-        lines.push(`📱 전체 공고 대시보드에서 보기:`);
-        lines.push(cloudUrl);
-        return lines.join('\n');
-      }
-
-      if (type === 'link') {
-        return [
-          `📱 [Waterloo Math] 수학과 1학년 인턴십 & 코옵 모바일 대시보드`,
-          `──────────────────────`,
-          `• 워털루 공식 Co-op & 학사 일정 실시간 D-Day`,
-          `• 캐나다/미국(Quant·AI·SWE·계리) 인턴십 공고 및 시급 통계`,
-          `• 유학생 비자(Co-op Work Permit / J-1) 핵심 가이드`,
-          ``,
-          `👉 스마트폰/PC에서 바로 열기:`,
-          cloudUrl
-        ].join('\n');
-      }
-
-      const rawAlerts = (profileData && profileData.d_day_alerts) || getFallbackProfile().d_day_alerts;
-      const activeAlerts = [];
-      rawAlerts.slice().sort((a, b) => String(a.due_date).localeCompare(String(b.due_date))).forEach(alert => {
-        const { days, badge } = calcDesktopDaysLeft(alert.due_date, baseDate);
-        if (days !== null && days < 0) return;
-        activeAlerts.push({ alert, days, badge });
-      });
-
-      const fall2026 = activeAlerts.filter(x => String(x.alert.due_date).startsWith('2026-'));
-      const winter2027 = activeAlerts.filter(x => String(x.alert.due_date).startsWith('2027-'));
-
-      const lines = [
-        `🎓 [Waterloo Math] 공식 Co-op & 학사 일정 D-Day 브리핑`,
-        `──────────────────────`,
-        `📅 기준일: ${baseDate} (KST) | 총 ${activeAlerts.length}건 진행 중`,
-        ``
-      ];
-
-      if (fall2026.length > 0) {
-        lines.push(`🔥 [1] 2026 가을학기(1A) · 비자 · 잔여 라운드`);
-        fall2026.forEach(({ alert, days, badge }) => {
-          const icon = (days !== null && days <= 18) || alert.urgency === 'high' ? '🔴' : '🟡';
-          lines.push(`${icon} ${alert.title}`);
-          lines.push(`   • 일자: ${alert.due_date} (${badge})`);
-        });
-        lines.push(``);
-      }
-
-      if (winter2027.length > 0) {
-        lines.push(`🚀 [2] 2027 겨울학기(1B) · 첫 코옵(Spring 2027) 일정`);
-        winter2027.forEach(({ alert, badge }) => {
-          const icon = alert.urgency === 'high' ? '🔴' : '🟡';
-          lines.push(`${icon} ${alert.title}`);
-          lines.push(`   • 일자: ${alert.due_date} (${badge})`);
-        });
-        lines.push(``);
-      }
-
-      lines.push(`──────────────────────`);
-      lines.push(`🌐 워털루 공식 일정: https://uwaterloo.ca/co-operative-education/important-dates`);
-      lines.push(`📱 대시보드 열기: ${cloudUrl}`);
-      return lines.join('\n');
-    }
-
+    // -------------------------------------------------------------------------
+    // KakaoTalk Share Modal & Actions
+    // -------------------------------------------------------------------------
     function openDesktopKakaoModal(type = 'dday', jobId = null) {
-      currentDesktopKakaoType = type;
-      currentDesktopJobId = jobId;
-      const modal = document.getElementById('desktop-kakao-modal');
-      const previewEl = document.getElementById('d-kakao-preview-text');
-      const titleEl = document.getElementById('d-kakao-modal-title');
-
-      if (type === 'single_job') {
-        titleEl.textContent = '선택한 채용 공고 카카오톡 공유';
-      } else if (type === 'jobs') {
-        titleEl.textContent = '실시간 추천 공고 브리핑 카카오톡 공유';
-      } else if (type === 'link') {
-        titleEl.textContent = '모바일 대시보드 링크 카카오톡 공유';
-      } else {
-        titleEl.textContent = 'D-Day 전체 일정 브리핑 카카오톡 공유';
-      }
-
-      ['dday', 'jobs', 'link'].forEach(t => {
-        const btn = document.getElementById(`dk-tab-${t}`);
-        if (!btn) return;
-        if (t === type) {
-          btn.className = "py-2 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition";
-        } else {
-          btn.className = "py-2 rounded-lg font-medium text-gray-400 hover:text-white transition";
-        }
-      });
-
-      previewEl.textContent = buildDesktopKakaoMessage(type, jobId);
-      const inputEl = document.getElementById('d-kakao-js-key-input');
+      state.kakaoType = type;
+      state.kakaoJobId = jobId;
+      document.getElementById('d-kakao-preview-text').textContent = UWCore.buildShareMessage(type, state.data, jobId);
+      document.getElementById('d-kakao-js-key-input').value = UWCore.getKakaoKey();
       const statusEl = document.getElementById('d-kakao-key-status');
-      if (inputEl && desktopKakaoJsKey) inputEl.value = desktopKakaoJsKey;
-      if (statusEl && ensureDesktopKakaoSdkReady()) {
-        statusEl.textContent = '✅ 카카오 SDK 연동됨: 버튼 클릭 시 즉시 카카오톡 친구/채팅방 선택창이 열립니다.';
-        statusEl.className = 'text-[11px] text-emerald-400 font-bold leading-snug';
-      }
-      modal.classList.remove('hidden');
+      statusEl.textContent = UWCore.ensureKakaoReady()
+        ? '✅ 카카오 SDK 연동됨: 버튼 클릭 시 즉시 카카오톡 친구/단톡방 선택창이 열립니다.'
+        : '카카오 JavaScript 키를 입력하면 공유자 선택창이 즉시 호출됩니다.';
+
+      ['dday', 'jobs', 'link'].forEach((t) => {
+        const btn = document.getElementById(`dk-tab-${t}`);
+        btn.className = t === type
+          ? 'py-2 rounded-lg font-bold bg-[#FEE500] text-[#191919] transition'
+          : 'py-2 rounded-lg font-medium text-slate-400 hover:text-white transition';
+      });
+      document.getElementById('desktop-kakao-modal').classList.remove('hidden');
     }
 
     function switchDesktopKakaoType(type) {
@@ -1196,166 +1355,74 @@
       document.getElementById('desktop-kakao-modal').classList.add('hidden');
     }
 
+    async function saveDesktopKakaoJsKey() {
+      const val = document.getElementById('d-kakao-js-key-input').value;
+      const ok = await UWCore.saveKakaoKey(val);
+      if (ok) {
+        showToast('카카오 SDK 연동 성공!', '공유자 선택창을 실행합니다.');
+        UWCore.sendKakaoSdkFeed(state.kakaoType, state.data, state.kakaoJobId);
+      } else {
+        showToast('키 확인 필요', '유효한 카카오 JavaScript 키를 입력해 주세요.');
+      }
+    }
+
     async function triggerDesktopKakaoShare(type = 'dday') {
-      currentDesktopKakaoType = type;
-      currentDesktopJobId = null;
-      const text = buildDesktopKakaoMessage(type, null);
+      state.kakaoType = type;
+      state.kakaoJobId = null;
+      const text = UWCore.buildShareMessage(type, state.data, null);
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text).catch(() => {});
       }
-
-      // 1순위: 카카오 JavaScript SDK가 설정된 경우 즉시 카카오톡 친구/채팅방 선택창 팝업 실행
-      if (sendDesktopViaKakaoSdk(type, null)) {
-        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 전송하세요!');
+      if (UWCore.sendKakaoSdkFeed(type, state.data, null)) {
+        showToast('카카오톡 공유 실행', '공유할 친구나 단톡방을 선택하세요.');
         return;
       }
-
-      // 2순위: PC 카카오톡 앱(kakaotalk://) 즉시 실행 + 설정/복사 모달 오픈
-      window.location.href = 'kakaotalk://';
-      showToast('카카오톡 실행 및 알림 복사 완료!', '열린 카카오톡에서 공유할 대상을 선택해 붙여넣기(Ctrl+V) 하세요.');
       openDesktopKakaoModal(type, null);
     }
 
     async function shareDesktopJobToKakao(jobId) {
-      currentDesktopKakaoType = 'single_job';
-      currentDesktopJobId = jobId;
-      const text = buildDesktopKakaoMessage('single_job', jobId);
+      state.kakaoType = 'single_job';
+      state.kakaoJobId = jobId;
+      const text = UWCore.buildShareMessage('single_job', state.data, jobId);
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text).catch(() => {});
       }
-
-      if (sendDesktopViaKakaoSdk('single_job', jobId)) {
-        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 공고를 전송하세요!');
+      if (UWCore.sendKakaoSdkFeed('single_job', state.data, jobId)) {
+        showToast('카카오톡 공고 공유', '공유할 대화상대를 선택하세요.');
         return;
       }
-
-      window.location.href = 'kakaotalk://';
-      showToast('카카오톡 실행 및 공고 복사 완료!', '열린 카카오톡에서 대화상대를 선택해 붙여넣기(Ctrl+V) 하세요.');
       openDesktopKakaoModal('single_job', jobId);
     }
 
-    async function copyDesktopKakaoText(openKakaoApp = false) {
-      const text = document.getElementById('d-kakao-preview-text').textContent;
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast('알림 전문 복사 완료!', '카카오톡 대화창에 붙여넣기(Ctrl+V) 하여 전송하세요.');
-      } catch (e) {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast('알림 전문 복사 완료!', '카카오톡 대화창에 붙여넣기(Ctrl+V) 하세요.');
-      }
-
-      if (openKakaoApp) {
-        setTimeout(() => {
-          window.location.href = 'kakaotalk://';
-        }, 250);
-      }
-    }
-
     async function executeDesktopNativeShare() {
-      if (sendDesktopViaKakaoSdk(currentDesktopKakaoType, currentDesktopJobId)) {
-        showToast('카카오톡 친구 선택창 실행', '공유할 친구나 채팅방을 선택해 전송하세요!');
+      if (UWCore.sendKakaoSdkFeed(state.kakaoType, state.data, state.kakaoJobId)) {
         return;
-      }
-      const text = document.getElementById('d-kakao-preview-text').textContent;
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: 'Waterloo Math Career 알림 공유',
-            text: text
-          });
-          return;
-        } catch (err) {
-          if (err && err.name === 'AbortError') return;
-        }
       }
       copyDesktopKakaoText(true);
     }
 
-    // Fallback Mock Data (오프라인 브라우저 직접 실행 지원)
-    function getFallbackProfile() {
-      return {
-        student: { university: "University of Waterloo", faculty: "Faculty of Mathematics", year: "1st Year (1A/1B)" },
-        coop_statistics: { employment_rate: "96.4%" },
-        d_day_alerts: [
-          { id: "uw_f26_c2_emp_rank", title: "[WaterlooWorks] Fall Cycle 2 고용주 랭킹 발표 (2 p.m. ET)", due_date: "2026-11-11", urgency: "high" },
-          { id: "uw_f26_c2_match", title: "[WaterlooWorks] Fall Cycle 2 학생 랭킹 마감 & 매칭 발표", due_date: "2026-11-13", urgency: "high" },
-          { id: "uw_f26_c3_interview", title: "[WaterlooWorks] Fall Cycle 3 면접 주간 시작 (11/17~11/24)", due_date: "2026-11-17", urgency: "medium" },
-          { id: "ircc_coop_work_permit", title: "[비자 필수] 캐나다 Co-op Work Permit 비자 신청 권장 마감", due_date: "2026-11-20", urgency: "high" },
-          { id: "uw_f26_c3_match", title: "[WaterlooWorks] Fall Cycle 3 학생 랭킹 마감 & 최종 매칭 발표", due_date: "2026-11-27", urgency: "medium" },
-          { id: "uw_f26_direct_offer", title: "[WaterlooWorks] Direct Offer (상시 직접 오퍼) 채용 전환 시작", due_date: "2026-11-30", urgency: "medium" },
-          { id: "uw_f26_classes_end_pd1", title: "[학사/PD1] 1A 가을학기 정규 수업 종강 & PD1 이력서 최종 마감", due_date: "2026-12-08", urgency: "high" },
-          { id: "uw_f26_exams_start", title: "[학사] 1A 가을학기 기말고사 시작 (12/10~12/22)", due_date: "2026-12-10", urgency: "medium" },
-          { id: "uw_w27_c1a_open", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 공고 오픈 (50개 한도)", due_date: "2027-01-09", urgency: "high" },
-          { id: "uw_w27_classes_start", title: "[학사] 2027 겨울학기(1B) 개강", due_date: "2027-01-11", urgency: "medium" },
-          { id: "uw_w27_c1a_close", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 1차 지원 마감 (9 a.m. ET)", due_date: "2027-01-19", urgency: "high" },
-          { id: "uw_w27_c1_interviews", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 본 면접 시작 (1/22~2/9)", due_date: "2027-01-22", urgency: "high" },
-          { id: "uw_w27_c1b_close", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting B) 최종 지원 마감 (100개 한도)", due_date: "2027-01-26", urgency: "high" },
-          { id: "uw_w27_c1_emp_rank", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 고용주 랭킹 발표 (2 p.m. ET)", due_date: "2027-02-10", urgency: "high" },
-          { id: "uw_w27_c1_match", title: "[1B 첫 코옵] WaterlooWorks Cycle 1 학생 랭킹 마감 & 1차 매칭 결과 발표", due_date: "2027-02-12", urgency: "high" }
-        ],
-        waterloo_coop_timeline: [
-          { phase: "1A Term (Fall)", title: "Co-op 준비 기초 과정 & 워크샵", description: "PD1(Career Fundamentals) 필수 모듈 제출 및 이력서 초안 완성", action_items: ["PD1 필수 모듈 제출", "CCO 1:1 이력서 첨삭 예약", "GitHub 프로젝트 등록"], status: "In Progress" },
-          { phase: "1B Term (Winter)", title: "WaterlooWorks 시스템 오픈 & 첫 코옵 지원", description: "WaterlooWorks Main Round 최대 50개 공고 지원 및 코딩/수학 인터뷰 대비", action_items: ["WaterlooWorks 50개 공고 타깃팅", "LeetCode Easy-Medium 대비", "Co-op Work Permit 확인"], status: "Upcoming" },
-          { phase: "Interviews & Ranking", title: "인터뷰 진행 및 랭킹 매칭", description: "TC 대면/온라인 인터뷰 진행 후 1지망 매칭 알고리즘 전략 수립", action_items: ["STAR 기법 행동 면접", "랭킹 데이 전략 수립"], status: "Upcoming" },
-          { phase: "Work Term 1 (Spring)", title: "첫 4개월 인턴십 근무 및 학점 인정", description: "첫 코옵 직무 수행 및 PD11 평가, 워크 텀 리포트 작성", action_items: ["Excellent 평가 등급 목표", "사내 멘토 네트워크 구축"], status: "Upcoming" }
-        ]
-      };
+    async function copyDesktopKakaoText(openApp = false) {
+      const text = document.getElementById('d-kakao-preview-text').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {}
+      showToast('브리핑 전문 복사 완료!', '카카오톡 대화창에 붙여넣기(Ctrl+V) 하세요.');
+      if (openApp) {
+        setTimeout(() => { window.location.href = 'kakaotalk://'; }, 250);
+      }
     }
 
-    function getFallbackPostings() {
-      return [
-        { id: "post-01", title: "Quantitative Trading Summer Intern (Undergrad)", company: "Citadel / Citadel Securities", location: "New York, NY", country: "US", track: "quant", target_level: "1st/2nd Year Undergrads", hourly_rate: "$90.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored (Full Assistance)", source: "RippleMatch", url: "https://www.citadel.com/careers/students/", deadline: "2026-11-30", tags: ["Python", "C++", "Probability", "Mental Math"], summary: "수학/통계 역량을 활용한 알고리즘 트레이딩 전략 수립 및 백테스팅." },
-        { id: "post-02", title: "Quantitative Research Analyst Co-op", company: "CPP Investments (캐나다 연금투자위원회)", location: "Toronto, ON", country: "CA", track: "quant", target_level: "1st/2nd/3rd Year", hourly_rate: "$32.50 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks", url: "https://www.cppinvestments.com/careers", deadline: "2027-01-19", tags: ["Python", "SQL", "Time Series", "FARM"], summary: "글로벌 공공 연기금 글로벌 주식/대체투자 퀀트 리서치. 온타리오주 최고의 금융 코옵." },
-        { id: "post-03", title: "Software Engineering Intern - Core Infrastructure", company: "Shopify", location: "Toronto, ON / Remote", country: "CA", track: "software", target_level: "1st/2nd Year Undergrads", hourly_rate: "$35.00 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks", url: "https://www.shopify.com/careers/internships", deadline: "2027-01-15", tags: ["Ruby", "Go", "Distributed Systems", "Git"], summary: "캐나다 최대 테크 기업의 대규모 트래픽 처리 인프라 개발." },
-        { id: "post-04", title: "Junior Data Science Intern (Early Talent)", company: "RBC Capital Markets", location: "Toronto, ON", country: "CA", track: "data_ai", target_level: "1st/2nd Year", hourly_rate: "$28.00 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks / Magnet", url: "https://jobs.rbc.com/ca/en/student-early-talent", deadline: "2027-01-18", tags: ["Python", "Pandas", "Scikit-Learn", "SQL"], summary: "캐나다 최대 금융 그룹의 투자은행 데이터 파이프라인 및 머신러닝 예측 모델 구축." },
-        { id: "post-05", title: "Actuarial Science Student Co-op", company: "Manulife Financial", location: "Waterloo, ON", country: "CA", track: "actuary", target_level: "1st/2nd Year", hourly_rate: "$26.50 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks", url: "https://www.manulife.com/en/careers/students.html", deadline: "2027-01-22", tags: ["SOA Exam P/FM", "Excel VBA", "R"], summary: "워털루 현지 본사 근무 가능. 생명보험 요율 산정 및 책임준비금 리스크 모델링." },
-        { id: "post-06", title: "Software Engineering Intern - Systems", company: "Jane Street", location: "New York, NY", country: "US", track: "software", target_level: "All Undergrads", hourly_rate: "$100.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored (Full Support)", source: "Handshake", url: "https://www.janestreet.com/join-jane-street/programs-and-internships/", deadline: "2026-11-25", tags: ["OCaml", "C++", "Algorithms"], summary: "독보적인 프롭 트레이딩 하우스. 함수형 프로그래밍 기반 초저지연 금융 시스템 개발." },
-        { id: "post-07", title: "Machine Learning & NLP Intern", company: "Wealthsimple", location: "Toronto, ON", country: "CA", track: "data_ai", target_level: "1st/2nd Year", hourly_rate: "$33.00 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "RippleMatch", url: "https://www.wealthsimple.com/en-ca/careers", deadline: "2027-01-20", tags: ["Python", "PyTorch", "LLM", "FastAPI"], summary: "캐나다 최대 핀테크 기업의 로보어드바이저 및 AI 금융 어시스턴트 알고리즘 개발." },
-        { id: "post-08", title: "Risk Modeling & Financial Engineering Co-op", company: "Scotiabank", location: "Toronto, ON", country: "CA", track: "quant", target_level: "1st/2nd Year (Math/FARM)", hourly_rate: "$27.50 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks", url: "https://www.scotiabank.com/careers", deadline: "2027-01-19", tags: ["Python", "Monte Carlo", "Financial Derivatives"], summary: "시장 리스크 및 신용 리스크 수리 모델 시뮬레이션. 1학년 첫 금융 코옵으로 이상적." },
-        { id: "post-09", title: "Actuarial Associate Co-op", company: "Sun Life Financial", location: "Waterloo, ON", country: "CA", track: "actuary", target_level: "1st/2nd Year", hourly_rate: "$26.00 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "WaterlooWorks", url: "https://www.sunlife.com/en/careers/students-and-graduates/", deadline: "2027-01-21", tags: ["Actuarial", "Excel", "SAS"], summary: "단체 보험 및 연금 플랜 수리 분석. 워털루 동문 네트워크 탄탄." },
-        { id: "post-10", title: "Undergraduate Discovery Intern (SWE)", company: "Google", location: "Waterloo, ON / NY", country: "CA", track: "software", target_level: "1st/2nd Year (Early Career)", hourly_rate: "$48.00 / hr CAD", visa_sponsorship: "Co-op Permit & J-1", source: "WayUp", url: "https://careers.google.com/students/", deadline: "2026-12-15", tags: ["C++", "Java", "Python", "Algorithms"], summary: "워털루 키치너 오피스 및 미국 지사 연계 1~2학년 전용 STEP/SWE 인턴십." },
-        { id: "post-11", title: "Data Analyst Intern - Public Policy", company: "Statistics Canada (통계청)", location: "Ottawa, ON / Remote", country: "CA", track: "data_ai", target_level: "1st Year Undergrads", hourly_rate: "$24.50 / hr CAD", visa_sponsorship: "Co-op Work Permit Eligible", source: "Magnet", url: "https://www.statcan.gc.ca/en/employment", deadline: "2026-11-28", tags: ["R", "SAS", "Statistical Sampling"], summary: "연방 정부 공식 마이크로데이터 가공 및 경제/인구 통계 지표 추출." },
-        { id: "post-12", title: "Quantitative Research Intern", company: "Balyasny Asset Management", location: "New York, NY", country: "US", track: "quant", target_level: "Undergrad (Math, CS)", hourly_rate: "$75.00 / hr USD", visa_sponsorship: "J-1 Visa Sponsored", source: "Handshake", url: "https://www.bamfunds.com/careers", deadline: "2026-12-10", tags: ["Python", "Linear Algebra", "Yield Curve"], summary: "글로벌 멀티 스트래티지 헤지펀드 채권/파생상품 퀀트 모델링." }
-      ];
+    let toastTimer = null;
+    function showToast(title, body) {
+      const modal = document.getElementById('toast-modal');
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-body').textContent = body;
+      modal.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        modal.classList.add('translate-y-20', 'opacity-0');
+      }, 3600);
     }
-  </script>
-
-  <!-- D-Day 자동 계산: data-due-date 속성을 가진 요소에 한국 시간(KST) 기준 남은 일수를 표시 -->
-  <script>
-    (function () {
-      function todayKST() {
-        const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
-        const get = (t) => parts.find((p) => p.type === t).value;
-        return `${get('year')}-${get('month')}-${get('day')}`;
-      }
-      function toDayNumber(ymd) {
-        const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((ymd || '').trim());
-        return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 86400000 : NaN;
-      }
-      function ddayLabel(dueYmd, baseYmd) {
-        const diff = toDayNumber(dueYmd) - toDayNumber(baseYmd);
-        if (isNaN(diff)) return 'D-?';
-        if (diff > 0) return 'D-' + diff;
-        if (diff === 0) return 'D-Day';
-        return '마감 D+' + (-diff);
-      }
-      function updateDDayBadges() {
-        const base = todayKST();
-        document.querySelectorAll('[data-due-date]').forEach((el) => {
-          const due = el.getAttribute('data-due-date');
-          el.textContent = ddayLabel(due, base);
-          el.title = `마감일 ${due} · 기준일 ${base} (KST)`;
-        });
-      }
-      window.updateDDayBadges = updateDDayBadges;
-      updateDDayBadges();
-      setInterval(updateDDayBadges, 60 * 1000); // 자정이 지나면 자동 갱신
-    })();
   </script>
 </body>
 </html>

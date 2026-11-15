@@ -3,103 +3,130 @@
     "university": "University of Waterloo",
     "faculty": "Faculty of Mathematics",
     "program": "Honours Mathematics (Co-op)",
-    "year": "1st Year (1A/1B)",
+    "year": "1st Year (1A/1B · 2026–2027)",
+    "coop_sequence": "Sequence 3 · 2028 첫 공식 Co-op 타깃",
+    "first_coop_start_date": "2028-01-10",
+    "bridge_term": "Spring/Summer 2027 (Off-Term 대외 인턴십 · URA 학부연구 · 자격시험 골든타임)",
     "target_terms": [
-      "Winter 2027",
-      "Spring 2027"
+      "Winter 2028 (Work Term 1)",
+      "Spring 2028 (Work Term 1)"
     ],
     "career_tracks": [
       {
         "id": "quant",
         "name": "Quantitative Finance & Trading",
-        "description": "수학적 모델링, 통계적 차익거래, 알고리즘 트레이딩 및 리스크 관리",
+        "kor_name": "퀀트 금융 · 트레이딩",
+        "description": "확률미적분·선형대수·통계적 차익거래 모델링, 알고리즘 마켓메이킹 및 파생상품 리스크 관리",
         "target_majors": [
           "Mathematical Finance",
-          "Combinatorics & Optimization",
+          "Combinatorics & Optimization (C&O)",
           "Statistics",
           "FARM"
         ],
+        "first_year_courses": [
+          "MATH 135/136 (Honours Algebra)",
+          "MATH 137/138 (Calculus)",
+          "CS 135/136",
+          "STAT 230 (1B 조기이수 권장)"
+        ],
         "recommended_skills": [
           "Python (NumPy, Pandas)",
-          "C++",
-          "Stochastic Calculus",
-          "Linear Algebra",
-          "Data Analysis"
+          "C++ (Low-Latency)",
+          "Probability & Mental Math",
+          "Stochastic Modeling",
+          "Backtesting"
         ],
         "top_employers": [
           "Citadel",
           "Jane Street",
           "Two Sigma",
-          "Balyasny",
           "CPP Investments",
-          "RBC Capital Markets"
+          "BMO Capital Markets",
+          "Point72"
         ]
       },
       {
         "id": "data_ai",
         "name": "Data Science & Machine Learning",
-        "description": "데이터 모델링, 예측 분석, 대규모 데이터셋 분석 및 머신러닝 엔지니어링",
+        "kor_name": "데이터 사이언스 · AI",
+        "description": "대규모 데이터 파이프라인 구축, 머신러닝·딥러닝 모델 학습 및 예측 의사결정 엔지니어링",
         "target_majors": [
-          "Data Science",
-          "Computational Math",
-          "Statistics"
+          "Data Science (BMath/BCS)",
+          "Statistics",
+          "Computational Mathematics"
+        ],
+        "first_year_courses": [
+          "CS 135/136",
+          "MATH 136 (Linear Algebra)",
+          "STAT 230/231"
         ],
         "recommended_skills": [
           "Python",
           "SQL",
-          "Scikit-Learn",
-          "PyTorch",
-          "Tableau/PowerBI",
-          "Probability & Statistics"
+          "PyTorch / Scikit-Learn",
+          "LLM & RAG Pipeline",
+          "Statistical Inference"
         ],
         "top_employers": [
           "Shopify",
-          "Amazon",
-          "Meta",
+          "Qualcomm",
           "Wealthsimple",
-          "OpenText",
-          "BMO AI Labs"
+          "RBC Borealis AI",
+          "Amazon",
+          "Sun Life"
         ]
       },
       {
         "id": "software",
-        "name": "Software Engineering & Algorithmic Dev",
-        "description": "백엔드 시스템, 알고리즘 구현, 금융 소프트웨어 및 인프라 엔지니어링",
+        "name": "Software Engineering & Systems",
+        "kor_name": "소프트웨어 · 알고리즘 개발",
+        "description": "분산 백엔드 인프라, 초저지연 트레이딩 시스템, 클라우드 플랫폼 및 풀스택 제품 엔지니어링",
         "target_majors": [
-          "Computer Science & Math Double",
-          "Applied Math",
-          "Pure Math"
+          "Computer Science / BMath CS",
+          "Combinatorics & Optimization",
+          "Applied Mathematics"
+        ],
+        "first_year_courses": [
+          "CS 135 (Functional)",
+          "CS 136 (C & Memory/Systems)",
+          "MATH 135"
         ],
         "recommended_skills": [
-          "Python",
-          "C++",
-          "Java",
+          "C / C++",
+          "Python / TypeScript",
           "Data Structures & Algorithms",
-          "Git",
-          "Linux"
+          "Linux & Git",
+          "Distributed Systems"
         ],
         "top_employers": [
-          "Google",
+          "Google (Waterloo/Kitchener)",
+          "Shopify",
+          "Amazon",
           "Bloomberg",
-          "Uber",
-          "Wish",
-          "Palantir",
+          "Royal Bank of Canada",
           "1Password"
         ]
       },
       {
         "id": "actuary",
         "name": "Actuarial Science & Risk Management",
-        "description": "생명/손해보험 계리, 연금 수리, 보험 리스크 모델링 및 파생상품 평가",
+        "kor_name": "보험계리 · 리스크 모델링",
+        "description": "생명·손해보험 수리 모델링, 연금 부채 평가(ALM), 신용·시장 리스크 계량화 및 파생상품 평가",
         "target_majors": [
           "Actuarial Science",
-          "FARM (Financial Analysis & Risk Management)"
+          "FARM (Financial Analysis & Risk Management)",
+          "Statistics"
+        ],
+        "first_year_courses": [
+          "MATH 137/138",
+          "AFM 101 / ECON 101",
+          "ACTSC 221 / STAT 230"
         ],
         "recommended_skills": [
-          "SOA Exam P/FM 준비",
-          "Excel (VBA)",
-          "R",
-          "SAS",
+          "SOA Exam P / FM 합격",
+          "R / Python",
+          "Excel (VBA) & SQL",
+          "Risk & Loss Modeling",
           "Financial Mathematics"
         ],
         "top_employers": [
@@ -107,17 +134,17 @@
           "Sun Life Financial",
           "Munich Re",
           "Intact Financial",
-          "Mercer",
+          "AXA",
           "Oliver Wyman"
         ]
       }
     ]
   },
   "coop_statistics": {
-    "faculty_name": "Mathematics Co-op",
+    "faculty_name": "Faculty of Mathematics Co-op",
     "employment_rate": "96.4%",
     "average_hourly_earnings_cad": {
-      "Work Term 1 (1st Year)": 23.4,
+      "Work Term 1": 23.4,
       "Work Term 2": 26.85,
       "Work Term 3": 30.2,
       "Work Term 4": 34.5,
@@ -125,231 +152,266 @@
       "Work Term 6": 43.1
     },
     "regional_distribution": {
-      "Ontario (Toronto / Waterloo / Ottawa)": "62%",
-      "United States (New York / Bay Area / Seattle)": "24%",
-      "Other Canada (Vancouver / Montreal / Calgary)": "11%",
-      "International (UK / Europe / Asia)": "3%"
+      "Ontario (Waterloo / Toronto / Ottawa)": 62,
+      "United States (NYC / Bay Area / Seattle / Chicago)": 24,
+      "Other Canada (Vancouver / Montreal / Calgary)": 11,
+      "International (London / Europe / Asia)": 3
     },
     "faculty_breakdown_percentages": {
       "Tech & Software": 42,
-      "Finance & Banking & Hedge Funds": 28,
+      "Finance, Quant & Banking": 28,
       "Insurance & Actuarial": 14,
-      "Consulting & Research": 11,
-      "Government & Non-Profit": 5
+      "Data, Consulting & Research": 11,
+      "Government & Policy": 5
     }
   },
+  "default_checklist": [
+    {
+      "id": "chk_gpa_1a",
+      "phase": "1A/1B 학사",
+      "text": "1A 핵심 전공(MATH 135 · MATH 137 · CS 135) 학점 85%+ 목표로 관리하기",
+      "default_done": true
+    },
+    {
+      "id": "chk_cwp_visa",
+      "phase": "비자 필수",
+      "text": "캐나다 Co-op Work Permit(코옵 워크퍼밋) 발급 요건 및 필요 서류 확인",
+      "default_done": true
+    },
+    {
+      "id": "chk_github_proj",
+      "phase": "포트폴리오",
+      "text": "수학 모델링·데이터 분석·개발 사이드 프로젝트 1개 GitHub 공개 배포",
+      "default_done": false
+    },
+    {
+      "id": "chk_discovery_2027",
+      "phase": "1학년 조기지원",
+      "text": "1학년 대상 Discovery 프로그램(Google STEP, Jane Street FTTP 등) 지원 리스트업",
+      "default_done": false
+    },
+    {
+      "id": "chk_stat_cs136",
+      "phase": "1B 수강전략",
+      "text": "1B 학기 CS 136(C언어/시스템) 및 STAT 230(확률론) 수강으로 2028 면접 기반 확보",
+      "default_done": false
+    },
+    {
+      "id": "chk_summer27_bridge",
+      "phase": "2027 여름방학",
+      "text": "2027 여름 Off-Term 계획 수립 (외부 인턴 / 학부연구 URA / SOA Exam P·LeetCode 150)",
+      "default_done": false
+    },
+    {
+      "id": "chk_resume_cca",
+      "phase": "2027 가을 2A",
+      "text": "2A 학기 PD1 수강 및 워털루 CCA 1:1 영문 레쥬메 크리틱 완료 후 WaterlooWorks 출격",
+      "default_done": false
+    }
+  ],
   "waterloo_coop_timeline": [
     {
       "step": 1,
-      "phase": "1A Term (Fall)",
-      "title": "Co-op 준비 기초 과정 & 워크샵",
-      "description": "PD1(Career Fundamentals) 강좌 수강 완료 및 전문적인 테크/금융 이력서 초안 완성",
+      "phase": "Phase 1 · 1A/1B Term (2026.09 ~ 2027.04)",
+      "title": "전공 기초 GPA 확보 & 1학년 조기 프로그램 탐색",
+      "description": "2028 첫 코옵에서는 1학년 성적표(MATH 135/136, CS 135/136)가 가장 강력한 서류 평가 지표가 됩니다.",
       "action_items": [
-        "PD1 필수 모듈 제출 완료하기",
-        "워털루 CCO(Center for Career Action) 1:1 이력서 크리틱 2회 예약",
-        "수학/코딩 사이드 프로젝트 1개 GitHub에 공개하기"
+        "1A/1B 수학·CS 핵심 과목 고학점 확보 및 세부전공(FARM/Data/C&O/ActSci) 탐색",
+        "캐나다 Co-op Work Permit 비자 선제 점검 및 1학년 Discovery 캠프 지원",
+        "워털루 학회(MathSoc, CSC, DSC, WatStreet 퀀트 클럽) 활동 참여"
       ],
       "status": "In Progress"
     },
     {
       "step": 2,
-      "phase": "1B Term (Winter)",
-      "title": "WaterlooWorks 시스템 오픈 & 첫 코옵 지원",
-      "description": "WaterlooWorks 계정 활성화, Round 1 메인 공고 탐색 및 최대 50개 공고 지원",
+      "phase": "Phase 2 · Summer Bridge (2027.05 ~ 2027.08)",
+      "title": "2028 첫 코옵 승부처: 스펙 도약 골든타임",
+      "description": "Sequence 3(2028 첫 코옵)의 최대 강점은 본 코옵 지원 전 여름방학 4개월을 온전히 실전 스펙업에 쓸 수 있다는 점입니다.",
       "action_items": [
-        "WaterlooWorks Main Round 지원서 최대 한도(50개) 맞춤 타깃팅",
-        "수학적 모델링/코딩 인터뷰 LeetCode Easy-Medium 대비",
-        "캐나다 Co-op Work Permit(코옵 워크퍼밋) 비자 발급 여부 확인"
+        "외부 서머 인턴십, 워털루 학부 연구생(URA/MURA), 또는 실전 퀀트·AI 프로젝트 완주",
+        "계리/금융 트랙: SOA Exam P 또는 FM 합격 | SW/퀀트: LeetCode 150 & 확률 인터뷰 대비",
+        "2027년 7~8월 오픈하는 미국/캐나다 2028 인턴십 외부 조기공채(Early Bird) 선지원"
       ],
       "status": "Upcoming"
     },
     {
       "step": 3,
-      "phase": "Interviews & Ranking",
-      "title": "인터뷰 진행 및 매칭 랭킹",
-      "description": "TC(Tatham Centre) 대면/온라인 인터뷰 참가 후 고용주와 학생 상호 랭킹 입력",
+      "phase": "Phase 3 · 2A Term 리크루팅 (2027.09 ~ 2027.12)",
+      "title": "PD1 이수 & WaterlooWorks 본 라운드 총력전",
+      "description": "2027 가을학기(2A) 개강과 함께 WaterlooWorks Cycle 1(50+100개 한도)에서 2028 첫 코옵 오퍼를 확정합니다.",
       "action_items": [
-        "행동 면접(STAR 기법) 및 수학/기술 면접 준비",
-        "랭킹 데이(Ranking Day) 전략 수립 (1순위 매칭 알고리즘 숙지)"
+        "PD1(Career Fundamentals) 필수 모듈 완수 및 CCA 1:1 레쥬메/모의면접 피드백 반영",
+        "WaterlooWorks Cycle 1 집중 타깃팅 및 Tatham Centre(TC)/화상 기술면접 진행",
+        "WaterlooWorks 상호 랭킹 알고리즘 전략 수립 (Spring 2028 시퀀스는 2028.01 진행)"
       ],
       "status": "Upcoming"
     },
     {
       "step": 4,
-      "phase": "Work Term 1 (Spring)",
-      "title": "첫 4개월 인턴십 근무 및 학점 인정",
-      "description": "첫 코옵 직무 수행 및 PD11 평가, 첫 번째 워크 텀 리포트 작성",
+      "phase": "Phase 4 · Work Term 1 (2028 Winter / Spring)",
+      "title": "2028년 대망의 첫 공식 Co-op 근무 & 커리어 점프",
+      "description": "첫 4개월 유급 풀타임 인턴십을 수행하며 학점 인정(PD11)과 차기 미국/상위 티어 코옵 발판을 확보합니다.",
       "action_items": [
-        "고용주 중간/최종 평가(Evaluation) Excellent 등급 목표",
-        "사내 멘토 네트워크 구축 및 미국/캐나다 풀타임/다음 코옵 리턴 오퍼 타진"
+        "고용주 최종 근무평가(Work Term Evaluation) Outstanding / Excellent 등급 달성",
+        "팀 시니어 엔지니어·퀀트 멘토링 네트워킹 및 리턴 오퍼 / 추천서 확보"
       ],
-      "status": "Upcoming"
+      "status": "Target 2028"
     }
   ],
   "d_day_alerts": [
     {
-      "id": "uw_f26_c2_emp_rank",
-      "title": "[WaterlooWorks] Fall Cycle 2 고용주 랭킹 발표 (2 p.m. ET)",
-      "due_date": "2026-11-11",
-      "urgency": "high",
-      "category": "WaterlooWorks"
-    },
-    {
-      "id": "uw_f26_c2_match",
-      "title": "[WaterlooWorks] Fall Cycle 2 학생 랭킹 마감 & 매칭 발표",
-      "due_date": "2026-11-13",
-      "urgency": "high",
-      "category": "WaterlooWorks"
-    },
-    {
       "id": "uw_f26_c3_interview",
-      "title": "[WaterlooWorks] Fall Cycle 3 면접 주간 시작 (11/17~11/24)",
+      "title": "[코옵 동향] WaterlooWorks Fall Cycle 3 면접 주간 (선배 매칭 트렌드 참고)",
       "due_date": "2026-11-17",
       "urgency": "medium",
-      "category": "WaterlooWorks"
+      "category": "WaterlooWorks",
+      "phase_group": "short_term"
     },
     {
       "id": "ircc_coop_work_permit",
-      "title": "[비자 필수] 캐나다 Co-op Work Permit 비자 신청 권장 마감",
+      "title": "[비자 필수] 캐나다 유학생 Co-op Work Permit 서류 점검 및 조기 신청 권장",
       "due_date": "2026-11-20",
       "urgency": "high",
-      "category": "Visa"
+      "category": "Visa",
+      "phase_group": "short_term"
     },
     {
-      "id": "uw_f26_c3_match",
-      "title": "[WaterlooWorks] Fall Cycle 3 학생 랭킹 마감 & 최종 매칭 발표",
-      "due_date": "2026-11-27",
-      "urgency": "medium",
-      "category": "WaterlooWorks"
-    },
-    {
-      "id": "uw_f26_direct_offer",
-      "title": "[WaterlooWorks] Direct Offer (상시 직접 오퍼) 채용 전환 시작",
-      "due_date": "2026-11-30",
-      "urgency": "medium",
-      "category": "WaterlooWorks"
-    },
-    {
-      "id": "uw_f26_classes_end_pd1",
-      "title": "[학사/PD1] 1A 가을학기 정규 수업 종강 & PD1 이력서 최종 마감",
+      "id": "uw_f26_classes_end",
+      "title": "[1A 학사] 2026 가을학기(1A) 정규 수업 종강",
       "due_date": "2026-12-08",
       "urgency": "high",
-      "category": "Academic"
+      "category": "Academic",
+      "phase_group": "short_term"
     },
     {
       "id": "uw_f26_exams_start",
-      "title": "[학사] 1A 가을학기 기말고사 시작 (12/10~12/22)",
+      "title": "[1A 학사] 2026 가을학기(1A) 기말고사 시작 (12/10~12/22 · 1학년 GPA 핵심)",
       "due_date": "2026-12-10",
-      "urgency": "medium",
-      "category": "Academic"
+      "urgency": "high",
+      "category": "Academic",
+      "phase_group": "short_term"
     },
     {
-      "id": "uw_w27_c1a_open",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 공고 오픈 (50개 한도)",
+      "id": "uw_w27_c1a_benchmark",
+      "title": "[사전 벤치마크] WaterlooWorks Winter Cycle 1 오픈 (2028 지원 대비 직무·스펙 분석)",
       "due_date": "2027-01-09",
-      "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "urgency": "medium",
+      "category": "WaterlooWorks",
+      "phase_group": "short_term"
     },
     {
       "id": "uw_w27_classes_start",
-      "title": "[학사] 2027 겨울학기(1B) 개강",
+      "title": "[1B 학사] 2027 겨울학기(1B) 개강 (CS 136 · MATH 136/138 시작)",
       "due_date": "2027-01-11",
-      "urgency": "medium",
-      "category": "Academic"
-    },
-    {
-      "id": "uw_w27_c1a_close",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting A) 1차 지원 마감 (9 a.m. ET)",
-      "due_date": "2027-01-19",
       "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "category": "Academic",
+      "phase_group": "short_term"
     },
     {
-      "id": "uw_w27_c1_interviews",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 본 면접 시작 (1/22~2/9)",
-      "due_date": "2027-01-22",
+      "id": "na_discovery_programs",
+      "title": "[1학년 조기프로그램] 북미 빅테크·퀀트 Freshmen Discovery (STEP·FTTP 등) 주요 마감",
+      "due_date": "2027-01-31",
       "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "category": "Early Talent",
+      "phase_group": "short_term"
     },
     {
-      "id": "uw_w27_c1b_close",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 (Posting B) 최종 지원 마감 (100개 한도)",
-      "due_date": "2027-01-26",
+      "id": "uw_w27_exams_period",
+      "title": "[1B 학사] 2027 겨울학기(1B) 기말고사 돌입 및 1학년 성적 확정",
+      "due_date": "2027-04-09",
+      "urgency": "medium",
+      "category": "Academic",
+      "phase_group": "short_term"
+    },
+    {
+      "id": "bridge_summer_2027",
+      "title": "[골든타임] 2027 봄/여름 브릿지 텀 시작 (외부 인턴십·URA 연구·SOA P/FM·포트폴리오)",
+      "due_date": "2027-05-10",
+      "urgency": "medium",
+      "category": "Bridge 2027",
+      "phase_group": "short_term"
+    },
+    {
+      "id": "early_bird_2028_quant_tech",
+      "title": "[2028 외부공채] 북미 퀀트 헤지펀드·빅테크 2028 인턴십 외부 Early Bird 오픈",
+      "due_date": "2027-07-15",
       "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     },
     {
-      "id": "uw_w27_c1_emp_rank",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 고용주 랭킹 발표 (2 p.m. ET)",
-      "due_date": "2027-02-10",
+      "id": "uw_f27_2a_pd1_start",
+      "title": "[2A 개강/필수] 2027 가을학기(2A) 개강 & PD1(Career Fundamentals) 수강 시작",
+      "due_date": "2027-09-08",
       "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     },
     {
-      "id": "uw_w27_c1_match",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 1 학생 랭킹 마감 & 1차 매칭 결과 발표",
-      "due_date": "2027-02-12",
+      "id": "uw_f27_ww_c1_open",
+      "title": "[2028 첫 코옵] WaterlooWorks Fall Cycle 1 공고 오픈 — Winter 2028 WT1 본 지원 (예상일)",
+      "due_date": "2027-09-18",
       "urgency": "high",
-      "category": "Spring 2027 Co-op"
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     },
     {
-      "id": "uw_w27_c2_open",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 상시 공고 오픈 (500개 한도)",
-      "due_date": "2027-02-13",
-      "urgency": "medium",
-      "category": "Spring 2027 Co-op"
+      "id": "uw_f27_ww_c1_interview_match",
+      "title": "[2028 첫 코옵] WaterlooWorks Fall Cycle 1 본 면접 & 1차 랭킹 매칭 시즌 (예상일)",
+      "due_date": "2027-10-15",
+      "urgency": "high",
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     },
     {
-      "id": "uw_w27_c2_close",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 (Reading Week 공고분) 마감",
-      "due_date": "2027-02-24",
-      "urgency": "medium",
-      "category": "Spring 2027 Co-op"
+      "id": "uw_w28_wt1_start",
+      "title": "[🎯 목표 달성] 2028 겨울학기(Winter 2028) 대망의 첫 공식 Co-op (Work Term 1) 출근!",
+      "due_date": "2028-01-10",
+      "urgency": "high",
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     },
     {
-      "id": "uw_w27_c2_match",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 2 학생 랭킹 마감 & 2차 매칭 발표",
-      "due_date": "2027-03-19",
+      "id": "uw_s28_wt1_alt_start",
+      "title": "[🎯 Spring 시퀀스] 2028 봄학기(Spring 2028) 첫 Co-op 시작 (Spring WT1 시퀀스 선택 시)",
+      "due_date": "2028-05-08",
       "urgency": "medium",
-      "category": "Spring 2027 Co-op"
-    },
-    {
-      "id": "uw_w27_c3_match",
-      "title": "[1B 첫 코옵] WaterlooWorks Cycle 3 최종 매칭 발표 & Direct Offer 시작",
-      "due_date": "2027-04-02",
-      "urgency": "medium",
-      "category": "Spring 2027 Co-op"
+      "category": "2028 Co-op Target",
+      "phase_group": "target_2028"
     }
   ],
   "visa_guide": {
     "canada_coop": {
-      "title": "캐나다 Co-op Work Permit",
-      "summary": "워털루 코옵 학생은 합법적으로 풀타임(주 40시간) 인턴십을 수행할 수 있는 비자로, 학교 발급 Co-op Letter를 받아 IRCC에 무료 신청.",
-      "key_point": "1학년 1학기 중에 반드시 신청 완료해야 다음 해 코옵 시작 전 수령 가능."
+      "title": "캐나다 Co-op Work Permit (CWP)",
+      "badge": "필수 · 무료 발급",
+      "summary": "워털루 Co-op 재학생이 캐나다 내 기업에서 주 40시간 풀타임 유급 인턴십을 수행하기 위한 필수 허가서로, 학교 Co-op Letter로 IRCC에 수수료 없이 신청합니다.",
+      "key_point": "2027년 가을 WaterlooWorks 본 지원 시작 전까지 반드시 승인본 수령을 완료하도록 1학년 중 미리 점검하세요."
     },
     "us_internship_j1": {
       "title": "미국 인턴십 J-1 비자 (Exchange Visitor)",
-      "summary": "미국 빅테크(Google, Meta 등) 또는 퀀트 펀드(Citadel, Jane Street) 합격 시 고용주와 Cultural Vistas 등 스폰서 기관이 DS-2019 및 J-1 비자 전액 지원.",
-      "key_point": "캐나다 시민권자/영주권자는 비자 인터뷰 면제 혜택(캐나다 여권 소지자 DS-2019로 입국 심사), 한국 국적 유학생은 토론토 미국 영사관에서 인터뷰 진행."
+      "badge": "고용주 전액 스폰서",
+      "summary": "미국 빅테크(Google, Amazon 등) 및 퀀트 하우스(Citadel, Jane Street, Point72 등) 합격 시 기업 지정 스폰서(Cultural Vistas 등)가 DS-2019 발급을 지원합니다.",
+      "key_point": "캐나다 시민권자는 국경에서 즉시 입국 심사 가능하며, 한국 국적 유학생은 토론토/밴쿠버 주재 미국 영사관 인터뷰를 통해 발급받습니다."
     },
     "fulltime_pgwp_h1b": {
-      "title": "졸업 후 취업: PGWP vs 미국 H-1B",
-      "summary": "캐나다는 졸업 후 최대 3년 오픈 워크퍼밋(PGWP)이 100% 보장되며, 미국은 4월 추첨제 H-1B(STEM 전공 3년 OPT)가 필요함.",
-      "key_point": "수학 전공(STEM)은 미국 취업 시 최대 36개월간 비자 추첨 없이 OPT 근무 가능."
+      "title": "졸업 후 북미 정착: 캐나다 PGWP vs 미국 STEM OPT · H-1B",
+      "badge": "장기 커리어 전략",
+      "summary": "캐나다는 워털루 졸업 즉시 최대 3년 오픈 워크퍼밋(PGWP)이 추첨 없이 보장되며, 미국은 STEM 전공 특례로 최대 36개월 OPT 근무 후 H-1B를 진행합니다.",
+      "key_point": "코옵 6회(최대 2년 실무 경력)를 마치고 졸업하므로 신입 공채 및 영주권(Express Entry) 점수에서 압도적 우위를 가집니다."
     }
   },
   "live_sync_metadata": {
-    "last_synced_kst": "2026-11-02 17:46:40 KST",
+    "last_synced_kst": "2026-11-15 10:02:47 KST",
     "uw_official_dates_url": "https://uwaterloo.ca/co-operative-education/important-dates",
     "uw_official_page_verified": true,
     "live_jobs_source_url": "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/README.md",
     "live_jobs_stats": {
-      "total_open_na_roles": 827,
-      "canada_open_roles": 49,
-      "quant_open_roles": 27,
-      "data_ai_open_roles": 411,
-      "software_open_roles": 385,
-      "actuary_open_roles": 4
+      "total_open_na_roles": 705,
+      "canada_open_roles": 44,
+      "quant_open_roles": 17,
+      "data_ai_open_roles": 357,
+      "software_open_roles": 328,
+      "actuary_open_roles": 3
     }
   }
 }

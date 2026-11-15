@@ -11,10 +11,25 @@
     }
   },
   "notification_rules": {
-    "d_day_alert_thresholds": [30, 14, 7, 3, 1, 0],
+    "d_day_alert_thresholds": [
+      30,
+      14,
+      7,
+      3,
+      1,
+      0
+    ],
     "auto_notify_new_quant_jobs": true,
-    "target_tracks": ["quant", "data_ai", "software", "actuary"],
-    "target_countries": ["CA", "US"]
+    "target_tracks": [
+      "quant",
+      "data_ai",
+      "software",
+      "actuary"
+    ],
+    "target_countries": [
+      "CA",
+      "US"
+    ]
   },
   "scheduler": {
     "enabled": true,

@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Waterloo Faculty of Mathematics Career Intelligence — Design System v2.0
+   Palette: Midnight Obsidian + UW Gold (#F5C518) + Math Pink Tie (#EC4899)
+   Typography: Pretendard Variable (KO/EN UI) + JetBrains Mono (Quant Metrics)
+   ========================================================================== */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg-canvas: #070A12;
+  --bg-surface: #0F1523;
+  --bg-elevated: #161F33;
+  --bg-subtle: #111827;
+  --border-hairline: #1E293B;
+  --border-strong: #334155;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --uw-gold: #F5C518;
+  --uw-gold-hover: #EAB308;
+  --math-pink: #EC4899;
+  --math-pink-soft: rgba(236, 72, 153, 0.14);
+  --signal-emerald: #10B981;
+  --signal-rose: #F43F5E;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Tabular Numerals for Wages, Counts, Dates & D-Day Tickers */
+.font-quant {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Signature UW Gold + Math Pink Tie Top Brand Hairline */
+.uw-brand-ribbon {
+  height: 3px;
+  background: linear-gradient(90deg, #F5C518 0%, #F5C518 62%, #EC4899 82%, #F472B6 100%);
+}
+
+/* Surface Panels — Crisp Structural Hairlines, Zero Fluffy SaaS Shadow Soup */
+.uw-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+}
+
+.uw-card {
+  background-color: rgba(15, 21, 35, 0.92);
+  border: 1px solid var(--border-hairline);
+  transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.uw-card:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+
+.uw-card-applied {
+  border-left: 3px solid var(--signal-emerald);
+}
+
+.uw-card-bookmarked {
+  border-left: 3px solid var(--uw-gold);
+}
+
+/* Sequence Stepper Connector */
+.seq-step-active {
+  background: linear-gradient(135deg, rgba(245, 197, 24, 0.16), rgba(236, 72, 153, 0.12));
+  border-color: rgba(245, 197, 24, 0.55);
+}
+
+.seq-step-target {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.18), rgba(245, 197, 24, 0.08));
+  border-color: rgba(236, 72, 153, 0.55);
+}
+
+/* Scrollbar Precision */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0B101D;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #283548;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--uw-gold);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* iOS & Android Safe Area Support */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0.75rem), 0.75rem);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0.5rem), 0.5rem);
+}
+
+/* Accessible Keyboard Focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--uw-gold);
+  outline-offset: 2px;
+}
+
+/* Tab Switching */
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tab-pane.active {
+    animation: uwReveal 0.16s ease-out;
+  }
+  @keyframes uwReveal {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

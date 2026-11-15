@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/internship_postings.json data/waterloo_math_profile.json
+          git add data/internship_postings.json data/waterloo_math_profile.json web/assets/uw-core.js
           git diff --staged --quiet || (git commit -m "chore(data): auto-sync live North American internships and official Waterloo schedule" && git push)
 
       - name: Send Full D-Day Schedule Alert (Daily 09:00 KST or Manual)

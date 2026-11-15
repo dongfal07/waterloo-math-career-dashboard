@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#070A12"/>
+  <rect x="16" y="16" width="480" height="480" rx="96" stroke="#1E293B" stroke-width="6"/>
+  <!-- UW Gold Geometric Shield Frame -->
+  <path d="M96 124H224L256 188L288 124H416L364 388H296L256 292L216 388H148L96 124Z" fill="#F5C518"/>
+  <!-- Iconic Waterloo Faculty of Math Pink Tie Centerpiece -->
+  <path d="M232 104H280L268 148H244L232 104Z" fill="#EC4899"/>
+  <path d="M244 156H268L286 336L256 412L226 336L244 156Z" fill="#EC4899"/>
+  <path d="M244 156H268L275 224L239 206L244 156Z" fill="#F472B6" fill-opacity="0.45"/>
+</svg>
